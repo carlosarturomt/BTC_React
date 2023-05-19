@@ -1,0 +1,24 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* font-size: 62.5%; */
+	font-family: "Montserrat", sans-serif;
+}
+
+html {
+	overflow: hidden;
+	height: 100%;
+}
+
+body {
+	overflow: auto;
+	max-height: 100%;
+	width: calc(100% + 17px);
+}
+
+@media (max-width: 1080px) {
+	body {
+		width: 100%;
+	}
+}
