@@ -1,75 +1,44 @@
 import { useState } from "react";
 import btcLogo from "../../assets/icons/logo_btc-red.svg";
 import { Logo } from "./Logo";
+import { NavOpen } from "./NavOpen";
 
 function NavBar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 	return (
-		// <div className="flex items-center justify-between py-6 px-8 lg:px-40 w-full bg-[#011E41]">
-		<div className="flex items-center justify-between py-6 px-8 lg:px-40 fixed w-full bg-[#011E41DE]">
-			<Logo image={btcLogo} classLogo="text-gray-100 " logo="btc" />
-			<h4 className="text-gray-100 hidden md:block">HOME</h4>
-			<nav>
-				{/* <section className="MOBILE-MENU flex lg:hidden"> */}
-				<section className="flex">
-					<div
-						className="space-y-1"
-						onClick={() => setIsNavOpen((prev) => !prev)}
-					>
-						<span className="block h-1 w-8 animate-pulse bg-gray-100"></span>
-						<span className="block h-0.5 w-6 animate-pulse transparent"></span>
-						<span className="block h-1 w-8 animate-pulse bg-gray-100"></span>
-						{/* <span className="block h-0.5 w-6 animate-pulse bg-gray-100"></span> */}
-					</div>
-
-					<div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
-						<div className="flex justify-between mb-12 py-8 px-8 lg:px-40" onClick={() => setIsNavOpen(false)}>
-							<Logo
-								image={btcLogo}
-								classLogo="text-gray-100 "
-								logo="btc"
-							/>
-
-							<svg
-								className="h-8 w-8 text-gray-100 hover:text-red-600"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="4"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							>
-								<line x1="18" y1="6" x2="6" y2="18" />
-								<line x1="6" y1="6" x2="18" y2="18" />
-							</svg>
-						</div>
-
-						<ul className="flex flex-col justify-between min-h-[250px] text-3xl font-semibold px-8 text-gray-100 lg:px-40">
-							<li className="my-8 uppercase">
-								<a href="/about">Home</a>
-							</li>
-							<li className="my-8 uppercase">
-								<a href="/portfolio">About</a>
-							</li>
-							<li className="my-8 uppercase">
-								<a href="/contact">Contact</a>
-							</li>
-						</ul>
-					</div>
+		<div className="flex items-center justify-between py-8 px-8 lg:px-40 fixed w-full">
+			<Logo image={btcLogo} classLogo="text-gray-100" logo="btc" />
+			<nav className="flex">
+				<section
+					className="flex flex-col justify-center items-center space-y-1 bg-red-600 rounded-full p-5 w-[60px] h-[60px] button-plus"
+					onClick={() => setIsNavOpen((prev) => !prev)}
+				>
+					<span className="block h-1 w-4 animate-pulse rotate-90 bg-gray-100"></span>
+					<span className="block h-1 w-8 animate-pulse bg-gray-100"></span>
+					<span className="block h-1 w-4 animate-pulse rotate-90 bg-gray-100"></span>
 				</section>
 
-				{/* <ul className="DESKTOP-MENU hidden space-x-8 lg:flex text-gray-100">
-					<li>
-						<a href="/about" >Home</a>
-					</li>
-					<li>
-						<a href="/portfolio">About</a>
-					</li>
-					<li>
-						<a href="/contact">Contact</a>
-					</li>
-				</ul> */}
+				<section className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
+					<div className="h-full">
+						<header
+							className="flex items-center justify-between py-8 px-8 lg:px-40 mb-8"
+							onClick={() => setIsNavOpen(false)}
+						>
+							<Logo image={btcLogo} classLogo="text-gray-100" logo="btc" />
+							<div
+								className="flex flex-col justify-center items-center space-y-1 bg-red-600 rounded-full p-5 w-[60px] h-[60px] button-plus-active button-plus"
+								onClick={() => setIsNavOpen((prev) => !prev)}
+							>
+								<span className="block h-1 w-4 animate-pulse rotate-90 bg-gray-100"></span>
+								<span className="block h-1 w-8 animate-pulse bg-gray-100"></span>
+								<span className="block h-1 w-4 animate-pulse rotate-90 bg-gray-100"></span>
+							</div>
+						</header>
+						<NavOpen />
+					</div>
+				</section>
 			</nav>
+
 			<style>
 				{`
 					nav {
@@ -87,15 +56,47 @@ function NavBar() {
 						height: 100vh;
 						top: 0;
 						left: 0;
-						background: #020617;
-						z-index: 10;
-						{/* display: flex;
-						flex-direction: column;
-						justify-content: space-evenly;
-						align-items: flex-start; */}
+						background: #000c1a;
+						z-index: 15;
+						overflow-y: scroll;
 					}
-					.showMenuNav a:hover {
-						text-decoration: underline;
+					.showMenuNav article a:hover {
+						-webkit-text-stroke: 2px #fefefe;
+						color: transparent;
+					}
+					.showMenuNav aside a:hover {
+						-webkit-text-stroke: 1px #fefefe;
+						color: transparent !important;
+					}
+					.button-plus-active {
+						background-color: #e90123;
+						animation-name: resplandorAnimation;
+						transform: rotate(45deg);
+						animation-duration:  1s;
+						animation-iteration-count: infinite;
+					}
+
+					.button-plus:hover {
+						background-color: #e90123;
+						animation-name: resplandorAnimation, rotation;
+						animation-duration:  1s, 0.5s;
+						animation-iteration-count: infinite, 1;
+					}
+					@keyframes rotation {
+						from {
+							transform: rotate(0deg);
+						}
+						to {
+							transform: rotate(360deg);
+						}
+					}
+					@keyframes resplandorAnimation {
+						0%,100%{
+							box-shadow: 0 0 20px red;
+						}
+						50%{
+							box-shadow: 0px 0px 0px red;
+						}
 					}
 					`}
 			</style>

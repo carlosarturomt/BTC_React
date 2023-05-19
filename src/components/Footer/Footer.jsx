@@ -8,7 +8,7 @@ function Footer() {
 	// year.innerHTML = new Date().getFullYear();
 
 	return (
-		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40">
+		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40" >
 			<section className="flex flex-wrap items-center justify-between">
 				<Logo
                     image={btcLogo}
@@ -17,7 +17,7 @@ function Footer() {
                 />
 
 				<aside className="flex flex-wrap">
-					<UlList
+					<UlList is
 						classN="md:border-none"
 						section="Company"
 						liOne="About us"

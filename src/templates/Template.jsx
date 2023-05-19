@@ -4,9 +4,9 @@ import { Footer } from "../components/Footer/Footer";
 
 function Template( props ) {
 	return (
-		<div className="bg-[#011E41]">
+		<div className="bg-[#000c1a]">
 			<NavBar />
-			{props.children}
+				{props.children}
 			<Footer />
 		</div>
 	);

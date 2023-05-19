@@ -1,14 +1,17 @@
-// import { useState } from 'react'
-import { Header } from "./components/Header/Header";
-import { Template } from "./templates/Template";
-// import { Fade, Slide } from "react-awesome-reveal";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./views/Home";
+import { Jobs } from "./views/Jobs";
+
 
 function App() {
-	// const [count, setCount] = useState(0)
 	return (
-		<Template>
-			<Header />
-		</Template>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/jobs" element={<Jobs />} />
+				{/* <Route path="/edit/:id" element={<EditEmployee />} /> */}
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

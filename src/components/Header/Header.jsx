@@ -3,9 +3,9 @@ import React from "react";
 function Header() {
     // document.getElementById('js-animate').addEventListener()
     return (
-        <section className="pt-[75px] bg-gif">
-            <aside className="p-4 bg-fig-gr" id="js-animate">
-                <h2 className="mt-[10%] text-6xl text-center text-gray-100 slide-l">
+        <section className="h-screen bg-gif">
+            <aside className="h-screen p-4 bg-fig-gr" id="js-animate">
+                {/* <h2 className="mt-[10%] text-6xl text-center text-gray-100 slide-l">
                     <span className="text-border font-bold">We Gather Emotions</span>
                     <span> . </span>
                     <span className="font-bold">We Gather Experiences</span>
@@ -14,7 +14,7 @@ function Header() {
                     <span className="text-border font-bold">We Gather People</span>
                     <span> . </span>
                     <span className="font-bold">We Gather Adventures</span>
-                </h2>
+                </h2> */}
             </aside>
 
             <style>
@@ -34,11 +34,11 @@ function Header() {
 					}
 
 					.bg-fig-gr {
-						background-size: cover;
-						background-position: center;
-						background-color: #011E41DE;
 						width: 100%
 						height: 50vh;
+						background-size: cover;
+						background-position: center;
+						background-color: #000f2094;
 					}
 
 					/* A N I M A C I O N E S */
@@ -72,38 +72,6 @@ function Header() {
 					}
 					`}
 			</style>
-
-            {/* M O S A I C O */}
-			{/* <section className="grid grid-cols-4 pt-[150px] px-12 bg-[url('https://i.gifer.com/ODz.gif')]">
-				<aside className="row-span-2 col-span-2 rounded-2xl h-[70vh]">
-					<img
-						src="https://www.btcamericas.com/static/assets/front/img/events/48.jpg"
-						alt="image"
-						className="object-cover w-fit h-[inherit] rounded-2xl"
-					/>
-				</aside>
-				<aside className="rounded-2xl pl-4 pb-2 h-[35vh]">
-					<img
-						src="https://www.btcamericas.com/static/assets/front/img/events/11.jpg"
-						alt="image"
-						className="object-cover object-top w-fit h-full rounded-2xl"
-					/>
-				</aside>
-				<aside className="rounded-2xl pl-4 pb-2 h-[35vh]">
-					<img
-						src="https://www.btcamericas.com/static/assets/front/img/events/9.jpg"
-						alt="image"
-						className="object-cover w-fit h-full rounded-2xl"
-					/>
-				</aside>
-				<aside className="row-span-1 col-span-2 rounded-2xl pl-4 pt-2 h-[35vh]">
-					<img
-						src="https://www.btcamericas.com/static/assets/front/img/events/13.jpg"
-						alt="image"
-						className="object-cover w-full h-full rounded-2xl"
-					/>
-				</aside>
-			</section> */}
         </section>
     )
 }
