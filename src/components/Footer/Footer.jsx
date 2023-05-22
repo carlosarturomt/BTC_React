@@ -37,7 +37,7 @@ function Footer() {
 						liOne="About us"
 						liTwo="Legal"
 						liThree="Career"
-						liFour="More"
+						liFour="Log In"
 					/>
 				</aside>
 			</section>
