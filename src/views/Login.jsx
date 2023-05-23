@@ -45,7 +45,7 @@ const Login = () => {
 										Email
 									</label>
 									<input
-										className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+										className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]"
 										id="email"
 										name="email"
 										type="email"
@@ -60,7 +60,7 @@ const Login = () => {
 										Password
 									</label>
 									<input
-										className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+										className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]"
 										id="password"
 										name="password"
 										type="password"
@@ -76,7 +76,7 @@ const Login = () => {
 										type="checkbox"
 										className="mr-1 checked:bg-purple-700"
 									/>
-									<label
+									<label//danone.sharepoint.com/sites/AMERICAS-ITandData
 										htmlFor="remember"
 										className="mr-auto text-xs font-semibold"
 									>
@@ -91,7 +91,7 @@ const Login = () => {
 									<button className="mb-1.5 block w-full text-center text-white bg-red-600 hover:bg-red-700 px-2 py-1.5 rounded-md" type="submit" onClick={onLogin}>
 										Sign in
 									</button>
-									<button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
+									<button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md hover:bg-[#ffffff3b]">
 										<img
 											className="w-6 mr-2"
 											src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
@@ -123,66 +123,6 @@ const Login = () => {
 				</article>
 			</section>
 
-			{/* <section className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
-				<article className="py-3 sm:max-w-xl sm:mx-auto">
-					<aside className="px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-						<hgroup>
-							<h1 className="text-2xl font-semibold">Log In</h1>
-						</hgroup>
-						<div className="divide-y divide-gray-200">
-							<div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-								<input
-									id="email"
-									name="email"
-									type="email"
-									className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-									placeholder="Email address"
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-								/>
-								<label
-									htmlFor="email"
-									className="left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
-								>
-									Email Address
-								</label>
-								<input
-									id="password"
-									name="password"
-									type="password"
-									className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-									placeholder="Password"
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-								/>
-								<label
-									htmlFor="password"
-									className="left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
-								>
-									Password
-								</label>
-								<div className="">
-									<button
-										className="bg-red-500 text-white rounded-md px-2 py-1 hover:bg-red-600"
-										type="submit"
-										onClick={onLogin}
-									>
-										Log In
-									</button>
-
-									<a
-										className="ml-8 text-gray-400 hover:text-gray-600"
-										href="/signup"
-									>
-										Sign Up
-									</a>
-								</div>
-							</div>
-						</div>
-					</aside>
-				</article>
-			</section> */}
-
 			<style>
 				{`
 					.bg-gif {
@@ -198,10 +138,8 @@ const Login = () => {
 						background-repeat: no-repeat;
 						background-image: url('https://i.gifer.com/ODz.gif')
 					}
-
-					`}
+				`}
 			</style>
-
 		</TemplateNoNav>
 	);
 };
