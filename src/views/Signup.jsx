@@ -10,11 +10,8 @@ const Signup = () => {
 
 	const auth = getAuth();
 	const navigate = useNavigate();
-
-
 	// const firebase = useFirebaseApp();
 	// const user = useUser();
-
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
@@ -36,7 +33,7 @@ const Signup = () => {
 
 	return (
 		<TemplateNoNav>
-			<section className="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+			<section className="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-[#000c1a]">
 				<article className="py-3 sm:max-w-xl sm:mx-auto">
 					<aside className="px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 						<hgroup>

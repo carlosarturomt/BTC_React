@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./views/Home";
 import { Jobs } from "./views/Jobs";
 import { Loading } from "./views/Loading";
-import Login from "./views/Login";
+// import Login from "./views/Login";
 import Signup from "./views/Signup";
 import Welcome from "./views/Welcome";
+import Login from "./views/Login";
 
 function App() {
 	return (
