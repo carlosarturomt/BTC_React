@@ -6,11 +6,10 @@ import "./styles/App.css";
 import firebaseConfig from "./firebase-config";
 import { FirebaseAppProvider } from "reactfire";
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<FirebaseAppProvider firebaseConfig={firebaseConfig}>
-			<Suspense fallback={<h2>Loading...</h2>}>
+			<Suspense fallback={console.log('alv, Suspense!!!')}>
 				<App />
 			</Suspense>
 		</FirebaseAppProvider>

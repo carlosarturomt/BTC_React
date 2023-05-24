@@ -26,6 +26,7 @@ function Header() {
 					.bg-gif {
 						width: 100%
 						height: 50vh;
+						margin-top: -125px;
 
 						background-size: cover;
 						background-position: center;
@@ -35,7 +36,7 @@ function Header() {
 
 					.bg-fig-gr {
 						width: 100%
-						height: 50vh;
+						margin-top: -125px;
 						background-size: cover;
 						background-position: center;
 						background-color: #000f2094;

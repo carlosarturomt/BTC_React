@@ -6,7 +6,7 @@ import { NavOpen } from "./NavOpen";
 function NavBar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 	return (
-		<div className="flex items-center justify-between py-8 px-8 lg:px-40 fixed w-full">
+		<div className="flex items-center justify-between py-8 px-8 lg:px-40 w-full">
 			<Logo image={btcLogo} classLogo="text-gray-100" logo="btc" />
 			<nav className="flex">
 				<section

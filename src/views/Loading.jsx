@@ -3,9 +3,9 @@ import React from "react";
 function Loading() {
 	return (
 		<section>
-			<article className="py-4 px-28">
-				<hgroup className="p-4">
-					<h1 className="mt-[10%] text-6xl text-center text-gray-100 slide-l text-border font-bold">
+			<article className="px-28 w-full h-[100vh] bg-red-600">
+				<hgroup className="h-[100vh]">
+					<h1 className="h-[100vh] py-28 text-7xl text-center text-gray-100 slide-l text-border font-bold">
 						Loading
 					</h1>
 				</hgroup>
@@ -15,7 +15,7 @@ function Loading() {
 				{`
 					section {
 						background-color: red;
-						height: 10vh;
+						height: 100vh;
 					}
                     .text-border {
                         -webkit-text-stroke: 1px #fefefe;
