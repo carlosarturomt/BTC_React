@@ -9,7 +9,7 @@ import { FirebaseAppProvider } from "reactfire";
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<FirebaseAppProvider firebaseConfig={firebaseConfig}>
-			<Suspense fallback={console.log('alv, Suspense!!!')}>
+			<Suspense fallback={console.log('Suspense...')}>
 				<App />
 			</Suspense>
 		</FirebaseAppProvider>

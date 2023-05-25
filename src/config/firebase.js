@@ -1,4 +1,5 @@
-export default {
+import { initializeApp } from "firebase/app";
+const firebaseConfig = {
 	apiKey: "AIzaSyDHkEMtgdX928zEjye6GsEfJwDX_5Ijjag",
 	authDomain: "reactdemo-fdaf5.firebaseapp.com",
 	databaseURL: "https://reactdemo-fdaf5-default-rtdb.firebaseio.com",
@@ -8,3 +9,5 @@ export default {
 	appId: "1:749100592564:web:aa5d0569ddb8266981d6e1",
 	measurementId: "G-VWXP75P120",
 };
+
+const app = initializeApp(firebaseConfig);

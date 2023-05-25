@@ -22,6 +22,7 @@ const Welcome = () => {
 			});
 	};
 
+
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
