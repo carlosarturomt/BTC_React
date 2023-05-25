@@ -35,8 +35,11 @@ function DetailVacancy() {
 			<main className="flex justify-center flex-col items-center mb-8">
 				<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">
 					<header className="pb-4 w-full border-b-2 border-[#ffffff21]">
-						<h1 className="font-bold mt-px text-2xl text-gray-100">
+						<h1 className="font-bold text-2xl flex justify-between text-gray-100">
 							{vacancyTitle}
+							<span className="text-slate-500 text-sm font-light">
+								Hace 2 días
+							</span>
 						</h1>
 						<p className="font-bold text-gray-200">{salaryVacancy}</p>
 
@@ -95,11 +98,13 @@ function DetailVacancy() {
 
 						<aside className="py-2">
 							<h3 className="font-bold text-lg text-gray-100">Descripción</h3>
-							<p className="text-gray-300">{content}</p>
+							<p className="text-gray-300">
+								{content}
+							</p>
 						</aside>
 					</article>
 
-					<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30]">
+					<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
 						Apply Now
 					</button>
 				</section>

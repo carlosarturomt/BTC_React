@@ -105,7 +105,7 @@ function Jobs() {
 							return (
 								<CardJob vacancyData={vacancyData} key={key}>
 									<Link to={`/jobs/${key}`}>
-										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30]">
+										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
 											Apply Now
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
