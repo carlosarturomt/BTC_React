@@ -18,6 +18,7 @@ function DetailVacancy() {
 	}, []);
 
 	const {
+		dateVacancy,
 		vacancyTitle,
 		typeVacancy,
 		areaVacancy,
@@ -30,6 +31,15 @@ function DetailVacancy() {
 		requiredVacancy,
 	} = vacancyData;
 
+	const current = new Date();
+	const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+	// const datePost = '2023-5-25'
+	const date_1 = new Date(date)
+	const date_2 = new Date(dateVacancy)
+	const day_as_milliseconds = 86400000;
+	const diff_in_millisenconds = date_1 - date_2;
+	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+
 	return (
 		<Template>
 			<main className="flex justify-center flex-col items-center mb-8">
@@ -37,9 +47,7 @@ function DetailVacancy() {
 					<header className="pb-4 w-full border-b-2 border-[#ffffff21]">
 						<h1 className="font-bold text-2xl flex justify-between text-gray-100">
 							{vacancyTitle}
-							<span className="text-slate-500 text-sm font-light">
-								Hace 2 días
-							</span>
+							<span className="text-slate-500 text-sm font-light">{ dateVacancy == date ? 'Hoy' : 'Hace ' + diff_in_days + ' días' }</span>
 						</h1>
 						<p className="font-bold text-gray-200">{salaryVacancy}</p>
 
@@ -98,9 +106,7 @@ function DetailVacancy() {
 
 						<aside className="py-2">
 							<h3 className="font-bold text-lg text-gray-100">Descripción</h3>
-							<p className="text-gray-300">
-								{content}
-							</p>
+							<p className="text-gray-300">{content}</p>
 						</aside>
 					</article>
 

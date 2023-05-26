@@ -22,7 +22,7 @@ function Jobs() {
 
 	//
 	const [itemOffset, setItemOffset] = useState(0);
-	const endOffset = itemOffset + 6;
+	const endOffset = itemOffset + 18;
 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset)
 	return (
 		<Template>
