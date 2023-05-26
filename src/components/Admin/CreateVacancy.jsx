@@ -28,18 +28,10 @@ function CreateVacancy() {
 	// 	});
 	// }, []);
 
-	// function date() {
-	// 	return (
-	// 		`${current.getFullYear()}-${
-	// 			current.getMonth() + 1
-	// 		}-${current.getDate()}`
-	// 	)
-	// }
 	const current = new Date();
 	const date = `${current.getFullYear()}-${
 		current.getMonth() + 1
 	}-${current.getDate()}`;
-	// const dateToday = new Date(date);
 	const changeDate = (event) => {
 		const property = event.target.name;
 		const value = date;

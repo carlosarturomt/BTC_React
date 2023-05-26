@@ -33,7 +33,6 @@ function DetailVacancy() {
 
 	const current = new Date();
 	const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
-	// const datePost = '2023-5-25'
 	const date_1 = new Date(date)
 	const date_2 = new Date(dateVacancy)
 	const day_as_milliseconds = 86400000;
