@@ -1,6 +1,6 @@
 import React from "react";
 
-function NavOpen() {
+function NavOpenAdmin(props) {
 	return (
 		<div className="grid md:grid-cols-3 gap-2 lg:px-40">
 			<article className="col-span-2">
@@ -48,31 +48,10 @@ function NavOpen() {
 					</li>
 				</ul>
 
-				<aside className="font-semibold px-8 text-gray-100">
-					<h5 className="uppercase text-1xl border-b">Connect Us</h5>
-					<ul className="flex justify-start font-semibold text-gray-100 pr-6">
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://www.facebook.com/BTCamericas" className="pr-10">
-								<span className="facebook hover:animate-pulse"></span>
-							</a>
-						</li>
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://www.instagram.com/btcamericas/" className="pr-10">
-								<span className="instagram hover:animate-pulse"></span>
-							</a>
-						</li>
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://twitter.com/BTCamericas" className="pr-10">
-								<span className="twitter hover:animate-pulse"></span>
-							</a>
-						</li>
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://www.linkedin.com/company/btcamericas" className="pr-10">
-								<span className="linkedin hover:animate-pulse"></span>
-							</a>
-						</li>
-					</ul>
-				</aside>
+				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
+					<h5 className="uppercase text-1xl border-b">Admin</h5>
+					{props.children}
+				</ul>
 			</aside>
 
 			<style>
@@ -126,4 +105,4 @@ function NavOpen() {
 	);
 }
 
-export { NavOpen };
+export { NavOpenAdmin };

@@ -100,7 +100,7 @@ function Jobs() {
 				</header>
 
 				<div className="w-full max-w-4xl">
-					{currentItems.map((key) => {
+					{currentItems.sort((a, b) => (a.name > b.name ? -1 : 1)).map((key) => {
 							const vacancyData = vacancyList[key];
 							return (
 								<CardJob vacancyData={vacancyData} key={key}>

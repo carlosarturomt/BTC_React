@@ -1,6 +1,6 @@
 import React from "react";
 
-function UlList({ section, liOne, liTwo, liThree, liFour, classN }) {
+function UlList({ section, liOne, liTwo, liThree, liFourHref,liFour, classN }) {
 	return (
 		// <ul className="text-gray-100 py-2 px-8" className={class}>
 		<ul className={classN + ' text-gray-100 py-2 px-8 border-l border-gray-400'} >
@@ -18,7 +18,7 @@ function UlList({ section, liOne, liTwo, liThree, liFour, classN }) {
 				<a href="/">{liThree}</a>
 			</li>
 			<li className="">
-				<a href="/login">{liFour}</a>
+				<a href={liFourHref}>{liFour}</a>
 			</li>
 		</ul>
 	);

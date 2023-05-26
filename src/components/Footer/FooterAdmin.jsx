@@ -3,7 +3,7 @@ import btcLogo from "../../assets/icons/logo_btc-9ca3af.svg";
 import { UlList } from "./UlList";
 import { Logo } from "../NavBar/Logo";
 
-function Footer() {
+function FooterAdmin() {
 	// const year = document.getElementById('current-year')
 	// year.innerHTML = new Date().getFullYear();
 
@@ -37,8 +37,6 @@ function Footer() {
 						liOne="About us"
 						liTwo="Legal"
 						liThree="Career"
-                        liFourHref="/login"
-						liFour="Log In"
 					/>
 				</aside>
 			</section>
@@ -109,4 +107,4 @@ function Footer() {
 	);
 }
 
-export { Footer };
+export { FooterAdmin };

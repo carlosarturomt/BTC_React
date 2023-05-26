@@ -5,7 +5,9 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Error404 } from "../../views/404";
+import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { CreateVacancy } from "./CreateVacancy";
+import { JobsAdmin } from "./JobsAdmin";
 
 function Admin() {
 	const [test, setTest] = useState(false);
@@ -52,22 +54,102 @@ function Admin() {
 	) {
 	}
 
-	return (
-		<Template>
-			{test ? (
-				<CreateVacancy />
-			) : (
-				<Error404 />
-			)}
-			<div className="flex justify-end w-full max-w-4xl">
+	const buttonLogOut = () => {
+		return (
+			<div className="flex justify-start w-full max-w-4xl">
 				<button
 					onClick={handleLogout}
-					className="border border-gray-400 rounded-md px-4 py-1 text-gray-400 hover:text-gray-200 hover:border-gray-200"
+					className="btn-animate flex items-center lg:text-3xl text-gray-100 hover:text-gray-200 hover:border-gray-200"
 				>
-					Logout
+					<span className="material-symbols-outlined lg:text-3xl">logout</span>
+					<span className="text-border ">Logout</span>
 				</button>
+
+				<style>
+					{`
+					.text-border:hover {
+						-webkit-text-stroke: 1px #fefefe;
+						color: transparent !important;
+					}
+
+                    .btn-animate {
+                        border: none;
+                        color: #ffffff;
+                        outline: none;
+                        padding: 0 9px 0 1px;
+                        position: relative;
+                    }
+
+                    .btn-animate::after {
+                        border: 0 solid transparent;
+                        transition: all 0.5s;
+                        content: '';
+                        height: 0;
+                        position: absolute;
+                        width: 0px;
+                    }
+
+                    .btn-animate::after {
+                        border-bottom: 1px solid #f3f4f6;
+                        bottom: -4px;
+                        left: 0;
+                    }
+
+					.btn-animate:hover::after {
+                        width: 100%;
+                    }
+
+                    .btn-animate:hover {
+                        animation: PULSE 1.25s infinite;
+                    }
+
+                    .btn-animate::after {
+                        animation: PULSE 1.25s infinite;
+                        animation: PULSE_LINE 1.25s infinite;
+                    }
+
+                    @-webkit-keyframes PULSE{
+                        0%{color:#ced2d9;}
+                        100%{color:#ffffff;}
+                    }
+                    @-ms-keyframes PULSE{
+                        0%{color:#ced2d9;}
+                        100%{color:#ffffff;}
+                    }
+                    @keyframes PULSE{
+                        0%{color:#ced2d9;}
+                        100%{color:#ffffff;}
+                    }
+                    @keyframes PULSE_LINE{
+                        0%{border-bottom:1px solid #ced2d9;
+                        100%{border-bottom:1px solid #000000;
+                    }
+					`}
+				</style>
 			</div>
-		</Template>
+		);
+	};
+
+	return (
+		<div>
+			{test ? (
+				<TemplateAdmin
+					logOut={buttonLogOut()}
+					content={
+						<section className="flex items-baseline md:px-12">
+							<CreateVacancy />
+							<article className="w-2/5 bg-gray-200">
+								<JobsAdmin />
+							</article>
+						</section>
+					}
+				/>
+			) : (
+				<Template>
+					<Error404 />
+				</Template>
+			)}
+		</div>
 	);
 }
 

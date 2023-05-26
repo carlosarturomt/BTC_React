@@ -38,7 +38,7 @@ function CreateVacancy() {
 		setVacancyData({ ...vacancyData, [property]: value });
 	};
 	return (
-		<section className="flex justify-center flex-col items-center pb-28 px-2">
+		<section className="flex justify-center flex-col items-center pb-28 px-2 w-3/5">
 			<form className="w-full max-w-4xl">
 				<div className="flex justify-end">
 					<InputDate on={changeDate} />
