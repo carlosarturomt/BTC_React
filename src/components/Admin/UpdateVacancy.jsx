@@ -3,13 +3,11 @@ import {
 	getDatabase,
 	ref,
 	push,
-	child,
 	update,
-	onValue,
 } from "firebase/database";
 import { InputDate, InputForm, LabelForm } from "../Form/InputForm";
 
-function CreateVacancy() {
+function UpdateVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 
 	const changeHandler = (event) => {
@@ -19,25 +17,15 @@ function CreateVacancy() {
 	};
 
 	const database = getDatabase();
-	const vacancyRef = ref(database, "/vacancy");
-
-	const saveData = () => {
-		// SAVE DATA
-		return push(vacancyRef, vacancyData);
-		// console.log(vacancyData);
-		// UPDATE DATA
-		// return update(vacancyRef, vacancyData);
-	};
 
 	// Get a key for a new Post.
-	// const vacancyRefKey = ref(database, "/vacancy/"+"-NWPLtVu1NYL4MQhPQ3v");
+	const vacancyRefKey = ref(database, `/vacancy/`);
 	// const vacancyRefKey = ref(database, "/vacancy/-NWPLtVu1NYL4MQhPQ3v");
 
-	// const updateDataRef = () => {
-	// 	// UPDATE DATA
-	// 	return update(vacancyRefKey, vacancyData);
-	// 	// console.log((ref(database), vacancyRefKey));
-	// };
+	const updateDataRef = () => {
+		// UPDATE DATA
+		return update(vacancyRefKey, vacancyData);
+	};
 
 	const current = new Date();
 	const date = `${current.getFullYear()}-${
@@ -51,7 +39,7 @@ function CreateVacancy() {
 
 	return (
 		// <section className="flex justify-center flex-col items-center py-2 px-2 w-3/5 bg-[#000c1aae]">
-		<section className="flex justify-center flex-col items-center py-2 ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
+		<section className="flex justify-center flex-col items-center ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
 			<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
 				<div className="flex justify-end">
 					<InputDate on={changeDate} />
@@ -85,11 +73,11 @@ function CreateVacancy() {
 
 				<div>
 					<button
-						className="bg-red-600 py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-red-700"
+						className="bg-red-600 py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-red-700"
 						type="button"
-						onClick={saveData}
+						onClick={updateDataRef}
 					>
-						Create
+						Update
 					</button>
 				</div>
 			</form>
@@ -97,4 +85,4 @@ function CreateVacancy() {
 	);
 }
 
-export { CreateVacancy };
+export { UpdateVacancy };

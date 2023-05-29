@@ -21,34 +21,26 @@ function JobsAdmin() {
 	const endOffset = itemOffset + 18;
 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
 	return (
-		<section className="bg-[#000c1a]">
-			<article className="flex justify-center flex-col items-center pb-20 px-2">
-				<div className="w-full max-w-4xl">
+		<section>
+			<article className="flex justify-center flex-col items-center pb-20">
+				<div className="w-full">
 					{currentItems
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
 						.map((key) => {
 							const vacancyData = vacancyList[key];
 							return (
 								<CardJob vacancyData={vacancyData} key={key}>
-									<Link to={`/jobs/${key}`}>
-										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
-											Apply Now
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												className="h-4 w-4"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												strokeWidth="2"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													d="M13 7l5 5m0 0l-5 5m5-5H6"
-												/>
-											</svg>
-										</button>
+									<Link to={`/admin/edit/${key}`}>
+									<button className="bg-[#74ff0029] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#8bdc4870] mb-1 w-[120px]">
+										Edit
+										<span className="material-symbols-outlined">edit</span>
+									</button>
+
 									</Link>
+									<button className="bg-[#ff15153b] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ff151567] mt-2 w-[120px]">
+										Delete
+										<span className="material-symbols-outlined">delete</span>
+									</button>
 								</CardJob>
 							);
 						})}

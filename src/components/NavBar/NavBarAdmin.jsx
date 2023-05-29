@@ -1,6 +1,7 @@
 import { useState } from "react";
 import btcLogo from "../../assets/icons/logo_btc-red.svg";
 import { Logo } from "./Logo";
+import UserPic from "../../assets/imgs/user.png"
 import { NavOpenAdmin } from "./NavOpenAdmin";
 
 function NavBarAdmin(props) {
@@ -16,7 +17,7 @@ function NavBarAdmin(props) {
 					<img
 						className="w-full"
 						alt="image user"
-						src="https://assets.stickpng.com/thumbs/5a5a8d8d14d8c4188e0b08ef.png"
+						src={UserPic}
 					/>
 					{/* POINT TO AVATAR ACTIVE */}
 					{/* <span className="bottom-1 left-11 absolute  w-3.5 h-3.5 bg-green-300 border-2 border-green-300 dark:border-gray-800 rounded-full animate-pulse"></span>

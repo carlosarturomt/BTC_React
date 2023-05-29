@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Template } from "../../templates/Template";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Error404 } from "../../views/404";
+import { Update } from "../../views/Admin/Update";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
-// import { CreateVacancy } from "./CreateVacancy";
-// import { JobsAdmin } from "./JobsAdmin";
-import { Create } from "../../views/Admin/Create";
-// import { Update } from "../../views/Admin/Update";
+import { Template } from "../../templates/Template";
+import { Error404 } from "../404";
+// import { UpdateVacancy } from "../../components/Admin/UpdateVacancy";
 
-function Admin() {
+function AdminUpdate() {
 	const [test, setTest] = useState(false);
 	const auth = getAuth();
 	const navigate = useNavigate();
@@ -136,10 +134,11 @@ function Admin() {
 		<div>
 			{test ? (
 				<TemplateAdmin
-					logOut={buttonLogOut()}
-					content={
+                    logOut={buttonLogOut()}
+					content=
+					{
 						<div>
-							<Create />
+							<Update />
 						</div>
 					}
 				/>
@@ -152,4 +151,4 @@ function Admin() {
 	);
 }
 
-export { Admin };
+export { AdminUpdate };
