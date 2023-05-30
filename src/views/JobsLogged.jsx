@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-// import { useFirebaseApp } from "reactfire";
 import { Template } from "../templates/Template";
 import { CardJob } from "../components/Card/CardJob";
 
-function Jobs() {
-	// const firebase = useFirebaseApp();
-	// console.log(firebase);
+function JobsLogged() {
 	const [vacancyList, setVacancyList] = useState({});
 
 	const database = getDatabase();
@@ -15,7 +12,6 @@ function Jobs() {
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
-			// console.log(snapshot.val());
 			setVacancyList(snapshot.val());
 		});
 	}, []);
@@ -144,43 +140,4 @@ function Jobs() {
 	);
 }
 
-// ---- P A G I N A T E
-// function PaginatedItems({ itemsPerPage }) {
-// 	// Here we use item offsets; we could also use page offsets
-// 	// following the API or data you're working with.
-// 	const [itemOffset, setItemOffset] = useState(0);
-
-// 	// Simulate fetching items from another resources.
-// 	// (This could be items from props; or items loaded in a local state
-// 	// from an API endpoint with useEffect and useState)
-// 	const endOffset = itemOffset + itemsPerPage;
-// 	console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-// 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset)
-// 	const pageCount = Math.ceil(items.length / itemsPerPage);
-
-// 	// Invoke when user click to request another page.
-// 	const handlePageClick = (event) => {
-// 		const newOffset = (event.selected * itemsPerPage) % items.length;
-// 		console.log(
-// 			`User requested page number ${event.selected}, which is offset ${newOffset}`
-// 		);
-// 		setItemOffset(newOffset);
-// 	};
-
-// 	return (
-// 		<>
-// 			<Items currentItems={currentItems} />
-// 			<ReactPaginate
-// 				breakLabel="..."
-// 				nextLabel=" next >"
-// 				onPageChange={handlePageClick}
-// 				pageRangeDisplayed={5}
-// 				pageCount={pageCount}
-// 				previousLabel="< previous"
-// 				renderOnZeroPageCount={null}
-// 			/>
-// 		</>
-// 	);
-// }
-
-export { Jobs };
+export { JobsLogged };

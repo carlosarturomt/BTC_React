@@ -16,22 +16,22 @@ const Login = () => {
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-				navigate("/admin");
+				navigate("/logged");
 				console.log(user);
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
-			});
-	};
+			})
+	}
 
 	return (
 		<TemplateNoNav>
-			<section className="flex flex-wrap w-full content-center justify-center py-20">
-				<article className="flex">
-					<aside className="flex flex-wrap content-center justify-center rounded-l-md w-1/2 bg-[#000c1aae]">
-						<div className="w-72">
+			<section className="flex w-full content-center justify-center py-20 md:py-5">
+				<article className="w-full flex flex-wrap-reverse justify-center items-center px-4 md:max-w-5xl md:flex-wrap">
+					<aside className="w-full flex content-center py-8 px-2 my-4 items-center justify-center rounded-md md:w-1/2 bg-[#000c1aae] md:h-full md:rounded-r-none">
+						<div className="max-w-72">
 							<h1 className="text-xl font-semibold text-gray-100">
 								Welcome back
 							</h1>
@@ -112,9 +112,9 @@ const Login = () => {
 						</div>
 					</aside>
 
-					<aside className="flex flex-wrap content-center justify-center rounded-r-md w-1/2">
+					<aside className="w-full flex flex-wrap content-center justify-center rounded-md md:w-1/2 md:rounded-l-none">
 						<img
-							className="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"
+							className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none"
 							src="https://i.imgur.com/9l1A4OS.jpeg"
 						/>
 					</aside>

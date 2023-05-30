@@ -26,6 +26,15 @@ function JobsAdmin() {
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
 						.map((key) => {
 							const vacancyData = vacancyList[key];
+							const removePost = () => {
+								remove(ref(database, `/vacancy/${key}`), vacancyList);
+							};
+							const alertRemove = () => {
+								let text = "Are you sure of DELETE this Vacancy?";
+								if (confirm(text) == true) {
+									removePost()
+								}
+							};
 							return (
 								<CardJob vacancyData={vacancyData} key={key}>
 									<Link to={`/admin/edit/${key}`}>
@@ -36,7 +45,7 @@ function JobsAdmin() {
 									</Link>
 									<button
 										className="bg-[#ff15153b] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ff151567] mt-2 w-[120px]"
-										onClick={() => { remove(ref(database, `/vacancy/${key}`), vacancyList)}}
+										onClick={alertRemove}
 									>
 										<span className="material-symbols-outlined">delete</span>
 										Delete

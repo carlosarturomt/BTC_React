@@ -1,16 +1,16 @@
 import React from "react";
 import { FooterAdmin } from "../components/Footer/FooterAdmin";
-import { NavBarAdmin } from "../components/NavBar/NavBarAdmin";
+import { NavBarUser } from "../components/NavBar/NavBarUser";
 
-function TemplateAdmin({logOut, content}) {
+function TemplateUser({logOut, content}) {
 	return (
 		// <div className="bg-white dark:bg-slate-800">
 		<div className="bg-[rgb(0,12,26)]">
-			<NavBarAdmin>{logOut}</NavBarAdmin>
+			<NavBarUser>{logOut}</NavBarUser>
 			{content}
 			<FooterAdmin />
 		</div>
 	);
 }
 
-export { TemplateAdmin };
+export { TemplateUser };

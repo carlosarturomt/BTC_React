@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Template } from "../../templates/Template";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Error404 } from "../../views/404";
-import { TemplateAdmin } from "../../templates/TemplateAdmin";
-import { Create } from "../../views/Admin/Create";
-import { HomeAdmin } from "../../views/Admin/Home";
-import {JobsLogged} from "../../views/JobsLogged"
+import { Error404 } from "../404";
+import { TemplateUser } from "../../templates/TemplateUser";
+import { Apply } from "../User/Apply";
+import Login from "../Login";
+import { TemplateNoNav } from "../../templates/TemplateNoNav";
 
-function Admin() {
+
+function ApplyVacancy() {
 	const [test, setTest] = useState(false);
 	const auth = getAuth();
 	const navigate = useNavigate();
@@ -44,9 +44,8 @@ function Admin() {
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
-				if (user.email == 'carlosarturomt@gmail.com') {
-					console.log("Welcome Charly");
-					// console.log("Welcome", user.email);
+				if (user) {
+					console.log("Welcome", user.email);
 					setTest(true);
 				} else {
 					setTest(false);
@@ -135,12 +134,15 @@ function Admin() {
 	return (
 		<div>
 			{test ? (
-				<TemplateAdmin logOut={buttonLogOut()} content={<HomeAdmin />} />
+				<TemplateUser logOut={buttonLogOut()} content={<Apply />} />
 			) : (
-				<JobsLogged />
+				<TemplateNoNav>
+					<Login />
+				</TemplateNoNav>
 			)}
 		</div>
 	);
 }
 
-export { Admin };
+export { ApplyVacancy };
+
