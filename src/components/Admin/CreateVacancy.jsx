@@ -24,9 +24,6 @@ function CreateVacancy() {
 	const saveData = () => {
 		// SAVE DATA
 		return push(vacancyRef, vacancyData);
-		// console.log(vacancyData);
-		// UPDATE DATA
-		// return update(vacancyRef, vacancyData);
 	};
 
 	// Get a key for a new Post.
@@ -50,7 +47,6 @@ function CreateVacancy() {
 	};
 
 	return (
-		// <section className="flex justify-center flex-col items-center py-2 px-2 w-3/5 bg-[#000c1aae]">
 		<section className="flex justify-center flex-col items-center py-2 ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
 			<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
 				<div className="flex justify-end">
@@ -85,7 +81,7 @@ function CreateVacancy() {
 
 				<div>
 					<button
-						className="bg-red-600 py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-red-700"
+						className="bg-[#1f82fc70] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#1f82fcae] animate-pulse hover:animate-none"
 						type="button"
 						onClick={saveData}
 					>

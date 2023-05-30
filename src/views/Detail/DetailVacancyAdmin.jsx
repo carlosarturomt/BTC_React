@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { getDatabase, ref, onValue } from "firebase/database";
-import { Template } from "../../templates/Template";
-import { InputDate, InputForm, LabelForm } from "../../components/Form/InputForm";
+import { getDatabase, ref, onValue, update, remove } from "firebase/database";
+import {
+	InputForm,
+	LabelForm,
+} from "../../components/Form/InputForm";
 
-function DetailVacancyAdmin() {
+function DetailVacancyAdmin({ deleteBtn }) {
 	const [vacancyData, setVacancyData] = useState({});
 	const { id } = useParams();
 
@@ -13,7 +16,6 @@ function DetailVacancyAdmin() {
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
-			// console.log(snapshot.val());
 			setVacancyData(snapshot.val());
 		});
 	}, []);
@@ -32,6 +34,12 @@ function DetailVacancyAdmin() {
 		requiredVacancy,
 	} = vacancyData;
 
+	const changeDate = (event) => {
+		const property = event.target.name;
+		const value = new Date(event.target.value);
+		setVacancyData({ ...vacancyData, [property]: value });
+	};
+
 	const current = new Date();
 	const date = `${current.getFullYear()}-${
 		current.getMonth() + 1
@@ -42,12 +50,35 @@ function DetailVacancyAdmin() {
 	const diff_in_millisenconds = date_1 - date_2;
 	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
 
+	//F O R M
+	const changeHandler = (event) => {
+		const property = event.target.name;
+		const value = event.target.value;
+		setVacancyData({ ...vacancyData, [property]: value });
+	};
+
+	const updateDataRef = () => {
+		// UPDATE DATA
+		return update(vacancyRef, vacancyData);
+	};
+
+	const deleteDataRef = () => {
+		// DELETE DATA
+		return remove(vacancyRef, vacancyData);
+	};
+
 	return (
-		<main className="flex justify-center flex-col items-center mb-8">
-			{/* <section className="flex justify-center flex-col items-center ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
+		<main className="my-2 flex items-start md:px-12 flex-wrap justify-center w-full max-w-7xl mx-[auto]">
+			<section className="flex justify-center flex-col items-center ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 mb-8">
 				<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
-					<div className="flex justify-end">
-						<InputDate on={changeDate} />
+					<div className="flex justify-end items-center">
+						<label className="text-gray-300 mx-2">Fecha:</label>
+						<input
+							type="date"
+							name="dateVacancy"
+							onChange={changeDate}
+							className="rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
+						/>
 					</div>
 					<InputForm label="Vacante" name="vacancyTitle" on={changeHandler} />
 					<InputForm label="Área" name="areaVacancy" on={changeHandler} />
@@ -79,90 +110,101 @@ function DetailVacancyAdmin() {
 						on={changeHandler}
 					/>
 					<LabelForm label="Descripción" name="content" on={changeHandler} />
+				</form>
+			</section>
 
-					<div>
+			<div className="w-[95%] ml-auto mr-auto md:w-2/4 lg:w-2/5">
+				<section className="flex justify-center flex-col items-center mb-8">
+					<aside className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">
+						<header className="pb-4 w-full border-b-2 border-[#ffffff21]">
+							<h1 className="font-bold text-2xl flex justify-between text-gray-100">
+								{vacancyTitle}
+								<span className="text-slate-500 text-sm font-light">
+									{dateVacancy == date
+										? "Hoy"
+										: "Hace " + diff_in_days + " días"}
+								</span>
+							</h1>
+							<p className="font-bold text-gray-200">{salaryVacancy}</p>
+
+							<span className="text-slate-300 text-sm flex gap-1 items-center">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-4 w-4"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									strokeWidth="2"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+									/>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+									/>
+								</svg>
+								{areaVacancy}, {locationPlace}
+							</span>
+							<div className="flex items-center gap-3 mt-2">
+								<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm">
+									{typeVacancy}
+								</span>
+								<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm">
+									{typeLocation}
+								</span>
+							</div>
+						</header>
+
+						<article className="py-2">
+							<aside className="py-2">
+								<h3 className="font-bold text-lg text-gray-100">
+									Sobre el Empleo
+								</h3>
+								<p>
+									<span className="text-gray-100">Categoría: </span>
+									<span className="text-gray-300"> {categoryVacancy}</span>
+								</p>
+								<p>
+									<span className="text-gray-100">Subcategoría: </span>
+									<span className="text-gray-300"> {subcategoryVacancy}</span>
+								</p>
+								<p>
+									<span className="text-gray-100">
+										Educación mínima requerida:{" "}
+									</span>
+									<span className="text-gray-300"> {requiredVacancy}</span>
+								</p>
+							</aside>
+
+							<aside className="py-2">
+								<h3 className="font-bold text-lg text-gray-100">Descripción</h3>
+								<p className="text-gray-300">{content}</p>
+							</aside>
+						</article>
+
+						{/* <Link to={`/admin/`}>
+							<button
+								className="bg-[#dc484870] py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-[#dc48488d] ml-0 animate-pulse hover:animate-none"
+								type="button"
+								onClick={deleteDataRef}
+							>
+								Delete
+							</button>
+						</Link> */}
 						<button
-							className="bg-red-600 py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-red-700"
+							className="bg-[#8bdc4870] py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-[#8bdc488d] ml-0 animate-pulse hover:animate-none"
 							type="button"
 							onClick={updateDataRef}
 						>
 							Update
 						</button>
-					</div>
-				</form>
-			</section> */}
-
-			<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">
-				<header className="pb-4 w-full border-b-2 border-[#ffffff21]">
-					<h1 className="font-bold text-2xl flex justify-between text-gray-100">
-						{vacancyTitle}
-						<span className="text-slate-500 text-sm font-light">
-							{dateVacancy == date ? "Hoy" : "Hace " + diff_in_days + " días"}
-						</span>
-					</h1>
-					<p className="font-bold text-gray-200">{salaryVacancy}</p>
-
-					<span className="text-slate-300 text-sm flex gap-1 items-center">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-4 w-4"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							strokeWidth="2"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-							/>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-							/>
-						</svg>
-						{areaVacancy}, {locationPlace}
-					</span>
-					<div className="flex items-center gap-3 mt-2">
-						<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm">
-							{typeVacancy}
-						</span>
-						<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm">
-							{typeLocation}
-						</span>
-					</div>
-				</header>
-
-				<article className="py-2">
-					<aside className="py-2">
-						<h3 className="font-bold text-lg text-gray-100">Sobre el Empleo</h3>
-						<p>
-							<span className="text-gray-100">Categoría: </span>
-							<span className="text-gray-300"> {categoryVacancy}</span>
-						</p>
-						<p>
-							<span className="text-gray-100">Subcategoría: </span>
-							<span className="text-gray-300"> {subcategoryVacancy}</span>
-						</p>
-						<p>
-							<span className="text-gray-100">
-								Educación mínima requerida:{" "}
-							</span>
-							<span className="text-gray-300"> {requiredVacancy}</span>
-						</p>
 					</aside>
-
-					<aside className="py-2">
-						<h3 className="font-bold text-lg text-gray-100">Descripción</h3>
-						<p className="text-gray-300">{content}</p>
-					</aside>
-				</article>
-
-				<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
-					Apply Now
-				</button>
-			</section>
+				</section>
+			</div>
 		</main>
 	);
 }

@@ -6,10 +6,8 @@ import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Error404 } from "../../views/404";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
-// import { CreateVacancy } from "./CreateVacancy";
-// import { JobsAdmin } from "./JobsAdmin";
 import { Create } from "../../views/Admin/Create";
-// import { Update } from "../../views/Admin/Update";
+import { HomeAdmin } from "../../views/Admin/Home";
 
 function Admin() {
 	const [test, setTest] = useState(false);
@@ -45,8 +43,9 @@ function Admin() {
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
-				if (user) {
-					console.log("Welcome", user.email);
+				if (user.email == 'carlosarturomt@gmail.com') {
+					console.log("Welcome Charly");
+					// console.log("Welcome", user.email);
 					setTest(true);
 				} else {
 					setTest(false);
@@ -135,14 +134,7 @@ function Admin() {
 	return (
 		<div>
 			{test ? (
-				<TemplateAdmin
-					logOut={buttonLogOut()}
-					content={
-						<div>
-							<Create />
-						</div>
-					}
-				/>
+				<TemplateAdmin logOut={buttonLogOut()} content={<HomeAdmin />} />
 			) : (
 				<Template>
 					<Error404 />

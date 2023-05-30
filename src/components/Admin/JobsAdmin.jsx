@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, remove } from "firebase/database";
 import { CardJob } from "../Card/CardJob";
 
 function JobsAdmin() {
 	const [vacancyList, setVacancyList] = useState({});
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
-			// console.log(snapshot.val());
 			setVacancyList(snapshot.val());
 		});
 	}, []);
 
-	//
 	const [itemOffset, setItemOffset] = useState(0);
 	const endOffset = itemOffset + 18;
 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+
 	return (
 		<section>
 			<article className="flex justify-center flex-col items-center pb-20">
@@ -31,15 +29,17 @@ function JobsAdmin() {
 							return (
 								<CardJob vacancyData={vacancyData} key={key}>
 									<Link to={`/admin/edit/${key}`}>
-									<button className="bg-[#74ff0029] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#8bdc4870] mb-1 w-[120px]">
-										Edit
-										<span className="material-symbols-outlined">edit</span>
-									</button>
-
+										<button className="bg-[#74ff0029] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#8bdc4870] mb-1 w-[120px]">
+											<span className="material-symbols-outlined">edit</span>
+											Edit
+										</button>
 									</Link>
-									<button className="bg-[#ff15153b] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ff151567] mt-2 w-[120px]">
-										Delete
+									<button
+										className="bg-[#ff15153b] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ff151567] mt-2 w-[120px]"
+										onClick={() => { remove(ref(database, `/vacancy/${key}`), vacancyList)}}
+									>
 										<span className="material-symbols-outlined">delete</span>
+										Delete
 									</button>
 								</CardJob>
 							);

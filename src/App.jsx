@@ -8,6 +8,7 @@ import { DetailVacancy } from "./views/Detail/DetailVacancy";
 import { PaginatedItems } from "./views/Test";
 import { Admin } from "./components/Admin";
 import { AdminUpdate } from "./views/Admin/updateIndex";
+import { CreateVacancyPanel } from "./components/Admin/CreateVacancyPanel";
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/jobs/:id" element={<DetailVacancy />} />
 				<Route path="/admin" element={<Admin />} />
+				<Route path="/admin/create" element={<CreateVacancyPanel />} />
 				<Route path="/admin/edit/:id" element={<AdminUpdate />} />
 				<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
 			</Routes>

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Template } from "../../templates/Template";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Update } from "../../views/Admin/Update";
+import { Error404 } from "../../views/404";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
-import { Template } from "../../templates/Template";
-import { Error404 } from "../404";
-// import { UpdateVacancy } from "../../components/Admin/UpdateVacancy";
+import { Create } from "../../views/Admin/Create";
+import { HomeAdmin } from "../../views/Admin/Home";
 
-function AdminUpdate() {
+function CreateVacancyPanel() {
 	const [test, setTest] = useState(false);
 	const auth = getAuth();
 	const navigate = useNavigate();
@@ -44,7 +44,7 @@ function AdminUpdate() {
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
 				if (user.email == 'carlosarturomt@gmail.com') {
-					console.log("Panel de 'Update'");
+					console.log("Welcome to Create Vacancies Panel");
 					// console.log("Welcome", user.email);
 					setTest(true);
 				} else {
@@ -134,7 +134,7 @@ function AdminUpdate() {
 	return (
 		<div>
 			{test ? (
-				<TemplateAdmin logOut={buttonLogOut()} content={<Update />} />
+				<TemplateAdmin logOut={buttonLogOut()} content={<Create />} />
 			) : (
 				<Template>
 					<Error404 />
@@ -144,4 +144,4 @@ function AdminUpdate() {
 	);
 }
 
-export { AdminUpdate };
+export { CreateVacancyPanel };
