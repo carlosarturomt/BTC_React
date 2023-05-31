@@ -21,25 +21,18 @@ function CreateVacancy() {
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
 
-	const saveData = () => {
+	const saveData = (event) => {
 		// SAVE DATA
+		event.preventDefault()
 		return push(vacancyRef, vacancyData);
 	};
 
-	// Get a key for a new Post.
-	// const vacancyRefKey = ref(database, "/vacancy/"+"-NWPLtVu1NYL4MQhPQ3v");
-	// const vacancyRefKey = ref(database, "/vacancy/-NWPLtVu1NYL4MQhPQ3v");
-
-	// const updateDataRef = () => {
-	// 	// UPDATE DATA
-	// 	return update(vacancyRefKey, vacancyData);
-	// 	// console.log((ref(database), vacancyRefKey));
-	// };
-
 	const current = new Date();
+
 	const date = `${current.getFullYear()}-${
 		current.getMonth() + 1
 	}-${current.getDate()}`;
+
 	const changeDate = (event) => {
 		const property = event.target.name;
 		const value = date;
@@ -48,7 +41,7 @@ function CreateVacancy() {
 
 	return (
 		<section className="flex justify-center flex-col items-center py-2 ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
-			<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
+			<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]" onSubmit={saveData}>
 				<div className="flex justify-end">
 					<InputDate on={changeDate} />
 				</div>
@@ -82,8 +75,8 @@ function CreateVacancy() {
 				<div>
 					<button
 						className="bg-[#1f82fc70] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#1f82fcae] animate-pulse hover:animate-none"
-						type="button"
-						onClick={saveData}
+						type="submit"
+						// onClick={saveData}
 					>
 						Create
 					</button>

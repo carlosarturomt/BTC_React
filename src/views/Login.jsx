@@ -112,11 +112,14 @@ const Login = () => {
 						</div>
 					</aside>
 
-					<aside className="w-full flex flex-wrap content-center justify-center rounded-md md:w-1/2 md:rounded-l-none">
+					<aside className="w-full flex flex-wrap content-center justify-center rounded-md md:w-1/2 md:rounded-l-none relative">
 						<img
-							className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none"
-							src="https://i.imgur.com/9l1A4OS.jpeg"
+							className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none blur-img"
+							src="https://i.pinimg.com/originals/18/f0/37/18f037f6761bbc6ac0682035deab8778.gif"
+							// src="https://i.imgur.com/9l1A4OS.jpeg"
 						/>
+						<img className="fish" src="https://i.pinimg.com/originals/30/48/58/30485866edfa12067101718b823fd37e.gif"/>
+						<img className="fish1" src="https://img1.picmix.com/output/stamp/normal/4/9/2/2/1782294_7ddcc.gif"/>
 					</aside>
 
 					<div className="bg-gif"></div>
@@ -125,6 +128,23 @@ const Login = () => {
 
 			<style>
 				{`
+					.fish {
+						position: absolute;
+						bottom: 0;
+					}
+					.fish1 {
+						position: absolute;
+						top: 5%;
+						left: -5%;
+						width: 40%;
+					}
+					.blur-img {
+						width: 100%;
+						filter: blur(5px);
+						opacity: 0.9;
+						height: 85vh;
+						border: solid #000 5px;
+					}
 					.bg-gif {
 						z-index: -1;
 						top: 0;

@@ -8,7 +8,7 @@ function HomeAdmin() {
 	// 	});
 	// };
 	return (
-		<section className="flex items-start flex-wrap justify-center w-full max-w-7xl mx-[auto] px-4 md:px-8 ">
+		<section className="flex items-start flex-wrap justify-center w-full max-w-7xl mx-[auto] px-4 md:px-8 md:mb-36">
 			<h1 className="text-gray-100 text-4xl font-semibold w-full">
 				Welcome Charly
 				{/* <button

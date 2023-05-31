@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getDatabase, ref, onValue, update, remove } from "firebase/database";
 import {
@@ -7,7 +6,7 @@ import {
 	LabelForm,
 } from "../../components/Form/InputForm";
 
-function DetailVacancyAdmin({ deleteBtn }) {
+function DetailVacancyAdmin() {
 	const [vacancyData, setVacancyData] = useState({});
 	const { id } = useParams();
 
@@ -58,13 +57,10 @@ function DetailVacancyAdmin({ deleteBtn }) {
 	};
 
 	const updateDataRef = () => {
+		// event.preventDefault()
 		// UPDATE DATA
+		alert('Actualizado')
 		return update(vacancyRef, vacancyData);
-	};
-
-	const deleteDataRef = () => {
-		// DELETE DATA
-		return remove(vacancyRef, vacancyData);
 	};
 
 	return (
@@ -80,36 +76,41 @@ function DetailVacancyAdmin({ deleteBtn }) {
 							className="rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
 						/>
 					</div>
-					<InputForm label="Vacante" name="vacancyTitle" on={changeHandler} />
-					<InputForm label="Área" name="areaVacancy" on={changeHandler} />
+					<InputForm label="Vacante" name="vacancyTitle" val={vacancyTitle} on={changeHandler}/>
+					<InputForm label="Área" name="areaVacancy" val={areaVacancy} on={changeHandler} />
 					<InputForm
 						label="Categoría"
 						name="categoryVacancy"
+						val={categoryVacancy}
 						on={changeHandler}
 					/>
 					<InputForm
 						label="Subcategoría"
 						name="subcategoryVacancy"
+						val={subcategoryVacancy}
 						on={changeHandler}
 					/>
-					<InputForm label="Salario" name="salaryVacancy" on={changeHandler} />
+					<InputForm label="Salario" name="salaryVacancy" val={salaryVacancy} on={changeHandler} />
 					<InputForm
 						label="Jornada Laboral"
 						name="typeVacancy"
+						val={typeVacancy}
 						on={changeHandler}
 					/>
-					<InputForm label="Modalidad" name="typeLocation" on={changeHandler} />
+					<InputForm label="Modalidad" name="typeLocation" val={typeLocation} on={changeHandler} />
 					<InputForm
 						label="Ubicación"
 						name="locationPlace"
+						val={locationPlace}
 						on={changeHandler}
 					/>
 					<InputForm
 						label="Educación mínima requerida"
 						name="requiredVacancy"
+						val={requiredVacancy}
 						on={changeHandler}
 					/>
-					<LabelForm label="Descripción" name="content" on={changeHandler} />
+					<LabelForm label="Descripción" name="content" val={content} on={changeHandler} />
 				</form>
 			</section>
 
@@ -186,17 +187,8 @@ function DetailVacancyAdmin({ deleteBtn }) {
 							</aside>
 						</article>
 
-						{/* <Link to={`/admin/`}>
-							<button
-								className="bg-[#dc484870] py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-[#dc48488d] ml-0 animate-pulse hover:animate-none"
-								type="button"
-								onClick={deleteDataRef}
-							>
-								Delete
-							</button>
-						</Link> */}
 						<button
-							className="bg-[#8bdc4870] py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-[#8bdc488d] ml-0 animate-pulse hover:animate-none"
+							className="bg-[#8bdc4870] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#8bdc488d] ml-0 animate-pulse hover:animate-none"
 							type="button"
 							onClick={updateDataRef}
 						>

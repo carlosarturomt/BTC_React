@@ -1,7 +1,8 @@
 import { useState } from "react";
 import btcLogo from "../../assets/icons/logo_btc-red.svg";
 import { Logo } from "./Logo";
-import UserPic from "../../assets/imgs/user.png"
+import UserPic from "../../assets/imgs/user.avif"
+// import UserPic from "../../assets/imgs/user.png"
 import { NavOpenAdmin } from "./NavOpenAdmin";
 
 function NavBarAdmin(props) {

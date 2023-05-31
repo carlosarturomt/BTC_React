@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getDatabase, ref, onValue, push } from "firebase/database";
-import { InputForm, LabelForm } from "../../components/Form/InputForm";
+import { useParams } from "react-router-dom";
+import { InputForm } from "../../components/Form/InputForm";
+import {
+	getDatabase,
+	ref as refDatabase,
+	onValue,
+	push,
+} from "firebase/database";
+import {
+	getStorage,
+	ref as refStorage,
+	uploadBytes,
+	getDownloadURL
+} from "firebase/storage";
 
 function UpdateDataVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 	const [candidateData, setCandidateData] = useState({});
 	const { id } = useParams();
-
 	const database = getDatabase();
-	const vacancyRef = ref(database, `/vacancy/${id}`);
-
-	const candidateRef = ref(database, "/candidate");
+	const vacancyRef = refDatabase(database, `/vacancy/${id}`);
+	const candidateRef = refDatabase(database, "/candidate");
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
@@ -19,7 +28,30 @@ function UpdateDataVacancy() {
 		});
 	}, []);
 
+	const [file, setFile] = useState({});
+	const storage = getStorage();
+	const storageRef = refStorage(storage, `candidates/${file.name}`);
+
+	//F O R M
+	const fileHandler = (event) => {
+		const file = event.target.files[0];
+		setFile(file);
+		console.log(file);
+	};
+
+	const saveCv = () => {
+		uploadBytes(storageRef, file).then((snapshot) => {
+			console.log("Uploaded file!");
+		})
+		// getDownloadURL(
+		// 	refStorage(storage, storageRef).then(function (getDownloadURL) {
+		// 		console.log(getDownloadURL);
+		// 	})
+		// );
+	};
+
 	const {
+		candidateName,
 		vacancyTitle,
 		dateVacancy,
 		typeVacancy,
@@ -47,7 +79,8 @@ function UpdateDataVacancy() {
 	const changeHandler = (event) => {
 		const property = event.target.name;
 		const value = event.target.value;
-		setCandidateData({ ...candidateData, [property]: value });
+		// console.table(event)
+		setCandidateData({ ...candidateData, [property]: value, vacancyTitle });
 	};
 
 	const saveData = () => {
@@ -56,23 +89,43 @@ function UpdateDataVacancy() {
 	};
 
 	const alertSend = () => {
-		let text = `¿Postularse en la vacante de ${vacancyTitle}?`;
-		if (confirm(text) == true) {
+		if (candidateData) {
 			saveData()
+			saveCv()
+			alert("Enviado");
+			window.history.back();
 		}
 	};
+
+	// const inputaName = () => {
+	// 	let inputValue1 = document.querySelector("#domTextElement1").value;
+	// 	// innerHTML = `${inputValue1}`
+	// 	console.log(inputValue1);
+	// };
 
 	return (
 		<main className="my-2 flex items-start md:px-12 flex-wrap justify-center w-full max-w-7xl mx-[auto]">
 			<section className="flex justify-center flex-col items-center ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 mb-8">
 				<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
-					<InputForm label="Nombres" name="candidateName" on={changeHandler} />
+					<div className="my-4">
+						<label htmlFor="" className="text-gray-300 text-sm">
+							Nombres
+						</label>
+						<input
+							id="domTextElement1"
+							type="text"
+							name="candidateName"
+							className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
+							onChange={changeHandler}
+						/>
+					</div>
 					<div className="flex my-4">
 						<div className="w-2/4 pr-2">
 							<label htmlFor="" className="text-gray-300 text-sm">
 								Nacionalidad
 							</label>
 							<input
+								required
 								type="text"
 								name="candidateNationality"
 								className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
@@ -84,6 +137,7 @@ function UpdateDataVacancy() {
 								Fecha de Nacimiento
 							</label>
 							<input
+								required
 								type="date"
 								name="candidateBirthday"
 								onChange={changeHandler}
@@ -97,6 +151,7 @@ function UpdateDataVacancy() {
 								Número Celular
 							</label>
 							<input
+								required
 								type="email"
 								name="candidateTel"
 								className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
@@ -108,6 +163,7 @@ function UpdateDataVacancy() {
 								Número de Contacto
 							</label>
 							<input
+								required
 								type="tel"
 								name="candidateTel2"
 								onChange={changeHandler}
@@ -121,6 +177,7 @@ function UpdateDataVacancy() {
 								Email
 							</label>
 							<input
+								required
 								type="email"
 								name="candidateEmail"
 								className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
@@ -130,6 +187,7 @@ function UpdateDataVacancy() {
 						<div className="w-2/4 pl-2">
 							<label className="text-gray-300 text-sm">Escolaridad</label>
 							<input
+								required
 								type="text"
 								name="candidateGrade"
 								onChange={changeHandler}
@@ -143,33 +201,34 @@ function UpdateDataVacancy() {
 						on={changeHandler}
 					/>
 
-					<div className="py-4">
-						<label htmlFor="" className="text-gray-400">
-							¿La vacante de {vacancyTitle} es la que le interesa?{" "}
-							<span className="text-gray-200">Sí</span>
+					<div className="my-4">
+						<label htmlFor="" className="text-gray-300 text-sm">
+							Adjuntar CV
 						</label>
-
 						<input
-							value={vacancyTitle}
-							type="checkbox"
-							name="vacancyTitle"
-							onChange={changeHandler}
-							className="ml-1"
+							type="file"
+							name="candidateGrade"
+							className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
+							onChange={fileHandler}
 						/>
 					</div>
 
-					<Link to={`/jobs`}>
-						<button
-							className="bg-[#2f7ce07f] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3d79f0b4] ml-0 animate-pulse hover:animate-none flex items-center mb-8"
-							type="button"
-							onClick={alertSend}
-						>
-							Send
-							<span className="material-symbols-outlined">
-								<span className="material-symbols-outlined">arrow_forward</span>
-							</span>
-						</button>
-					</Link>
+					<div className="pb-8">
+						<span className="block text-xs  text-gray-400">
+							Le sugerimos que el nombre de su archivo sea su nombre completo.
+						</span>
+					</div>
+
+					<button
+						className="bg-[#2f7ce07f] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3d79f0b4] ml-0 animate-pulse hover:animate-none flex items-center mb-8"
+						type="button"
+						onClick={alertSend}
+					>
+						Send
+						<span className="material-symbols-outlined">
+							<span className="material-symbols-outlined">arrow_forward</span>
+						</span>
+					</button>
 				</form>
 			</section>
 

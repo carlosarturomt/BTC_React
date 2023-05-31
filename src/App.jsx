@@ -20,10 +20,10 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/logged" element={<Admin />} />
-				<Route path="/admin/create" element={<CreateVacancyPanel />} />
+				<Route path="/logged/create" element={<CreateVacancyPanel />} />
 				<Route path="/jobs/:id" element={<DetailVacancy />} />
 				<Route path="/apply/:id" element={<ApplyVacancy />} />
-				<Route path="/admin/edit/:id" element={<AdminUpdate />} />
+				<Route path="/logged/edit/:id" element={<AdminUpdate />} />
 				<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
 			</Routes>
 		</BrowserRouter>
