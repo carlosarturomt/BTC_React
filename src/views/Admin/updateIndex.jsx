@@ -60,10 +60,10 @@ function AdminUpdate() {
 			<div className="flex justify-start w-full max-w-4xl">
 				<button
 					onClick={handleLogout}
-					className="btn-animate flex items-center lg:text-3xl text-gray-100"
+					className="btn-animate flex items-center text-2xl lg:text-3xl text-gray-100"
 				>
-					<span className="material-symbols-outlined lg:text-3xl">logout</span>
-					<span className="text-border-btn">Logout</span>
+					<span className="material-symbols-outlined text-2xl lg:text-3xl">logout</span>
+					<span className="text-border-btn text-2xl">Logout</span>
 				</button>
 
 				<style>

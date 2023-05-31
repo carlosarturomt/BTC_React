@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Error404 } from "../404";
 import { TemplateUser } from "../../templates/TemplateUser";
 import { Apply } from "../User/Apply";
-import Login from "../Login";
+import LoginBF from "../LoginBF";
 import { TemplateNoNav } from "../../templates/TemplateNoNav";
-
 
 function ApplyVacancy() {
 	const [test, setTest] = useState(false);
@@ -62,8 +61,10 @@ function ApplyVacancy() {
 					onClick={handleLogout}
 					className="btn-animate flex items-center lg:text-3xl text-gray-100"
 				>
-					<span className="material-symbols-outlined lg:text-3xl">logout</span>
-					<span className="text-border-btn">Logout</span>
+					<span className="material-symbols-outlined text-2xl lg:text-3xl">
+						logout
+					</span>
+					<span className="text-border-btn text-2xl">Logout</span>{" "}
 				</button>
 
 				<style>
@@ -137,7 +138,7 @@ function ApplyVacancy() {
 				<TemplateUser logOut={buttonLogOut()} content={<Apply />} />
 			) : (
 				<TemplateNoNav>
-					<Login />
+					<LoginBF />
 				</TemplateNoNav>
 			)}
 		</div>

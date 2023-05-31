@@ -43,7 +43,7 @@ function CreateVacancyPanel() {
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
-				if (user.email == 'carlosarturomt@gmail.com') {
+				if (user.email == "carlosarturomt@gmail.com") {
 					console.log("Welcome to Create Vacancies Panel");
 					// console.log("Welcome", user.email);
 					setTest(true);
@@ -62,8 +62,10 @@ function CreateVacancyPanel() {
 					onClick={handleLogout}
 					className="btn-animate flex items-center lg:text-3xl text-gray-100"
 				>
-					<span className="material-symbols-outlined lg:text-3xl">logout</span>
-					<span className="text-border-btn">Logout</span>
+					<span className="material-symbols-outlined text-2xl lg:text-3xl">
+						logout
+					</span>
+					<span className="text-border-btn text-2xl">Logout</span>{" "}
 				</button>
 
 				<style>

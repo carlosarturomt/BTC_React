@@ -24,26 +24,26 @@ function NavOpen() {
 			<aside>
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Behind The Scenes</h5>
-					<li className="lg:my-1 lg:text-3xl">
+					<li className="text-2xl lg:my-1 lg:text-3xl">
 						<a href="/about">About Us</a>
 					</li>
-					<li className="lg:my-1 lg:text-3xl">
+					<li className="text-2xl lg:my-1 lg:text-3xl">
 						<a href="/news">News</a>
 					</li>
-					<li className="lg:my-1 lg:text-3xl">
+					<li className="text-2xl lg:my-1 lg:text-3xl">
 						<a href="/jobs">Jobs</a>
 					</li>
 				</ul>
 
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Offices</h5>
-					<li className="lg:my-1 lg:text-3xl">
+					<li className="text-2xl lg:my-1 lg:text-3xl">
 						<a href="/">BTC Americas</a>
 					</li>
-					<li className="lg:my-1 lg:text-3xl">
+					<li className="text-2xl lg:my-1 lg:text-3xl">
 						<a href="/price-travel">Price Travel</a>
 					</li>
-					<li className="lg:my-1 lg:text-3xl">
+					<li className="text-2xl lg:my-1 lg:text-3xl">
 						<a href="/big-fish">Big Fish</a>
 					</li>
 				</ul>

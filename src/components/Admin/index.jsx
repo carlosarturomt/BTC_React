@@ -8,7 +8,7 @@ import { Error404 } from "../../views/404";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { Create } from "../../views/Admin/Create";
 import { HomeAdmin } from "../../views/Admin/Home";
-import {JobsLogged} from "../../views/JobsLogged"
+import { JobsLogged } from "../../views/JobsLogged";
 
 function Admin() {
 	const [test, setTest] = useState(false);
@@ -44,7 +44,7 @@ function Admin() {
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
-				if (user.email == 'carlosarturomt@gmail.com') {
+				if (user.email == "carlosarturomt@gmail.com") {
 					console.log("Welcome Charly");
 					// console.log("Welcome", user.email);
 					setTest(true);
@@ -63,8 +63,10 @@ function Admin() {
 					onClick={handleLogout}
 					className="btn-animate flex items-center lg:text-3xl text-gray-100"
 				>
-					<span className="material-symbols-outlined lg:text-3xl">logout</span>
-					<span className="text-border-btn">Logout</span>
+					<span className="material-symbols-outlined text-2xl lg:text-3xl">
+						logout
+					</span>
+					<span className="text-border-btn text-2xl">Logout</span>{" "}
 				</button>
 
 				<style>

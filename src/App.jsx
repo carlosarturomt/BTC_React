@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./views/Home";
 import { Jobs } from "./views/Jobs";
 import Signup from "./views/Signup";
-import Login from "./views/Login";
+import LoginBF from "./views/LoginBF";
 import { DetailVacancy } from "./views/Detail/DetailVacancy";
 import { PaginatedItems } from "./views/Test";
 import { Admin } from "./components/Admin";
@@ -17,7 +17,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/jobs" element={<Jobs />} />
-				<Route path="/login" element={<Login />} />
+				<Route path="/login" element={<LoginBF />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/logged" element={<Admin />} />
 				<Route path="/logged/create" element={<CreateVacancyPanel />} />
