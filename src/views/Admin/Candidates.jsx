@@ -7,6 +7,7 @@ import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { Template } from "../../templates/Template";
 import { Error404 } from "../404";
 import { CandidateAdmin } from "../../components/Admin/CandidateAdmin";
+import BtnLogOut from "../../components/Buttons/BtnLogOut";
 
 function Candidates() {
 	const [test, setTest] = useState(false);
@@ -38,92 +39,10 @@ function Candidates() {
 		});
 	});
 
-	/**
-	 *
-	 * @returns Return a Component to Log Out
-	 */
-	const buttonLogOut = () => {
-		return (
-			<div className="flex justify-start w-full max-w-4xl">
-				<button
-					onClick={handleLogout}
-					className="btn-animate flex items-center text-2xl lg:text-3xl text-gray-100"
-				>
-					<span className="material-symbols-outlined text-2xl lg:text-3xl">
-						logout
-					</span>
-					<span className="text-border-btn text-2xl">Logout</span>
-				</button>
-
-				<style>
-					{`
-					.text-border-btn:hover {
-						-webkit-text-stroke: 1px #fefefe;
-						color: transparent;
-					}
-
-                    .btn-animate {
-                        border: none;
-                        color: #ffffff;
-                        outline: none;
-                        padding: 0 9px 0 1px;
-                        position: relative;
-                    }
-
-                    .btn-animate::after {
-                        border: 0 solid transparent;
-                        transition: all 0.5s;
-                        content: '';
-                        height: 0;
-                        position: absolute;
-                        width: 0px;
-                    }
-
-                    .btn-animate::after {
-                        border-bottom: 1px solid #f3f4f6;
-                        bottom: -4px;
-                        left: 0;
-                    }
-
-					.btn-animate:hover::after {
-                        width: 100%;
-                    }
-
-                    .btn-animate:hover {
-                        animation: PULSE 1.25s infinite;
-                    }
-
-                    .btn-animate::after {
-                        animation: PULSE 1.25s infinite;
-                        animation: PULSE_LINE 1.25s infinite;
-                    }
-
-                    @-webkit-keyframes PULSE{
-                        0%{color:#ced2d9;}
-                        100%{color:#ffffff;}
-                    }
-                    @-ms-keyframes PULSE{
-                        0%{color:#ced2d9;}
-                        100%{color:#ffffff;}
-                    }
-                    @keyframes PULSE{
-                        0%{color:#ced2d9;}
-                        100%{color:#ffffff;}
-                    }
-                    @keyframes PULSE_LINE{
-                        0%{border-bottom:1px solid #ced2d9;
-                        100%{border-bottom:1px solid #000000;
-                    }
-					`}
-				</style>
-			</div>
-		);
-	};
-
 	return (
 		<div>
 			{test ? (
-				<TemplateAdmin logOut={buttonLogOut()} content={<CandidateAdmin />} />
+				<TemplateAdmin logOut={<BtnLogOut>{handleLogout}</BtnLogOut>} content={<CandidateAdmin />} />
 			) : (
 				<Template>
 					<Error404 />

@@ -11,6 +11,9 @@ import { AdminUpdate } from "./views/Admin/updateIndex";
 import { CreateVacancyPanel } from "./components/Admin/CreateVacancyPanel";
 import { ApplyVacancy } from "./views/User/ApplyVacancy";
 import { Candidates } from "./views/Admin/Candidates";
+import { Error404 } from "./views/404";
+import { Template } from "./templates/Template";
+import { DetailCandidate } from "./views/Detail/DetailCandidate";
 
 function App() {
 	return (
@@ -25,8 +28,17 @@ function App() {
 				<Route path="/logged/candidates" element={<Candidates />} />
 				<Route path="/jobs/:id" element={<DetailVacancy />} />
 				<Route path="/apply/:id" element={<ApplyVacancy />} />
+				<Route path="/logged/candidates/:id" element={<DetailCandidate />} />
 				<Route path="/logged/edit/:id" element={<AdminUpdate />} />
 				<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
+				<Route
+					path="*"
+					element={
+						<Template>
+							<Error404 />
+						</Template>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);

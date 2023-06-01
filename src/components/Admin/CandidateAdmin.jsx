@@ -2,22 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue, remove } from "firebase/database";
 import { CardCandidate } from "../Card/CardCandidate";
-import { Template } from "../../templates/Template";
 
 function CandidateAdmin() {
 	const [vacancyList, setVacancyList] = useState({});
+	const [itemOffset, setItemOffset] = useState(0);
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/candidate");
+	const endOffset = itemOffset + 18;
+	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
 			setVacancyList(snapshot.val());
 		});
 	}, []);
-
-	const [itemOffset, setItemOffset] = useState(0);
-	const endOffset = itemOffset + 18;
-	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
 
 	return (
 		<section>
@@ -57,18 +55,6 @@ function CandidateAdmin() {
 						})}
 				</div>
 			</article>
-
-			<style>
-				{`
-					option  {
-						{/* background-color: #172637; */}
-					}
-                    .text-border {
-                        -webkit-text-stroke: 1px #fefefe;
-                        color: transparent;
-                    }
-                `}
-			</style>
 		</section>
 	);
 }
