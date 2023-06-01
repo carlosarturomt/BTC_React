@@ -14,8 +14,9 @@ function JobsAdmin() {
 		});
 	}, []);
 
+	// To Do a Limit of Jobs to Show in the Panel
 	const [itemOffset, setItemOffset] = useState(0);
-	const endOffset = itemOffset + 18;
+	const endOffset = itemOffset + 20;
 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
 
 	return (
@@ -29,6 +30,7 @@ function JobsAdmin() {
 							const removePost = () => {
 								remove(ref(database, `/vacancy/${key}`), vacancyList);
 							};
+
 							const alertRemove = () => {
 								let text = "Are you sure of DELETE this Vacancy?";
 								if (confirm(text) == true) {

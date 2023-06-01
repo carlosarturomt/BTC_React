@@ -3,7 +3,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Error404 } from "../404";
 import { TemplateUser } from "../../templates/TemplateUser";
 import { Apply } from "../User/Apply";
 import LoginBF from "../LoginBF";
@@ -27,18 +26,18 @@ function ApplyVacancy() {
 			});
 	};
 
-	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				const uid = user.uid;
-				const email = user.email;
-				// console.log("uid:", uid, "email:", email);
-			} else {
-				// User is signed out
-				console.log("User is logged out");
-			}
-		});
-	}, []);
+	// useEffect(() => {
+	// 	onAuthStateChanged(auth, (user) => {
+	// 		if (user) {
+	// 			const uid = user.uid;
+	// 			const email = user.email;
+	// 			// console.log("uid:", uid, "email:", email);
+	// 		} else {
+	// 			// User is signed out
+	// 			console.log("User is logged out");
+	// 		}
+	// 	});
+	// }, []);
 
 	if (
 		useEffect(() => {
@@ -54,6 +53,10 @@ function ApplyVacancy() {
 	) {
 	}
 
+	/**
+	 *
+	 * @returns Return a Component lo Log Out Session
+	 */
 	const buttonLogOut = () => {
 		return (
 			<div className="flex justify-start w-full max-w-4xl">

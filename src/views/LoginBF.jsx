@@ -6,10 +6,14 @@ import { TemplateNoNav } from "../templates/TemplateNoNav";
 
 const LoginBF = () => {
 	const auth = getAuth();
-
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	/**
+	 *
+	 * @param {Object} e Receive the email to authenticate an user
+	 */
 	const onLogin = (e) => {
 		e.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)

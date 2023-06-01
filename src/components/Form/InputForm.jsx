@@ -5,6 +5,7 @@ function InputForm({ label, name, on, val }) {
 				{label}
 			</label>
 			<input
+				required
 				value={val}
 				type="text"
 				name={name}
@@ -22,6 +23,7 @@ function InputDate({ on }) {
 				Asignar Fecha
 			</label>
 			<input
+				required
 				type="checkbox"
 				name="dateVacancy"
 				onChange={on}
@@ -38,6 +40,7 @@ function LabelForm({ label, name, on, val }) {
 				{label}
 			</label>
 			<textarea
+				required
 				value={val}
 				type="text"
 				name={name}

@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { Error404 } from "../../views/404";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { Create } from "../../views/Admin/Create";
-import { HomeAdmin } from "../../views/Admin/Home";
 
 function CreateVacancyPanel() {
 	const [test, setTest] = useState(false);
@@ -27,24 +26,11 @@ function CreateVacancyPanel() {
 			});
 	};
 
-	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				const uid = user.uid;
-				const email = user.email;
-				// console.log("uid:", uid, "email:", email);
-			} else {
-				// User is signed out
-				console.log("User is logged out");
-			}
-		});
-	}, []);
-
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
 				if (user.email == "carlosarturomt@gmail.com") {
-					console.log("Welcome to Create Vacancies Panel");
+					console.log("Welcome to Create Vacancies Panel :)");
 					// console.log("Welcome", user.email);
 					setTest(true);
 				} else {
@@ -55,6 +41,10 @@ function CreateVacancyPanel() {
 	) {
 	}
 
+	/**
+	 *
+	 * @returns a Component to Log Out Session
+	 */
 	const buttonLogOut = () => {
 		return (
 			<div className="flex justify-start w-full max-w-4xl">
@@ -65,7 +55,7 @@ function CreateVacancyPanel() {
 					<span className="material-symbols-outlined text-2xl lg:text-3xl">
 						logout
 					</span>
-					<span className="text-border-btn text-2xl">Logout</span>{" "}
+					<span className="text-border-btn text-2xl">Logout</span>
 				</button>
 
 				<style>

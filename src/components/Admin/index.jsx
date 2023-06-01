@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Template } from "../../templates/Template";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Error404 } from "../../views/404";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
-import { Create } from "../../views/Admin/Create";
 import { HomeAdmin } from "../../views/Admin/Home";
 import { JobsLogged } from "../../views/JobsLogged";
 
@@ -28,19 +25,6 @@ function Admin() {
 			});
 	};
 
-	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				const uid = user.uid;
-				const email = user.email;
-				// console.log("uid:", uid, "email:", email);
-			} else {
-				// User is signed out
-				console.log("User is logged out");
-			}
-		});
-	}, []);
-
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
@@ -50,12 +34,17 @@ function Admin() {
 					setTest(true);
 				} else {
 					setTest(false);
+					console.log('You need Log In')
 				}
 			});
 		})
 	) {
 	}
 
+	/**
+	 *
+	 * @returns Return a Component to Log Out of the Session
+	 */
 	const buttonLogOut = () => {
 		return (
 			<div className="flex justify-start w-full max-w-4xl">
@@ -66,7 +55,7 @@ function Admin() {
 					<span className="material-symbols-outlined text-2xl lg:text-3xl">
 						logout
 					</span>
-					<span className="text-border-btn text-2xl">Logout</span>{" "}
+					<span className="text-border-btn text-2xl">Logout</span>
 				</button>
 
 				<style>

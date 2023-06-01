@@ -6,16 +6,8 @@ import { Template } from "../../templates/Template";
 function DetailVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 	const { id } = useParams();
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, `/vacancy/${id}`);
-
-	useEffect(() => {
-		onValue(vacancyRef, (snapshot) => {
-			// console.log(snapshot.val());
-			setVacancyData(snapshot.val());
-		});
-	}, []);
 
 	const {
 		dateVacancy,
@@ -40,6 +32,12 @@ function DetailVacancy() {
 	const day_as_milliseconds = 86400000;
 	const diff_in_millisenconds = date_1 - date_2;
 	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+
+	useEffect(() => {
+		onValue(vacancyRef, (snapshot) => {
+			setVacancyData(snapshot.val());
+		});
+	}, []);
 
 	return (
 		<Template>
@@ -115,7 +113,6 @@ function DetailVacancy() {
 
 					<Link to={`/apply/${id}`}>
 						<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse"
-						// onClick={() => {console.log(id)}}
 						>
 							Apply Now
 						</button>

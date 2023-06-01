@@ -1,47 +1,54 @@
 import React, { useState } from "react";
-import {
-	getDatabase,
-	ref,
-	push,
-	child,
-	update,
-	onValue,
-} from "firebase/database";
+import { getDatabase, ref, push } from "firebase/database";
 import { InputDate, InputForm, LabelForm } from "../Form/InputForm";
 
 function CreateVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
-
-	const changeHandler = (event) => {
-		const property = event.target.name;
-		const value = event.target.value;
-		setVacancyData({ ...vacancyData, [property]: value });
-	};
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
-
-	const saveData = (event) => {
-		// SAVE DATA
-		event.preventDefault()
-		return push(vacancyRef, vacancyData);
-	};
-
 	const current = new Date();
 
+	// Get Date
 	const date = `${current.getFullYear()}-${
 		current.getMonth() + 1
 	}-${current.getDate()}`;
 
+	/**
+	 *
+	 * @param {Object} event Rewrite the value of the Date in the Object from Realtime Database
+	 */
 	const changeDate = (event) => {
 		const property = event.target.name;
 		const value = date;
 		setVacancyData({ ...vacancyData, [property]: value });
 	};
 
+	/**
+	 *
+	 * @param {Object} event Rewrite data of the Vacancy in an Object from Realtime Database
+	 */
+	const changeHandler = (event) => {
+		const property = event.target.name;
+		const value = event.target.value;
+		setVacancyData({ ...vacancyData, [property]: value });
+	};
+
+	/**
+	 *
+	 * @param {Object} event Receive an Object
+	 * @returns Write data in the Object of Firebase in Realtime Database
+	 */
+	const saveData = (event) => {
+		event.preventDefault();
+		return push(vacancyRef, vacancyData);
+	};
+
 	return (
 		<section className="flex justify-center flex-col items-center py-2 ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
-			<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]" onSubmit={saveData}>
+			<form
+				className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]"
+				onSubmit={saveData}
+			>
 				<div className="flex justify-end">
 					<InputDate on={changeDate} />
 				</div>
@@ -76,7 +83,6 @@ function CreateVacancy() {
 					<button
 						className="bg-[#1f82fc70] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#1f82fcae] animate-pulse hover:animate-none"
 						type="submit"
-						// onClick={saveData}
 					>
 						Create
 					</button>

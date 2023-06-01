@@ -7,7 +7,6 @@ import { Update } from "../../views/Admin/Update";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { Template } from "../../templates/Template";
 import { Error404 } from "../404";
-// import { UpdateVacancy } from "../../components/Admin/UpdateVacancy";
 
 function AdminUpdate() {
 	const [test, setTest] = useState(false);
@@ -27,18 +26,18 @@ function AdminUpdate() {
 			});
 	};
 
-	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				const uid = user.uid;
-				const email = user.email;
-				// console.log("uid:", uid, "email:", email);
-			} else {
-				// User is signed out
-				console.log("User is logged out");
-			}
-		});
-	}, []);
+	// useEffect(() => {
+	// 	onAuthStateChanged(auth, (user) => {
+	// 		if (user) {
+	// 			const uid = user.uid;
+	// 			const email = user.email;
+	// 			// console.log("uid:", uid, "email:", email);
+	// 		} else {
+	// 			// User is signed out
+	// 			console.log("User is logged out");
+	// 		}
+	// 	});
+	// }, []);
 
 	if (
 		useEffect(() => {
@@ -55,6 +54,10 @@ function AdminUpdate() {
 	) {
 	}
 
+	/**
+	 *
+	 * @returns Return a Component to Log Out Session
+	 */
 	const buttonLogOut = () => {
 		return (
 			<div className="flex justify-start w-full max-w-4xl">

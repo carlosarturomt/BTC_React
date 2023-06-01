@@ -7,11 +7,13 @@ import { TemplateNoNav } from "../templates/TemplateNoNav";
 const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
 	const auth = getAuth();
 	const navigate = useNavigate();
-	// const firebase = useFirebaseApp();
-	// const user = useUser();
+
+	/**
+	 *
+	 * @param {Object} e Receive the data and create an new user to authenticate after in '/login'
+	 */
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
@@ -21,13 +23,11 @@ const Signup = () => {
 				const user = userCredential.user;
 				console.log(user);
 				navigate("/login");
-				// ...
 			})
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
-				// ..
 			});
 	};
 
@@ -38,7 +38,6 @@ const Signup = () => {
 					<aside className="px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
 						<hgroup>
 							<h1 className="text-2xl font-semibold">Sign Up</h1>
-							{/* <h2>{user.email}</h2> */}
 						</hgroup>
 						<div className="divide-y divide-gray-200">
 							<div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">

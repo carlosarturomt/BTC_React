@@ -3,12 +3,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { Update } from "./Update";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { Template } from "../../templates/Template";
 import { Error404 } from "../404";
 import { CandidateAdmin } from "../../components/Admin/CandidateAdmin";
-// import { UpdateVacancy } from "../../components/Admin/UpdateVacancy";
 
 function Candidates() {
 	const [test, setTest] = useState(false);
@@ -30,32 +28,20 @@ function Candidates() {
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				const uid = user.uid;
-				const email = user.email;
-				// console.log("uid:", uid, "email:", email);
+			if (user.email == "carlosarturomt@gmail.com") {
+				console.log(`Welcome '${user.email}' to Candidates Panel 👷`);
+				setTest(true);
 			} else {
-				// User is signed out
+				setTest(false);
 				console.log("User is logged out");
 			}
 		});
-	}, []);
+	});
 
-	if (
-		useEffect(() => {
-			onAuthStateChanged(auth, (user) => {
-				if (user.email == 'carlosarturomt@gmail.com') {
-					console.log("Panel de 'Update'");
-					// console.log("Welcome", user.email);
-					setTest(true);
-				} else {
-					setTest(false);
-				}
-			});
-		})
-	) {
-	}
-
+	/**
+	 *
+	 * @returns Return a Component to Log Out
+	 */
 	const buttonLogOut = () => {
 		return (
 			<div className="flex justify-start w-full max-w-4xl">
@@ -63,7 +49,9 @@ function Candidates() {
 					onClick={handleLogout}
 					className="btn-animate flex items-center text-2xl lg:text-3xl text-gray-100"
 				>
-					<span className="material-symbols-outlined text-2xl lg:text-3xl">logout</span>
+					<span className="material-symbols-outlined text-2xl lg:text-3xl">
+						logout
+					</span>
 					<span className="text-border-btn text-2xl">Logout</span>
 				</button>
 

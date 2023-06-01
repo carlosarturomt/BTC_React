@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDatabase, ref, onValue, update, remove } from "firebase/database";
-import {
-	InputForm,
-	LabelForm,
-} from "../../components/Form/InputForm";
+import { getDatabase, ref, onValue, update } from "firebase/database";
+import { InputForm, LabelForm } from "../../components/Form/InputForm";
 
 function DetailVacancyAdmin() {
 	const [vacancyData, setVacancyData] = useState({});
 	const { id } = useParams();
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, `/vacancy/${id}`);
-
-	useEffect(() => {
-		onValue(vacancyRef, (snapshot) => {
-			setVacancyData(snapshot.val());
-		});
-	}, []);
 
 	const {
 		dateVacancy,
@@ -33,12 +23,6 @@ function DetailVacancyAdmin() {
 		requiredVacancy,
 	} = vacancyData;
 
-	const changeDate = (event) => {
-		const property = event.target.name;
-		const value = new Date(event.target.value);
-		setVacancyData({ ...vacancyData, [property]: value });
-	};
-
 	const current = new Date();
 	const date = `${current.getFullYear()}-${
 		current.getMonth() + 1
@@ -46,20 +30,41 @@ function DetailVacancyAdmin() {
 	const date_1 = new Date(date);
 	const date_2 = new Date(dateVacancy);
 	const day_as_milliseconds = 86400000;
-	const diff_in_millisenconds = date_1 - date_2;
-	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+	const diff_in_milliseconds = date_1 - date_2;
+	const diff_in_days = diff_in_milliseconds / day_as_milliseconds;
 
-	//F O R M
+	useEffect(() => {
+		onValue(vacancyRef, (snapshot) => {
+			setVacancyData(snapshot.val());
+		});
+	}, []);
+
+	/**
+	 *
+	 * @param {Object} event Re write the data of the Date in the Vacancy with UseState()
+	 */
+	const changeDate = (event) => {
+		const property = event.target.name;
+		const value = new Date(event.target.value);
+		setVacancyData({ ...vacancyData, [property]: value });
+	};
+
+	/**
+	 *
+	 * @param {Object} event Re write All data of the Vacancy with UseState()
+	 */
 	const changeHandler = (event) => {
 		const property = event.target.name;
 		const value = event.target.value;
 		setVacancyData({ ...vacancyData, [property]: value });
 	};
 
+	/**
+	 *
+	 * @returns Update the Data in the Reference og FireBase
+	 */
 	const updateDataRef = () => {
-		// event.preventDefault()
-		// UPDATE DATA
-		alert('Actualizado')
+		alert("Actualizado");
 		return update(vacancyRef, vacancyData);
 	};
 
@@ -76,8 +81,18 @@ function DetailVacancyAdmin() {
 							className="rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
 						/>
 					</div>
-					<InputForm label="Vacante" name="vacancyTitle" val={vacancyTitle} on={changeHandler}/>
-					<InputForm label="Área" name="areaVacancy" val={areaVacancy} on={changeHandler} />
+					<InputForm
+						label="Vacante"
+						name="vacancyTitle"
+						val={vacancyTitle}
+						on={changeHandler}
+					/>
+					<InputForm
+						label="Área"
+						name="areaVacancy"
+						val={areaVacancy}
+						on={changeHandler}
+					/>
 					<InputForm
 						label="Categoría"
 						name="categoryVacancy"
@@ -90,14 +105,24 @@ function DetailVacancyAdmin() {
 						val={subcategoryVacancy}
 						on={changeHandler}
 					/>
-					<InputForm label="Salario" name="salaryVacancy" val={salaryVacancy} on={changeHandler} />
+					<InputForm
+						label="Salario"
+						name="salaryVacancy"
+						val={salaryVacancy}
+						on={changeHandler}
+					/>
 					<InputForm
 						label="Jornada Laboral"
 						name="typeVacancy"
 						val={typeVacancy}
 						on={changeHandler}
 					/>
-					<InputForm label="Modalidad" name="typeLocation" val={typeLocation} on={changeHandler} />
+					<InputForm
+						label="Modalidad"
+						name="typeLocation"
+						val={typeLocation}
+						on={changeHandler}
+					/>
 					<InputForm
 						label="Ubicación"
 						name="locationPlace"
@@ -110,7 +135,12 @@ function DetailVacancyAdmin() {
 						val={requiredVacancy}
 						on={changeHandler}
 					/>
-					<LabelForm label="Descripción" name="content" val={content} on={changeHandler} />
+					<LabelForm
+						label="Descripción"
+						name="content"
+						val={content}
+						on={changeHandler}
+					/>
 				</form>
 			</section>
 

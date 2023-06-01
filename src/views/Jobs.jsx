@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-// import { useFirebaseApp } from "reactfire";
 import { Template } from "../templates/Template";
 import { CardJob } from "../components/Card/CardJob";
 
 function Jobs() {
-	// const firebase = useFirebaseApp();
-	// console.log(firebase);
 	const [vacancyList, setVacancyList] = useState({});
-
+	const [itemOffset, setItemOffset] = useState(0);
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
-			// console.log(snapshot.val());
 			setVacancyList(snapshot.val());
 		});
 	}, []);
 
-	//
-	const [itemOffset, setItemOffset] = useState(0);
-	const endOffset = itemOffset + 18;
-	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset)
+	// To Do a limit of Vacancies to Show in the View
+	const endOffset = itemOffset + 20;
+	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+
 	return (
 		<Template>
 			<article className="flex justify-center flex-col items-center pb-20 px-2">
@@ -98,9 +94,10 @@ function Jobs() {
 						</aside>
 					</section>
 				</header>
-
 				<div className="w-full max-w-4xl">
-					{currentItems.sort((a, b) => (a.name > b.name ? -1 : 1)).map((key) => {
+					{currentItems
+						.sort((a, b) => (a.name > b.name ? -1 : 1))
+						.map((key) => {
 							const vacancyData = vacancyList[key];
 							return (
 								<CardJob vacancyData={vacancyData} key={key}>

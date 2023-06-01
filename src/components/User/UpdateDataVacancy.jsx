@@ -21,29 +21,9 @@ function UpdateDataVacancy() {
 	const database = getDatabase();
 	const vacancyRef = refDatabase(database, `/vacancy/${id}`);
 	const candidateRef = refDatabase(database, "/candidate");
-
-	useEffect(() => {
-		onValue(vacancyRef, (snapshot) => {
-			setVacancyData(snapshot.val());
-		});
-	}, []);
-
 	const [file, setFile] = useState({});
 	const storage = getStorage();
 	const storageRef = refStorage(storage, `candidates/${file.name}`);
-
-	const fileHandler = (event) => {
-		const file = event.target.files[0];
-		setFile(file);
-		console.log(file);
-
-	};
-
-	const saveCv = async () => {
-		await uploadBytes(storageRef, file)
-		const url = await getDownloadURL(storageRef)
-		return url
-	};
 
 	const {
 		candidateName,
@@ -67,41 +47,83 @@ function UpdateDataVacancy() {
 	const date_1 = new Date(date);
 	const date_2 = new Date(dateVacancy);
 	const day_as_milliseconds = 86400000;
-	const diff_in_millisenconds = date_1 - date_2;
-	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+	const diff_in_milliseconds = date_1 - date_2;
+	const diff_in_days = diff_in_milliseconds / day_as_milliseconds;
 
-	//F O R M
+	useEffect(() => {
+		onValue(vacancyRef, (snapshot) => {
+			setVacancyData(snapshot.val());
+		});
+	}, []);
+
+	/**
+	 *
+	 * @param {Object} event Re write the Data in File with UseState()
+	 */
+	const fileHandler = (event) => {
+		const file = event.target.files[0];
+		setFile(file);
+		console.log(file);
+	};
+
+	/**
+	 *
+	 * @returns Call the Value of the Function fileHandler() to get the URL of the File, after that save the Data in an Object
+	 */
+	const saveCv = async () => {
+		await uploadBytes(storageRef, file);
+		const url = await getDownloadURL(storageRef);
+		return url;
+	};
+
+	/**
+	 *
+	 * @param {Object} event Rewrite the Data in an Object with de data on very Candidates
+	 */
 	const changeHandler = (event) => {
 		const property = event.target.name;
 		const value = event.target.value;
 		setCandidateData({ ...candidateData, [property]: value, vacancyTitle });
 	};
 
+	/**
+	 *
+	 * @returns Write Data in the Object of Realtime Database of Firebase
+	 */
 	const saveData = () => {
-		// SAVE DATA
 		console.log("Enviado");
 		return push(candidateRef, candidateData);
 	};
 
-	const alertSend = async () => {
+	/**
+	 * Call the Function saveData() when the Function saveCV() update the Data
+	 */
+	const alertSend = async (event) => {
+		event.preventDefault()
 		if (candidateData) {
 			const result = await saveCv();
-			candidateData.url = result
-			saveData()
+			candidateData.url = result;
+			saveData();
 		}
+		alert('Enviado')
 	};
 
 	return (
 		<main className="my-2 flex items-start md:px-12 flex-wrap justify-center w-full max-w-7xl mx-[auto]">
 			<section className="flex justify-center flex-col items-center ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 mb-8">
-				<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
+				<form
+					className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]"
+					onSubmit={alertSend}
+				>
 					<div className="my-4">
 						<label htmlFor="" className="text-gray-300 text-sm">
 							Nombres
 						</label>
 						<input
+							required
+							autoComplete="on"
 							id="domTextElement1"
-							type="text"
+							type="name"
 							name="candidateName"
 							className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
 							onChange={changeHandler}
@@ -140,7 +162,8 @@ function UpdateDataVacancy() {
 							</label>
 							<input
 								required
-								type="email"
+								autoComplete="on"
+								type="tel"
 								name="candidateTel"
 								className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
 								onChange={changeHandler}
@@ -166,6 +189,7 @@ function UpdateDataVacancy() {
 							</label>
 							<input
 								required
+								autoComplete="on"
 								type="email"
 								name="candidateEmail"
 								className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
@@ -184,6 +208,8 @@ function UpdateDataVacancy() {
 						</div>
 					</div>
 					<InputForm
+						required
+						autoComplete="on"
 						label="Dirección"
 						name="candidateLocation"
 						on={changeHandler}
@@ -209,8 +235,8 @@ function UpdateDataVacancy() {
 
 					<button
 						className="bg-[#2f7ce07f] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3d79f0b4] ml-0 animate-pulse hover:animate-none flex items-center mb-8"
-						type="button"
-						onClick={alertSend}
+						type="submit"
+						// onClick={alertSend}
 					>
 						Send
 						<span className="material-symbols-outlined">
