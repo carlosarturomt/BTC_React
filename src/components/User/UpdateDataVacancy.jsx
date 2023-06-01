@@ -17,8 +17,6 @@ import {
 function UpdateDataVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 	const [candidateData, setCandidateData] = useState({});
-	const [urlA, setUrlA] = useState("");
-
 	const { id } = useParams();
 	const database = getDatabase();
 	const vacancyRef = refDatabase(database, `/vacancy/${id}`);
@@ -34,27 +32,11 @@ function UpdateDataVacancy() {
 	const storage = getStorage();
 	const storageRef = refStorage(storage, `candidates/${file.name}`);
 
-	//F O R M
-	const url = storageRef;
-	// const getFileUrl = () => {
-	// 	function getFile() {
-	// 		const url = getDownloadURL(
-	// 			refStorage(storage, `candidates/${file.name}`)
-	// 		).then((url) => {
-	// 			candidateData.url = url
-	// 			console.log("Url File: ", url);
-	// 		});
-	// 	}
-	// 	getFile()
-	// };
-
 	const fileHandler = (event) => {
 		const file = event.target.files[0];
 		setFile(file);
 		console.log(file);
-		// setCandidateData({
-		// 	...candidateData, file: ''
-		// });
+
 	};
 
 	const saveCv = async () => {
@@ -92,7 +74,6 @@ function UpdateDataVacancy() {
 	const changeHandler = (event) => {
 		const property = event.target.name;
 		const value = event.target.value;
-		// console.table(event)
 		setCandidateData({ ...candidateData, [property]: value, vacancyTitle });
 	};
 
@@ -105,7 +86,6 @@ function UpdateDataVacancy() {
 	const alertSend = async () => {
 		if (candidateData) {
 			const result = await saveCv();
-			// getFileUrl()
 			candidateData.url = result
 			saveData()
 		}
