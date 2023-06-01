@@ -6,6 +6,7 @@ import { CardJob } from "../components/Card/CardJob";
 
 function Jobs() {
 	const [vacancyList, setVacancyList] = useState({});
+	const [search, setSearch] = useState(vacancyList);
 	const [itemOffset, setItemOffset] = useState(0);
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
@@ -15,6 +16,24 @@ function Jobs() {
 			setVacancyList(snapshot.val());
 		});
 	}, []);
+
+	/**
+	 *
+	 * @param {Event} event Capture the Changes in the Input of the useState()
+	 */
+	const handleChange = (event) => {
+		setSearch(event.target.value);
+		console.log(search);
+	};
+
+
+	if (search == vacancyList) {
+		console.log(':)', vacancyList);
+		// console.log(Object.keys(vacancyList.assign({})));
+	} else {
+		console.log(':D', vacancyList);
+		// console.log(Object.keys(vacancyList.assign({})));
+	}
 
 	// To Do a limit of Vacancies to Show in the View
 	const endOffset = itemOffset + 20;
@@ -32,6 +51,7 @@ function Jobs() {
 										search
 									</span>
 									<input
+										onChange={handleChange}
 										className="bg-transparent w-full focus:outline-none text-gray-800"
 										type="search"
 									/>
@@ -94,6 +114,7 @@ function Jobs() {
 						</aside>
 					</section>
 				</header>
+
 				<div className="w-full max-w-4xl">
 					{currentItems
 						.sort((a, b) => (a.name > b.name ? -1 : 1))

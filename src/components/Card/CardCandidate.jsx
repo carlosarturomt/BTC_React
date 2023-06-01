@@ -1,14 +1,9 @@
 function CardCandidate(props) {
 	const { vacancyData } = props;
 	const {
-		candidateBirthday,
 		candidateEmail,
-		candidateGrade,
-		candidateLocation,
 		candidateName,
-		candidateNationality,
 		candidateTel,
-		candidateTel2,
 		url,
 		vacancyTitle,
 	} = vacancyData;

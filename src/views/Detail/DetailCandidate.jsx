@@ -9,7 +9,6 @@ import BtnLogOut from "../../components/Buttons/BtnLogOut";
 import { Template } from "../../templates/Template";
 import { Error404 } from "../../views/404";
 
-
 function DetailCandidate() {
 	const [test, setTest] = useState(false);
 	const auth = getAuth();
