@@ -9,7 +9,7 @@ function CardCandidate(props) {
 		candidateNationality,
 		candidateTel,
 		candidateTel2,
-		file,
+		url,
 		vacancyTitle,
 	} = vacancyData;
 
@@ -18,15 +18,35 @@ function CardCandidate(props) {
 			<div>
 				<span className="text-slate-400 text-sm">{vacancyTitle}</span>
 				<h3 className="font-bold mt-px text-gray-100">{candidateName}</h3>
-				<p className="text-slate-300">{file}</p>
-				<div className="flex items-center gap-3 mt-2">
-					<span className="flex items-center bg-[#ffffff17] text-gray-400 rounded-full py-1 text-sm pl-2 pr-4">
+				{/* <p className="text-slate-300">{url}</p> */}
+				<div className="flex flex-wrap items-center gap-3 mt-2">
+					<span className="flex items-center bg-[#ffffff17] hover:animate-pulse text-gray-400 rounded-full py-1 text-sm pl-2 pr-4">
 						<span className="p-1 material-symbols-outlined">call</span>
-						{candidateTel}
+						<a
+							href={"tel:+52" + candidateTel}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{candidateTel}
+							<div></div>
+						</a>
 					</span>
-					<span className="text-slate-400 text-sm flex gap-1 items-center">
+					<span className="text-slate-400 text-sm flex gap-1 items-center hover:animate-pulse">
 						<span className="material-symbols-outlined">mail</span>
-						{candidateEmail}
+						<a
+							href={"mailto:" + candidateEmail}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							{candidateEmail}
+						</a>
+					</span>
+					<span className="text-slate-400 text-sm flex gap-1 items-center hover:animate-pulse">
+						<span className="material-symbols-outlined">cloud_download</span>
+						{/* <span className="material-symbols-outlined">picture_as_pdf</span> */}
+						<a href={url} target="_blank" rel="noopener noreferrer">
+							doc.pdf
+						</a>
 					</span>
 				</div>
 			</div>

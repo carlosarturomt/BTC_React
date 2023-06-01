@@ -11,11 +11,14 @@ import {
 	getStorage,
 	ref as refStorage,
 	uploadBytes,
+	getDownloadURL,
 } from "firebase/storage";
 
 function UpdateDataVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 	const [candidateData, setCandidateData] = useState({});
+	const [urlA, setUrlA] = useState("");
+
 	const { id } = useParams();
 	const database = getDatabase();
 	const vacancyRef = refDatabase(database, `/vacancy/${id}`);
@@ -32,37 +35,32 @@ function UpdateDataVacancy() {
 	const storageRef = refStorage(storage, `candidates/${file.name}`);
 
 	//F O R M
+	const url = storageRef;
+	// const getFileUrl = () => {
+	// 	function getFile() {
+	// 		const url = getDownloadURL(
+	// 			refStorage(storage, `candidates/${file.name}`)
+	// 		).then((url) => {
+	// 			candidateData.url = url
+	// 			console.log("Url File: ", url);
+	// 		});
+	// 	}
+	// 	getFile()
+	// };
+
 	const fileHandler = (event) => {
 		const file = event.target.files[0];
 		setFile(file);
 		console.log(file);
+		// setCandidateData({
+		// 	...candidateData, file: ''
+		// });
 	};
 
-	//---
-	// getDownloadURL()
-	// getDownloadURL(
-	// 	storageRef.then(function (getDownloadURL) {
-	// 		console.log(getDownloadURL);
-	// 	})
-	// );
-
-	// storageRef.getDownloadURL()
-	// const pathReference = refStorage(storage, 'audio/interview.wav');
-	// TODO: add error handling
-	const url = storageRef;
-
-	const testCV = () => {
-		// uploadBytes(storageRef, file).then((snapshot) => {
-		// 	console.log("Uploaded file!");
-		// })
-
-		console.log(''+url._location.path_);
-	}
-
-	const saveCv = () => {
-		uploadBytes(storageRef, file).then((snapshot) => {
-			console.log("Uploaded file!");
-		})
+	const saveCv = async () => {
+		await uploadBytes(storageRef, file)
+		const url = await getDownloadURL(storageRef)
+		return url
 	};
 
 	const {
@@ -100,23 +98,18 @@ function UpdateDataVacancy() {
 
 	const saveData = () => {
 		// SAVE DATA
+		console.log("Enviado");
 		return push(candidateRef, candidateData);
 	};
 
-	const alertSend = () => {
+	const alertSend = async () => {
 		if (candidateData) {
-			saveData();
-			saveCv();
-			alert("Enviado");
-			window.history.back();
+			const result = await saveCv();
+			// getFileUrl()
+			candidateData.url = result
+			saveData()
 		}
 	};
-
-	// const inputaName = () => {
-	// 	let inputValue1 = document.querySelector("#domTextElement1").value;
-	// 	// innerHTML = `${inputValue1}`
-	// 	console.log(inputValue1);
-	// };
 
 	return (
 		<main className="my-2 flex items-start md:px-12 flex-wrap justify-center w-full max-w-7xl mx-[auto]">
@@ -243,14 +236,6 @@ function UpdateDataVacancy() {
 						<span className="material-symbols-outlined">
 							<span className="material-symbols-outlined">arrow_forward</span>
 						</span>
-					</button>
-
-					<button
-						className="bg-[#e02f2f7f] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3d79f0b4] ml-0 animate-pulse hover:animate-none flex items-center mb-8"
-						type="button"
-						onClick={testCV}
-					>
-						TEST
 					</button>
 				</form>
 			</section>

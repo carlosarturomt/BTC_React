@@ -22,7 +22,7 @@ function CandidateAdmin() {
 	return (
 		<section>
 			<article className="flex justify-center flex-col items-center pb-20">
-				<div className="w-full">
+				<div className="w-full max-w-4xl px-4 lg:px-0">
 					{currentItems
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
 						.map((key) => {
@@ -38,8 +38,9 @@ function CandidateAdmin() {
 							};
 							return (
 								<CardCandidate vacancyData={vacancyData} key={key}>
-									<Link to={`/logged/edit/${key}`}>
-										<button className="bg-[#74ff0029] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#8bdc4870] mb-1 w-[120px]">
+									<Link to={`${key}`}>
+										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:animate-pulse mb-1 w-[120px]">
+										{/* <button className="bg-[#74ff0029] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#8bdc4870] mb-1 w-[120px]"> */}
 											{/* <span className="material-symbols-outlined">edit</span> */}
 											See more
 										</button>
