@@ -10,6 +10,7 @@ import { Admin } from "./components/Admin";
 import { AdminUpdate } from "./views/Admin/updateIndex";
 import { CreateVacancyPanel } from "./components/Admin/CreateVacancyPanel";
 import { ApplyVacancy } from "./views/User/ApplyVacancy";
+import { Candidates } from "./views/Admin/Candidates";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/logged" element={<Admin />} />
 				<Route path="/logged/create" element={<CreateVacancyPanel />} />
+				<Route path="/logged/candidates" element={<Candidates />} />
 				<Route path="/jobs/:id" element={<DetailVacancy />} />
 				<Route path="/apply/:id" element={<ApplyVacancy />} />
 				<Route path="/logged/edit/:id" element={<AdminUpdate />} />

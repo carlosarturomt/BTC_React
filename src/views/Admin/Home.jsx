@@ -25,7 +25,7 @@ function HomeAdmin() {
 						src="https://merch38.com/wp-content/uploads/2021/07/Emloyee.png"
 						alt="Employees"
 					/> */}
-					<Link to={`/admin/`}>
+					<Link to={`candidates/`}>
 						<button className="bg-[#ffffff17] my-2 py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3232328d] animate-pulse hover:animate-none">
 							See more...
 						</button>

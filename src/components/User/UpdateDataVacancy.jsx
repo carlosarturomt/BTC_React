@@ -11,7 +11,6 @@ import {
 	getStorage,
 	ref as refStorage,
 	uploadBytes,
-	getDownloadURL
 } from "firebase/storage";
 
 function UpdateDataVacancy() {
@@ -39,15 +38,31 @@ function UpdateDataVacancy() {
 		console.log(file);
 	};
 
+	//---
+	// getDownloadURL()
+	// getDownloadURL(
+	// 	storageRef.then(function (getDownloadURL) {
+	// 		console.log(getDownloadURL);
+	// 	})
+	// );
+
+	// storageRef.getDownloadURL()
+	// const pathReference = refStorage(storage, 'audio/interview.wav');
+	// TODO: add error handling
+	const url = storageRef;
+
+	const testCV = () => {
+		// uploadBytes(storageRef, file).then((snapshot) => {
+		// 	console.log("Uploaded file!");
+		// })
+
+		console.log(''+url._location.path_);
+	}
+
 	const saveCv = () => {
 		uploadBytes(storageRef, file).then((snapshot) => {
 			console.log("Uploaded file!");
 		})
-		// getDownloadURL(
-		// 	refStorage(storage, storageRef).then(function (getDownloadURL) {
-		// 		console.log(getDownloadURL);
-		// 	})
-		// );
 	};
 
 	const {
@@ -90,8 +105,8 @@ function UpdateDataVacancy() {
 
 	const alertSend = () => {
 		if (candidateData) {
-			saveData()
-			saveCv()
+			saveData();
+			saveCv();
 			alert("Enviado");
 			window.history.back();
 		}
@@ -228,6 +243,14 @@ function UpdateDataVacancy() {
 						<span className="material-symbols-outlined">
 							<span className="material-symbols-outlined">arrow_forward</span>
 						</span>
+					</button>
+
+					<button
+						className="bg-[#e02f2f7f] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3d79f0b4] ml-0 animate-pulse hover:animate-none flex items-center mb-8"
+						type="button"
+						onClick={testCV}
+					>
+						TEST
 					</button>
 				</form>
 			</section>

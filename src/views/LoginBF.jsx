@@ -75,7 +75,7 @@ const LoginBF = () => {
 									type="checkbox"
 									className="mr-1 checked:bg-purple-700"
 								/>
-								<label //danone.sharepoint.com/sites/AMERICAS-ITandData
+								<label
 									htmlFor="remember"
 									className="mr-auto text-xs font-semibold"
 								>
@@ -121,20 +121,11 @@ const LoginBF = () => {
 					</div>
 				</aside>
 
-				{/* <aside className="w-full flex flex-wrap content-center justify-center rounded-md md:w-1/2 md:rounded-l-none relative">
-						<img
-							className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none blur-img"
-							src="https://i.pinimg.com/originals/18/f0/37/18f037f6761bbc6ac0682035deab8778.gif"
-							// src="https://i.imgur.com/9l1A4OS.jpeg"
-						/>
-						<img className="fish" src="https://i.pinimg.com/originals/30/48/58/30485866edfa12067101718b823fd37e.gif"/>
-						<img className="fish1" src="https://img1.picmix.com/output/stamp/normal/4/9/2/2/1782294_7ddcc.gif"/>
-					</aside> */}
-
-				{/* <img
+				<img
 					className="fish"
-					src="https://i.pinimg.com/originals/30/48/58/30485866edfa12067101718b823fd37e.gif"
-				/> */}
+					src="https://img1.picmix.com/output/stamp/normal/0/2/5/9/1479520_aca7c.gif"
+				/>
+
 				<div className="bg-gif"></div>
 				<div className="bg-fish"></div>
 			</section>
@@ -145,15 +136,85 @@ const LoginBF = () => {
 						box-shadow: 0 0 5px #fff;
 					}
 					.fish {
-						z-index: -1;
+						z-index: 2;
 						position: absolute;
-						bottom: 0;
+						animation: slide-left 50s infinite;
 					}
+					@keyframes slide-left {
+						from {
+							width: 5%;
+							z-index: -2;
+							left: 0;
+							bottom: 0;
+							opacity : 0.7;
+							filter: blur(3px)
+						}
+						50% {
+							z-index: -1;
+							width: 20%;
+							bottom: 10%;
+							left: 50%;
+							opacity: 0.8;
+							filter: blur(2px)
+						}
+						to {
+							width: 30%;
+							z-index: 1;
+							bottom: 80%;
+							left: 80%;
+							opacity: 0.9;
+							filter: blur(1px)
+						}
+					}
+
 					.fish1 {
+						z-index: 2;
 						position: absolute;
-						top: 5%;
-						left: -5%;
-						width: 40%;
+						transform: scaleX(-1);
+						animation: fish 30s infinite;
+					}
+					@keyframes fish {
+						from {
+							width: 10%;
+							z-index: -2;
+							right: 0;
+							top: 0;
+							opacity : 0.6;
+							filter: blur(3px)
+						}
+						20% {
+							z-index: -1;
+							width: 15%;
+							top: 20%;
+							right: 40%;
+							opacity: 0.8;
+							filter: blur(2px)
+						}
+						40% {
+							z-index: 1;
+							width: 15%;
+							top: 10%;
+							right: 50%;
+							opacity: 1;
+							filter: blur(1px);
+							transform: matrix(0.5, 0.1, 0.5, 1, 10, -2);
+						}
+						60% {
+							z-index: 1;
+							width: 20%;
+							top: 80%;
+							right: 60%;
+							opacity: 0.8;
+							filter: blur(1px);
+						}
+						to {
+							width: 10%;
+							z-index: 1;
+							top: 60%;
+							right: 100%;
+							opacity: 0.6;
+							filter: blur(3px);
+						}
 					}
 					.blur-img {
 						width: 100%;
@@ -188,6 +249,7 @@ const LoginBF = () => {
 						background-repeat: no-repeat;
 						background-image: url('https://i.pinimg.com/originals/e9/04/15/e904152f727d70e777066bd122c7f2dd.gif')
 					}
+
 				`}
 			</style>
 		</TemplateNoNav>
