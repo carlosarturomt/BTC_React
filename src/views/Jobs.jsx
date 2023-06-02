@@ -6,10 +6,10 @@ import { CardJob } from "../components/Card/CardJob";
 
 function Jobs() {
 	const [vacancyList, setVacancyList] = useState({});
-	const [search, setSearch] = useState(vacancyList);
-	const [itemOffset, setItemOffset] = useState(0);
+	const [search, setSearch] = useState("");
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
+	// const [itemOffset, setItemOffset] = useState(0);
 
 	useEffect(() => {
 		onValue(vacancyRef, (snapshot) => {
@@ -27,17 +27,63 @@ function Jobs() {
 	};
 
 
-	if (search == vacancyList) {
-		console.log(':)', vacancyList);
-		// console.log(Object.keys(vacancyList.assign({})));
-	} else {
-		console.log(':D', vacancyList);
-		// console.log(Object.keys(vacancyList.assign({})));
-	}
-
 	// To Do a limit of Vacancies to Show in the View
-	const endOffset = itemOffset + 20;
-	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+	// const endOffset = itemOffset + 20;
+	// const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+
+	const allCategories = [
+		// ...new Set(Object.entries(vacancyList).filter((vacancy) => vacancy)),
+		// ...new Set(
+		// 	Object.keys(vacancyList).map(
+		// 		(vacancy) => vacancy
+		// 	)
+		// ),
+		// ...new Set(
+		// 	Object.values(vacancyList).filter(
+		// 		(vacancy) => vacancy.vacancyTitle == search
+		// 	)
+		// ),
+		...new Set(
+			Object.entries(vacancyList).map(([key, vacancy] = entry) => {
+				// return `KEY: ${key} and VALUE: ${vacancy.vacancyTitle}`
+				if (vacancy.vacancyTitle == search) {
+					return (
+						<div className="" key={key}>
+							<CardJob vacancyData={vacancyList[key]} key={key}>
+								<Link to={`${key}`}>
+									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
+										Apply Now
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											className="h-4 w-4"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+											strokeWidth="2"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												d="M13 7l5 5m0 0l-5 5m5-5H6"
+											/>
+										</svg>
+									</button>
+								</Link>
+							</CardJob>
+							;
+						</div>
+					);
+				} else {
+					return (
+						<div className="" key={key}>
+							<CardJob vacancyData={vacancyList[key]} key={key}></CardJob>;
+						</div>
+					);
+				}
+			})
+		),
+	];
+	console.log(allCategories);
 
 	return (
 		<Template>
@@ -116,7 +162,8 @@ function Jobs() {
 				</header>
 
 				<div className="w-full max-w-4xl">
-					{currentItems
+					{allCategories}
+					{/* {currentItems
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
 						.map((key) => {
 							const vacancyData = vacancyList[key];
@@ -143,7 +190,7 @@ function Jobs() {
 									</Link>
 								</CardJob>
 							);
-						})}
+						})} */}
 				</div>
 			</article>
 
