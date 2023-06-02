@@ -99,13 +99,13 @@ function UpdateDataVacancy() {
 	 * Call the Function saveData() when the Function saveCV() update the Data
 	 */
 	const alertSend = async (event) => {
-		event.preventDefault()
+		event.preventDefault();
 		if (candidateData) {
 			const result = await saveCv();
 			candidateData.url = result;
 			saveData();
 		}
-		alert('Enviado')
+		alert("Enviado");
 	};
 
 	return (
@@ -135,7 +135,6 @@ function UpdateDataVacancy() {
 								Nacionalidad
 							</label>
 							<input
-								required
 								type="text"
 								name="candidateNationality"
 								className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
@@ -174,7 +173,6 @@ function UpdateDataVacancy() {
 								Número de Contacto
 							</label>
 							<input
-								required
 								type="tel"
 								name="candidateTel2"
 								onChange={changeHandler}
@@ -199,7 +197,6 @@ function UpdateDataVacancy() {
 						<div className="w-2/4 pl-2">
 							<label className="text-gray-300 text-sm">Escolaridad</label>
 							<input
-								required
 								type="text"
 								name="candidateGrade"
 								onChange={changeHandler}
@@ -220,6 +217,7 @@ function UpdateDataVacancy() {
 							Adjuntar CV
 						</label>
 						<input
+							required
 							type="file"
 							name="candidateGrade"
 							className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"

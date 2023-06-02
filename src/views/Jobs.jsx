@@ -22,19 +22,20 @@ function Jobs() {
 	 * @param {Event} event Capture the Changes in the Input of the useState()
 	 */
 	const handleChange = (event) => {
-		setSearch(event.target.value);
+		setSearch(event.target.value.toLowerCase());
 		console.log(search);
 	};
 
-
 	// To Do a limit of Vacancies to Show in the View
-	// const endOffset = itemOffset + 20;
-	// const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+	const [itemOffset, setItemOffset] = useState(0);
+	const endOffset = itemOffset + 20;
+	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+	const vacancies = Object.entries(vacancyList);
 
 	const allCategories = [
 		// ...new Set(Object.entries(vacancyList).filter((vacancy) => vacancy)),
 		// ...new Set(
-		// 	Object.keys(vacancyList).map(
+		// 	Object.keys(vacancyList).filter(
 		// 		(vacancy) => vacancy
 		// 	)
 		// ),
@@ -44,14 +45,13 @@ function Jobs() {
 		// 	)
 		// ),
 		...new Set(
-			Object.entries(vacancyList).map(([key, vacancy] = entry) => {
-				// return `KEY: ${key} and VALUE: ${vacancy.vacancyTitle}`
-				if (vacancy.vacancyTitle == search) {
+			vacancies.map(([key, vacancy] = entry) => {
+				if (vacancy.areaVacancy.toLowerCase() == search || vacancy.categoryVacancy.toLowerCase() == search || vacancy.subcategoryVacancy.toLowerCase() == search || vacancy.typeLocation.toLowerCase() == search || vacancy.typeVacancy.toLowerCase() == search || vacancy.vacancyTitle.toLowerCase() == search || vacancy.locationPlace.toLowerCase() == search) {
 					return (
-						<div className="" key={key}>
+						<div className="border border-slate-700 px-2 rounded-md my-2" key={key}>
 							<CardJob vacancyData={vacancyList[key]} key={key}>
 								<Link to={`${key}`}>
-									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
+									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
 										Apply Now
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -70,20 +70,20 @@ function Jobs() {
 									</button>
 								</Link>
 							</CardJob>
-							;
 						</div>
 					);
 				} else {
 					return (
-						<div className="" key={key}>
-							<CardJob vacancyData={vacancyList[key]} key={key}></CardJob>;
+						<div className="hidden" key={key}>
+							<CardJob vacancyData={vacancyList[key]} key={key}></CardJob>
+							{/* <CardJob vacancyData={vacancyList[key]} key={key}></CardJob>; */}
 						</div>
 					);
 				}
 			})
 		),
 	];
-	console.log(allCategories);
+	// console.log(allCategories);
 
 	return (
 		<Template>
@@ -122,6 +122,7 @@ function Jobs() {
 									<option hidden="hidden" value="defaultValue">
 										LOCATION TYPE
 									</option>
+									<option>All</option>
 									<option>On-site</option>
 									<option>Hybrid</option>
 									<option>Remote</option>
@@ -154,7 +155,7 @@ function Jobs() {
 									</option>
 									<option>All</option>
 									<option>Full Time</option>
-									<option>Halftime</option>
+									<option>Half Time</option>
 								</select>
 							</div>
 						</aside>
@@ -163,7 +164,7 @@ function Jobs() {
 
 				<div className="w-full max-w-4xl">
 					{allCategories}
-					{/* {currentItems
+					{currentItems
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
 						.map((key) => {
 							const vacancyData = vacancyList[key];
@@ -190,7 +191,7 @@ function Jobs() {
 									</Link>
 								</CardJob>
 							);
-						})} */}
+						})}
 				</div>
 			</article>
 
