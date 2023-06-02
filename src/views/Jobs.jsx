@@ -9,37 +9,64 @@ function Jobs() {
 	const [vacancyList, setVacancyList] = useState([]);
 	const [search, setSearch] = useState("");
 	const [filter_data, setFilterData] = useState([]);
-	// TODO: a limit of Vacancies to Show in the View
-	const [itemOffset, setItemOffset] = useState(0);
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
-	// const [itemOffset, setItemOffset] = useState(0);
+	// TODO: a limit of Vacancies to Show in the View
 
 	useEffect(() => {
 		return onValue(vacancyRef, (snapshot) => {
 			const data = snapshot.val();
 
 			if (snapshot.exists()) {
-				Object.values(data).map((item) => {
-					setVacancyList((list) => [...list, item]);
-					setFilterData((list) => [...list, item]);
+				Object.entries(data).forEach(([key, value]) => {
+					value.id = key;
+					setVacancyList((list) => [...list, value]);
+					setFilterData((list) => [...list, value]);
 				});
 			}
 		});
 	}, []);
 
 	/**
-	 * 
-	 * @param {Object} busqueda 
+	 *
+	 * @param {Object} busqueda
 	 */
 	const filtrar = (busqueda) => {
 		const nuevo = filter_data.filter((item) => {
-			if (item.vacancyTitle.toLowerCase().includes(busqueda.toLowerCase())
-				|| item.areaVacancy.toLowerCase().includes(busqueda.toLowerCase())
+			if (
+				item.vacancyTitle.toLowerCase().includes(busqueda.toLowerCase()) ||
+				item.areaVacancy.toLowerCase().includes(busqueda.toLowerCase()) ||
+				item.categoryVacancy.toLowerCase().includes(busqueda.toLowerCase()) ||
+				item.subcategoryVacancy.toLowerCase().includes(busqueda.toLowerCase())
 			) {
 				return item;
-			} 
+			}
+			// if (item.vacancyTitle.toLowerCase() != busqueda) {
+			// 	console.log(":(");
+			// }
+		});
+		setVacancyList(nuevo);
+	};
+
+	const filterAll = (busqueda) => {
+		const nuevo = filter_data.filter((item) => {
+			if (
+				item.typeLocation.includes("Remote") ||
+				item.typeLocation.includes("Hybrid") ||
+				item.typeLocation.includes("Presencial") ||
+				item.typeLocation.includes("On-site")
+			) {
+				return item;
+			}
+		});
+		setVacancyList(nuevo);
+	};
+
+	const filterModality = (busqueda) => {
+		const nuevo = filter_data.filter((item) => {
+			if (item.typeLocation.includes(busqueda)) {
+				return item;
+			}
 		});
 		setVacancyList(nuevo);
 	};
@@ -51,65 +78,18 @@ function Jobs() {
 	const handleChange = (event) => {
 		setSearch(event.target.value.toLowerCase());
 		filtrar(event.target.value);
-		console.log(search);
+		// console.log(search);
 	};
 
-	const endOffset = itemOffset + 20;
-	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
-	const vacancies = Object.entries(vacancyList);
+	const handleFilter = (event) => {
+		setSearch(event.target.value);
+		filterModality(event.target.value);
+	};
 
-	// const allCategories = [
-	// 	// ...new Set(Object.entries(vacancyList).filter((vacancy) => vacancy)),
-	// 	// ...new Set(
-	// 	// 	Object.keys(vacancyList).filter(
-	// 	// 		(vacancy) => vacancy
-	// 	// 	)
-	// 	// ),
-	// 	// ...new Set(
-	// 	// 	Object.values(vacancyList).filter(
-	// 	// 		(vacancy) => vacancy.vacancyTitle == search
-	// 	// 	)
-	// 	// ),
-	// 	...new Set(
-	// 		vacancies.map(([key, vacancy] = entry) => {
-	// 			if (vacancy.areaVacancy.toLowerCase() == search || vacancy.categoryVacancy.toLowerCase() == search || vacancy.subcategoryVacancy.toLowerCase() == search || vacancy.typeLocation.toLowerCase() == search || vacancy.typeVacancy.toLowerCase() == search || vacancy.vacancyTitle.toLowerCase() == search || vacancy.locationPlace.toLowerCase() == search) {
-	// 				return (
-	// 					<div className="border border-slate-700 px-2 rounded-md my-2" key={key}>
-	// 						<CardJob vacancyData={vacancyList[key]} key={key}>
-	// 							<Link to={`${key}`}>
-	// 								<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
-	// 									Apply Now
-	// 									<svg
-	// 										xmlns="http://www.w3.org/2000/svg"
-	// 										className="h-4 w-4"
-	// 										fill="none"
-	// 										viewBox="0 0 24 24"
-	// 										stroke="currentColor"
-	// 										strokeWidth="2"
-	// 									>
-	// 										<path
-	// 											strokeLinecap="round"
-	// 											strokeLinejoin="round"
-	// 											d="M13 7l5 5m0 0l-5 5m5-5H6"
-	// 										/>
-	// 									</svg>
-	// 								</button>
-	// 							</Link>
-	// 						</CardJob>
-	// 					</div>
-	// 				);
-	// 			} else {
-	// 				return (
-	// 					<div className="hidden" key={key}>
-	// 						<CardJob vacancyData={vacancyList[key]} key={key}></CardJob>
-	// 						{/* <CardJob vacancyData={vacancyList[key]} key={key}></CardJob>; */}
-	// 					</div>
-	// 				);
-	// 			}
-	// 		})
-	// 	),
-	// ];
-	// console.log(allCategories);
+	const handleFilterAll = (event) => {
+		setSearch(event.target.value);
+		filterAll(event.target.value);
+	};
 
 	return (
 		<Template>
@@ -117,25 +97,26 @@ function Jobs() {
 				<header className="lg:mt-[-113px] flex justify-center items-center w-full max-w-4xl">
 					<section className="w-full p-2 grid grid-cols-1 gap-6 rounded-lg bg-[#022d5f00] md:p-6">
 						<aside className="grid grid-cols-3 gap-0 rounded">
-							<div className="col-span-2 p-2 rounded">
-								<div className="flex border border-gray-700 rounded bg-gray-200 items-center p-2 hover:bg-gray-300">
+							<div className="col-span-3 p-2 rounded">
+								<div className=" flex border border-gray-700 rounded-lg bg-gray-200 items-center p-2 hover:bg-gray-300">
 									<span className="material-symbols-outlined text-gray-800">
 										search
 									</span>
 									<input
 										onChange={handleChange}
+										placeholder="Type your search term here... &#8617;"
 										className="bg-transparent w-full focus:outline-none text-gray-800"
 										type="search"
 									/>
 								</div>
 							</div>
-							<div className=" p-2 rounded">
+							{/* <div className=" p-2 rounded">
 								<div className="flex justify-center w-full">
 									<button className="p-2 w-full rounded-md border-0 bg-red-600 text-white hover:bg-red-700">
 										Search
 									</button>
 								</div>
-							</div>
+							</div> */}
 						</aside>
 
 						<aside className="flex flex-wrap md:flex-row text-gray-100">
@@ -148,10 +129,10 @@ function Jobs() {
 									<option hidden="hidden" value="defaultValue">
 										LOCATION TYPE
 									</option>
-									<option>All</option>
-									<option>On-site</option>
-									<option>Hybrid</option>
-									<option>Remote</option>
+									<option onClick={handleFilterAll}>All</option>
+									<option onClick={handleFilter}>On-site</option>
+									<option onClick={handleFilter}>Hybrid</option>
+									<option onClick={handleFilter}>Remote</option>
 								</select>
 							</div>
 							<div className="w-fit p-1 md:pt-0 md:pl-2">
@@ -159,7 +140,6 @@ function Jobs() {
 									<option hidden="hidden" value="defaultValue">
 										LOCATION
 									</option>
-									<option>All</option>
 									<option>CDMX</option>
 									<option>MX</option>
 								</select>
@@ -179,7 +159,6 @@ function Jobs() {
 									<option hidden="hidden" value="defaultValue">
 										WORK TYPE
 									</option>
-									<option>All</option>
 									<option>Full Time</option>
 									<option>Half Time</option>
 								</select>
@@ -189,39 +168,12 @@ function Jobs() {
 				</header>
 
 				<div className="w-full max-w-4xl">
-					{/* {allCategories} */}
-					{vacancyList.map((item, index) => {
-						return (
-							<CardJob vacancyData={item} key={index}>
-								<Link to="test">
-									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
-										Apply Now
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											className="h-4 w-4"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-											strokeWidth="2"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M13 7l5 5m0 0l-5 5m5-5H6"
-											/>
-										</svg>
-									</button>
-								</Link>
-							</CardJob>
-						);
-					})}
-					{/* {currentItems
+					{vacancyList
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
-						.map((key) => {
-							const vacancyData = vacancyList[key];
+						.map((item) => {
 							return (
-								<CardJob vacancyData={vacancyData} key={key}>
-									<Link to={`${key}`}>
+								<CardJob vacancyData={item} key={item.id}>
+									<Link to={item.id}>
 										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
 											Apply Now
 											<svg
@@ -242,7 +194,7 @@ function Jobs() {
 									</Link>
 								</CardJob>
 							);
-						})} */}
+						})}
 				</div>
 			</article>
 
@@ -260,44 +212,5 @@ function Jobs() {
 		</Template>
 	);
 }
-
-// ---- P A G I N A T E
-// function PaginatedItems({ itemsPerPage }) {
-// 	// Here we use item offsets; we could also use page offsets
-// 	// following the API or data you're working with.
-// 	const [itemOffset, setItemOffset] = useState(0);
-
-// 	// Simulate fetching items from another resources.
-// 	// (This could be items from props; or items loaded in a local state
-// 	// from an API endpoint with useEffect and useState)
-// 	const endOffset = itemOffset + itemsPerPage;
-// 	console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-// 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset)
-// 	const pageCount = Math.ceil(items.length / itemsPerPage);
-
-// 	// Invoke when user click to request another page.
-// 	const handlePageClick = (event) => {
-// 		const newOffset = (event.selected * itemsPerPage) % items.length;
-// 		console.log(
-// 			`User requested page number ${event.selected}, which is offset ${newOffset}`
-// 		);
-// 		setItemOffset(newOffset);
-// 	};
-
-// 	return (
-// 		<>
-// 			<Items currentItems={currentItems} />
-// 			<ReactPaginate
-// 				breakLabel="..."
-// 				nextLabel=" next >"
-// 				onPageChange={handlePageClick}
-// 				pageRangeDisplayed={5}
-// 				pageCount={pageCount}
-// 				previousLabel="< previous"
-// 				renderOnZeroPageCount={null}
-// 			/>
-// 		</>
-// 	);
-// }
 
 export { Jobs };

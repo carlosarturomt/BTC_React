@@ -13,9 +13,6 @@ function CardJob(props) {
 			<div>
 				<span className="text-slate-400 text-sm">{areaVacancy}</span>
 				<h3 className="font-bold mt-px text-gray-100">{vacancyTitle}</h3>
-				{/* <p className="text-gray-200">
-					{content.length > 50 ? `${content.slice(0, 30)}...` : content}
-				</p> */}
 				<div className="flex items-center gap-3 mt-2">
 					<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm">
 						{typeVacancy}
