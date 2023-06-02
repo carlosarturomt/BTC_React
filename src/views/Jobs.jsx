@@ -21,9 +21,14 @@ function Jobs() {
 			const data = snapshot.val();
 
 			if (snapshot.exists()) {
-				Object.values(data).map((item) => {
-					setVacancyList((list) => [...list, item]);
-					setFilterData((list) => [...list, item]);
+				// Object.values(data).map((item) => {
+				// 	setVacancyList((list) => [...list, item]);
+				// 	setFilterData((list) => [...list, item]);
+				// });
+				Object.entries(data).forEach(([key, value]) => {
+					value.id = key;
+					setVacancyList((list) => [...list, value]);
+					setFilterData((list) => [...list, value]);					
 				});
 			}
 		});
@@ -39,7 +44,7 @@ function Jobs() {
 				|| item.areaVacancy.toLowerCase().includes(busqueda.toLowerCase())
 			) {
 				return item;
-			} 
+			}
 		});
 		setVacancyList(nuevo);
 	};
@@ -190,10 +195,10 @@ function Jobs() {
 
 				<div className="w-full max-w-4xl">
 					{/* {allCategories} */}
-					{vacancyList.map((item, index) => {
+					{vacancyList.map((item) => {
 						return (
-							<CardJob vacancyData={item} key={index}>
-								<Link to="test">
+							<CardJob vacancyData={item} key={item.id}>
+								<Link to={item.id}>
 									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
 										Apply Now
 										<svg
