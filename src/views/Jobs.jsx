@@ -5,17 +5,44 @@ import { Template } from "../templates/Template";
 import { CardJob } from "../components/Card/CardJob";
 
 function Jobs() {
-	const [vacancyList, setVacancyList] = useState({});
+	/* ----- State ----- */
+	const [vacancyList, setVacancyList] = useState([]);
 	const [search, setSearch] = useState("");
+	const [filter_data, setFilterData] = useState([]);
+	// TODO: a limit of Vacancies to Show in the View
+	const [itemOffset, setItemOffset] = useState(0);
+
 	const database = getDatabase();
 	const vacancyRef = ref(database, "/vacancy");
 	// const [itemOffset, setItemOffset] = useState(0);
 
 	useEffect(() => {
-		onValue(vacancyRef, (snapshot) => {
-			setVacancyList(snapshot.val());
+		return onValue(vacancyRef, (snapshot) => {
+			const data = snapshot.val();
+
+			if (snapshot.exists()) {
+				Object.values(data).map((item) => {
+					setVacancyList((list) => [...list, item]);
+					setFilterData((list) => [...list, item]);
+				});
+			}
 		});
 	}, []);
+
+	/**
+	 * 
+	 * @param {Object} busqueda 
+	 */
+	const filtrar = (busqueda) => {
+		const nuevo = filter_data.filter((item) => {
+			if (item.vacancyTitle.toLowerCase().includes(busqueda.toLowerCase())
+				|| item.areaVacancy.toLowerCase().includes(busqueda.toLowerCase())
+			) {
+				return item;
+			} 
+		});
+		setVacancyList(nuevo);
+	};
 
 	/**
 	 *
@@ -23,66 +50,65 @@ function Jobs() {
 	 */
 	const handleChange = (event) => {
 		setSearch(event.target.value.toLowerCase());
+		filtrar(event.target.value);
 		console.log(search);
 	};
 
-	// To Do a limit of Vacancies to Show in the View
-	const [itemOffset, setItemOffset] = useState(0);
 	const endOffset = itemOffset + 20;
 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
 	const vacancies = Object.entries(vacancyList);
 
-	const allCategories = [
-		// ...new Set(Object.entries(vacancyList).filter((vacancy) => vacancy)),
-		// ...new Set(
-		// 	Object.keys(vacancyList).filter(
-		// 		(vacancy) => vacancy
-		// 	)
-		// ),
-		// ...new Set(
-		// 	Object.values(vacancyList).filter(
-		// 		(vacancy) => vacancy.vacancyTitle == search
-		// 	)
-		// ),
-		...new Set(
-			vacancies.map(([key, vacancy] = entry) => {
-				if (vacancy.areaVacancy.toLowerCase() == search || vacancy.categoryVacancy.toLowerCase() == search || vacancy.subcategoryVacancy.toLowerCase() == search || vacancy.typeLocation.toLowerCase() == search || vacancy.typeVacancy.toLowerCase() == search || vacancy.vacancyTitle.toLowerCase() == search || vacancy.locationPlace.toLowerCase() == search) {
-					return (
-						<div className="border border-slate-700 px-2 rounded-md my-2" key={key}>
-							<CardJob vacancyData={vacancyList[key]} key={key}>
-								<Link to={`${key}`}>
-									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
-										Apply Now
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											className="h-4 w-4"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-											strokeWidth="2"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M13 7l5 5m0 0l-5 5m5-5H6"
-											/>
-										</svg>
-									</button>
-								</Link>
-							</CardJob>
-						</div>
-					);
-				} else {
-					return (
-						<div className="hidden" key={key}>
-							<CardJob vacancyData={vacancyList[key]} key={key}></CardJob>
-							{/* <CardJob vacancyData={vacancyList[key]} key={key}></CardJob>; */}
-						</div>
-					);
-				}
-			})
-		),
-	];
+	// const allCategories = [
+	// 	// ...new Set(Object.entries(vacancyList).filter((vacancy) => vacancy)),
+	// 	// ...new Set(
+	// 	// 	Object.keys(vacancyList).filter(
+	// 	// 		(vacancy) => vacancy
+	// 	// 	)
+	// 	// ),
+	// 	// ...new Set(
+	// 	// 	Object.values(vacancyList).filter(
+	// 	// 		(vacancy) => vacancy.vacancyTitle == search
+	// 	// 	)
+	// 	// ),
+	// 	...new Set(
+	// 		vacancies.map(([key, vacancy] = entry) => {
+	// 			if (vacancy.areaVacancy.toLowerCase() == search || vacancy.categoryVacancy.toLowerCase() == search || vacancy.subcategoryVacancy.toLowerCase() == search || vacancy.typeLocation.toLowerCase() == search || vacancy.typeVacancy.toLowerCase() == search || vacancy.vacancyTitle.toLowerCase() == search || vacancy.locationPlace.toLowerCase() == search) {
+	// 				return (
+	// 					<div className="border border-slate-700 px-2 rounded-md my-2" key={key}>
+	// 						<CardJob vacancyData={vacancyList[key]} key={key}>
+	// 							<Link to={`${key}`}>
+	// 								<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
+	// 									Apply Now
+	// 									<svg
+	// 										xmlns="http://www.w3.org/2000/svg"
+	// 										className="h-4 w-4"
+	// 										fill="none"
+	// 										viewBox="0 0 24 24"
+	// 										stroke="currentColor"
+	// 										strokeWidth="2"
+	// 									>
+	// 										<path
+	// 											strokeLinecap="round"
+	// 											strokeLinejoin="round"
+	// 											d="M13 7l5 5m0 0l-5 5m5-5H6"
+	// 										/>
+	// 									</svg>
+	// 								</button>
+	// 							</Link>
+	// 						</CardJob>
+	// 					</div>
+	// 				);
+	// 			} else {
+	// 				return (
+	// 					<div className="hidden" key={key}>
+	// 						<CardJob vacancyData={vacancyList[key]} key={key}></CardJob>
+	// 						{/* <CardJob vacancyData={vacancyList[key]} key={key}></CardJob>; */}
+	// 					</div>
+	// 				);
+	// 			}
+	// 		})
+	// 	),
+	// ];
 	// console.log(allCategories);
 
 	return (
@@ -163,8 +189,33 @@ function Jobs() {
 				</header>
 
 				<div className="w-full max-w-4xl">
-					{allCategories}
-					{currentItems
+					{/* {allCategories} */}
+					{vacancyList.map((item, index) => {
+						return (
+							<CardJob vacancyData={item} key={index}>
+								<Link to="test">
+									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
+										Apply Now
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											className="h-4 w-4"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+											strokeWidth="2"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												d="M13 7l5 5m0 0l-5 5m5-5H6"
+											/>
+										</svg>
+									</button>
+								</Link>
+							</CardJob>
+						);
+					})}
+					{/* {currentItems
 						.sort((a, b) => (a.name > b.name ? -1 : 1))
 						.map((key) => {
 							const vacancyData = vacancyList[key];
@@ -191,7 +242,7 @@ function Jobs() {
 									</Link>
 								</CardJob>
 							);
-						})}
+						})} */}
 				</div>
 			</article>
 
