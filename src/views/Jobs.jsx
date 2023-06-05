@@ -48,13 +48,31 @@ function Jobs() {
 		setVacancyList(nuevo);
 	};
 
-	const filterAll = (busqueda) => {
+	const filterLocationTypeAll = (busqueda) => {
 		const nuevo = filter_data.filter((item) => {
 			if (
-				item.typeLocation.includes("Remote") ||
-				item.typeLocation.includes("Hybrid") ||
-				item.typeLocation.includes("Presencial") ||
-				item.typeLocation.includes("On-site")
+				// item.typeLocation.includes("Remote") ||
+				// item.typeLocation.includes("Hybrid") ||
+				// item.typeLocation.includes("Presencial") ||
+				// item.typeLocation.includes("On-site")
+				() => {
+					for (let i = 0; i < Object.values(vacancyList).length; i++) {
+						let valueObject = Object.values(vacancyList)[i].typeLocation;
+						console.log(valueObject);
+					}
+				}
+			) {
+				return item;
+			}
+		});
+		setVacancyList(nuevo);
+	};
+
+	const filterWorkTypeAll = (busqueda) => {
+		const nuevo = filter_data.filter((item) => {
+			if (
+				item.typeVacancy.includes("Half Time") ||
+				item.typeVacancy.includes("Full Time")
 			) {
 				return item;
 			}
@@ -71,6 +89,15 @@ function Jobs() {
 		setVacancyList(nuevo);
 	};
 
+	const filterWorkType = (busqueda) => {
+		const nuevo = filter_data.filter((item) => {
+			if (item.typeVacancy.includes(busqueda)) {
+				return item;
+			}
+		});
+		setVacancyList(nuevo);
+	};
+
 	/**
 	 *
 	 * @param {Event} event Capture the Changes in the Input of the useState()
@@ -81,14 +108,24 @@ function Jobs() {
 		// console.log(search);
 	};
 
-	const handleFilter = (event) => {
+	const handleFilterLocationType = (event) => {
 		setSearch(event.target.value);
 		filterModality(event.target.value);
 	};
 
-	const handleFilterAll = (event) => {
+	const handleFilterLocationTypeAll = (event) => {
 		setSearch(event.target.value);
-		filterAll(event.target.value);
+		filterLocationTypeAll(event.target.value);
+	};
+
+	const handleFilterWorkType = (event) => {
+		setSearch(event.target.value);
+		filterWorkType(event.target.value);
+	};
+
+	const handleFilterWorkTypeAll = (event) => {
+		setSearch(event.target.value);
+		filterWorkTypeAll(event.target.value);
 	};
 
 	return (
@@ -129,10 +166,10 @@ function Jobs() {
 									<option hidden="hidden" value="defaultValue">
 										LOCATION TYPE
 									</option>
-									<option onClick={handleFilterAll}>All</option>
-									<option onClick={handleFilter}>On-site</option>
-									<option onClick={handleFilter}>Hybrid</option>
-									<option onClick={handleFilter}>Remote</option>
+									<option onClick={handleFilterLocationTypeAll}>All</option>
+									<option onClick={handleFilterLocationType}>On-site</option>
+									<option onClick={handleFilterLocationType}>Hybrid</option>
+									<option onClick={handleFilterLocationType}>Remote</option>
 								</select>
 							</div>
 							<div className="w-fit p-1 md:pt-0 md:pl-2">
@@ -159,8 +196,9 @@ function Jobs() {
 									<option hidden="hidden" value="defaultValue">
 										WORK TYPE
 									</option>
-									<option>Full Time</option>
-									<option>Half Time</option>
+									<option onClick={handleFilterWorkTypeAll}>All</option>
+									<option onClick={handleFilterWorkType}>Full Time</option>
+									<option onClick={handleFilterWorkType}>Half Time</option>
 								</select>
 							</div>
 						</aside>
@@ -168,32 +206,33 @@ function Jobs() {
 				</header>
 
 				<div className="w-full max-w-4xl">
-					{vacancyList.sort((a, b) => (a.name > b.name ? -1 : 1)).map((item) => {
-						return (
-							<CardJob vacancyData={item} key={item.id}>
-								<Link to={item.id}>
-									<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
-										Apply Now
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											className="h-4 w-4"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-											strokeWidth="2"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M13 7l5 5m0 0l-5 5m5-5H6"
-											/>
-										</svg>
-									</button>
-								</Link>
-							</CardJob>
-						);
-					})}
-
+					{vacancyList
+						.sort((a, b) => (a.name > b.name ? -1 : 1))
+						.map((item) => {
+							return (
+								<CardJob vacancyData={item} key={item.id}>
+									<Link to={item.id}>
+										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] hover:animate-pulse">
+											Apply Now
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												className="h-4 w-4"
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke="currentColor"
+												strokeWidth="2"
+											>
+												<path
+													strokeLinecap="round"
+													strokeLinejoin="round"
+													d="M13 7l5 5m0 0l-5 5m5-5H6"
+												/>
+											</svg>
+										</button>
+									</Link>
+								</CardJob>
+							);
+						})}
 				</div>
 			</article>
 
