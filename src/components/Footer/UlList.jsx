@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function UlList({ section, liOne, liTwo, liThree, liFourHref,liFour, classN }) {
 	return (
@@ -16,9 +17,7 @@ function UlList({ section, liOne, liTwo, liThree, liFourHref,liFour, classN }) {
 			<li className="">
 				<a href="/">{liThree}</a>
 			</li>
-			<li className="">
-				<a href={liFourHref}>{liFour}</a>
-			</li>
+			<NavLink to={liFourHref}>{liFour}</NavLink>
 		</ul>
 	);
 }

@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
+import { NavLink } from "react-router-dom";
 
 const LoginBF = () => {
 	const auth = getAuth();
@@ -115,12 +116,13 @@ const LoginBF = () => {
 							<span className="text-xs text-gray-400 font-semibold">
 								Don't have account?
 							</span>
-							<a
-								href="/signup"
+
+							<NavLink
+								to="/signup"
 								className="text-xs font-semibold text-gray-300 ml-1 hover:text-gray-100"
 							>
 								Sign up
-							</a>
+							</NavLink>
 						</div>
 					</div>
 				</aside>

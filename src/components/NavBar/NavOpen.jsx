@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function NavOpen() {
 	return (
@@ -6,46 +7,46 @@ function NavOpen() {
 			<article className="col-span-2">
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 ">
 					<h5 className="uppercase text-1xl border-b">Navigation</h5>
-					<li className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						<a href="/services">Services</a>
-					</li>
-					<li className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						<a href="/work">Work</a>
-					</li>
-					<li className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						<a href="/thoughts">Thoughts</a>
-					</li>
-					<li className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						<a href="/connect">Connect</a>
-					</li>
+					<NavLink to="/services" className="my-1 text-4xl lg:my-5 lg:text-8xl">
+						Services
+					</NavLink>
+					<NavLink to="/work" className="my-1 text-4xl lg:my-5 lg:text-8xl">
+						Thoughts
+					</NavLink>
+					<NavLink to="/thoughts" className="my-1 text-4xl lg:my-5 lg:text-8xl">
+						Thoughts
+					</NavLink>
+					<NavLink to="/connect" className="my-1 text-4xl lg:my-5 lg:text-8xl">
+						Connect Us
+					</NavLink>
 				</ul>
 			</article>
 
 			<aside>
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Behind The Scenes</h5>
-					<li className="text-2xl lg:my-1 lg:text-3xl">
-						<a href="/about">About Us</a>
-					</li>
-					<li className="text-2xl lg:my-1 lg:text-3xl">
-						<a href="/news">News</a>
-					</li>
-					<li className="text-2xl lg:my-1 lg:text-3xl">
-						<a href="/jobs">Jobs</a>
-					</li>
+					<NavLink to="/about" className="text-2xl lg:my-1 lg:text-3xl">
+						About Us
+					</NavLink>
+					<NavLink to="/news" className="text-2xl lg:my-1 lg:text-3xl">
+						News
+					</NavLink>
+					<NavLink to="/jobs" className="text-2xl lg:my-1 lg:text-3xl">
+						Jobs
+					</NavLink>
 				</ul>
 
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Offices</h5>
-					<li className="text-2xl lg:my-1 lg:text-3xl">
-						<a href="/">BTC Americas</a>
-					</li>
-					<li className="text-2xl lg:my-1 lg:text-3xl">
-						<a href="/price-travel">Price Travel</a>
-					</li>
-					<li className="text-2xl lg:my-1 lg:text-3xl">
-						<a href="/big-fish">Big Fish</a>
-					</li>
+					<NavLink to="/" className="text-2xl lg:my-1 lg:text-3xl">
+						BTC Americas
+					</NavLink>
+					<NavLink to="/price-travel" className="text-2xl lg:my-1 lg:text-3xl">
+						Price Travel
+					</NavLink>
+					<NavLink to="/big-fish" className="text-2xl lg:my-1 lg:text-3xl">
+						Big Fish
+					</NavLink>
 				</ul>
 
 				<aside className="font-semibold px-8 text-gray-100">
@@ -57,7 +58,10 @@ function NavOpen() {
 							</a>
 						</li>
 						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://www.instagram.com/btcamericas/" className="pr-10">
+							<a
+								href="https://www.instagram.com/btcamericas/"
+								className="pr-10"
+							>
 								<span className="instagram hover:animate-pulse"></span>
 							</a>
 						</li>
@@ -67,7 +71,10 @@ function NavOpen() {
 							</a>
 						</li>
 						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://www.linkedin.com/company/btcamericas" className="pr-10">
+							<a
+								href="https://www.linkedin.com/company/btcamericas"
+								className="pr-10"
+							>
 								<span className="linkedin hover:animate-pulse"></span>
 							</a>
 						</li>
