@@ -1,5 +1,5 @@
 import React from "react";
-import btcLogo from "../../assets/icons/logo_btc-9ca3af.svg";
+import btcLogo from "../../assets/icons/btc_logo_gray.svg";
 import { UlList } from "./UlList";
 import { Logo } from "../NavBar/Logo";
 
@@ -10,11 +10,7 @@ function Footer() {
 	return (
 		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40" >
 			<section className="flex flex-wrap items-center justify-between">
-				<Logo
-                    image={btcLogo}
-                    classLogo='text-gray-400'
-                    logo="btc"
-                />
+                <Logo image={btcLogo} addClass="flex items-baseline title-font font-medium items-center md:mb-0 lg:order-none" />
 
 				<aside className="flex flex-wrap">
 					<UlList is
@@ -44,7 +40,7 @@ function Footer() {
 			</section>
 			<section className="flex items-center flex-start text-gray-50">
 				<p>
-					© Business Travel Consulting <span id="current-year"></span> - All
+					© Business Travel Consulting <span id="current-year">2023</span> - All
 					rights reserved · Privacy Policy
 				</p>
 			</section>

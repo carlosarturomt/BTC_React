@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { Template } from "../templates/Template";
 import { CardJob } from "../components/Card/CardJob";
+import { DropdownApp } from "../components/Dropdown";
+// import { initFlowbite } from 'flowbite'
 
 function Jobs() {
 	/* ----- State ----- */
@@ -48,50 +50,12 @@ function Jobs() {
 		setVacancyList(nuevo);
 	};
 
-	const filterLocationTypeAll = (busqueda) => {
+	const filterOption = (busqueda) => {
 		const nuevo = filter_data.filter((item) => {
-			if (
-				// item.typeLocation.includes("Remote") ||
-				// item.typeLocation.includes("Hybrid") ||
-				// item.typeLocation.includes("Presencial") ||
-				// item.typeLocation.includes("On-site")
-				() => {
-					for (let i = 0; i < Object.values(vacancyList).length; i++) {
-						let valueObject = Object.values(vacancyList)[i].typeLocation;
-						console.log(valueObject);
-					}
-				}
-			) {
+			if (item.typeLocation.toLowerCase().includes(busqueda.toLowerCase())) {
 				return item;
 			}
-		});
-		setVacancyList(nuevo);
-	};
-
-	const filterWorkTypeAll = (busqueda) => {
-		const nuevo = filter_data.filter((item) => {
-			if (
-				item.typeVacancy.includes("Half Time") ||
-				item.typeVacancy.includes("Full Time")
-			) {
-				return item;
-			}
-		});
-		setVacancyList(nuevo);
-	};
-
-	const filterModality = (busqueda) => {
-		const nuevo = filter_data.filter((item) => {
-			if (item.typeLocation.includes(busqueda)) {
-				return item;
-			}
-		});
-		setVacancyList(nuevo);
-	};
-
-	const filterWorkType = (busqueda) => {
-		const nuevo = filter_data.filter((item) => {
-			if (item.typeVacancy.includes(busqueda)) {
+			if (item.typeVacancy.toLowerCase().includes(busqueda.toLowerCase())) {
 				return item;
 			}
 		});
@@ -108,26 +72,37 @@ function Jobs() {
 		// console.log(search);
 	};
 
-	const handleFilterLocationType = (event) => {
-		setSearch(event.target.value);
-		filterModality(event.target.value);
+	const handleFilter = (event) => {
+		const value = event.target.value;
+		setSearch(value.toLowerCase());
+		filterOption(value);
 	};
 
-	const handleFilterLocationTypeAll = (event) => {
-		setSearch(event.target.value);
-		filterLocationTypeAll(event.target.value);
-	};
-
-	const handleFilterWorkType = (event) => {
-		setSearch(event.target.value);
-		filterWorkType(event.target.value);
-	};
-
-	const handleFilterWorkTypeAll = (event) => {
-		setSearch(event.target.value);
-		filterWorkTypeAll(event.target.value);
-	};
-
+	// --- T E S T
+	const items = [
+		{
+			slug: handleFilter,
+			anchor: "On-site",
+		},
+		{
+			slug: handleFilter,
+			anchor: "Hybrid",
+		},
+		{
+			slug: handleFilter,
+			anchor: "Remote",
+		},
+	];
+	const items2 = [
+		{
+			slug: handleFilter,
+			anchor: "Full Time",
+		},
+		{
+			slug: handleFilter,
+			anchor: "Half Time",
+		},
+	];
 	return (
 		<Template>
 			<article className="flex justify-center flex-col items-center pb-20 px-2">
@@ -142,18 +117,11 @@ function Jobs() {
 									<input
 										onChange={handleChange}
 										placeholder="Type your search term here... &#8617;"
-										className="bg-transparent w-full focus:outline-none text-gray-800"
+										className="bg-transparent w-full focus:outline-none border-none text-gray-800"
 										type="search"
 									/>
 								</div>
 							</div>
-							{/* <div className=" p-2 rounded">
-								<div className="flex justify-center w-full">
-									<button className="p-2 w-full rounded-md border-0 bg-red-600 text-white hover:bg-red-700">
-										Search
-									</button>
-								</div>
-							</div> */}
 						</aside>
 
 						<aside className="flex flex-wrap md:flex-row text-gray-100">
@@ -161,18 +129,87 @@ function Jobs() {
 								<p>FILTER BY:</p>
 							</div>
 
-							<div className="w-fit p-1 md:pt-0 md:pl-2">
-								<select className="py-1 px-2 rounded text-gray-400 bg-[#ffffff17]">
-									<option hidden="hidden" value="defaultValue">
-										LOCATION TYPE
-									</option>
-									<option onClick={handleFilterLocationTypeAll}>All</option>
-									<option onClick={handleFilterLocationType}>On-site</option>
-									<option onClick={handleFilterLocationType}>Hybrid</option>
-									<option onClick={handleFilterLocationType}>Remote</option>
-								</select>
-							</div>
-							<div className="w-fit p-1 md:pt-0 md:pl-2">
+							<DropdownApp dropdownTitle="LOCATION TYPE" items={items} />
+							<DropdownApp dropdownTitle="WORK TYPE" items={items2} />
+
+							{/* T E S T */}
+							{/* <button
+								className="h-fit py-1 px-2 rounded text-gray-400 bg-[#ffffff17] font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center ml-2 my-1"
+								onClick={() => {
+									location.reload();
+								}}
+							>
+								All
+								<svg
+									className="w-4 h-4 ml-2"
+									aria-hidden="true"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										d="M19 9l-7 7-7-7"
+									></path>
+								</svg>
+							</button>
+							<button
+								// id="dropdownDefaultButton"
+								data-dropdown-toggle="dropdown"
+								className="h-fit py-1 px-2 rounded text-gray-400 bg-[#ffffff17] font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center ml-2 my-1"
+								type="submit"
+							>
+								LOCATION TYPE
+								<svg
+									className="w-4 h-4 ml-2"
+									aria-hidden="true"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										d="M19 9l-7 7-7-7"
+									></path>
+								</svg>
+							</button>
+							<div
+								id="dropdown"
+								className="z-10 hidden bg-[#17222f] rounded-lg shadow w-44 dark:bg-gray-700"
+							>
+								<button
+									className="w-full py-1 px-4 text-gray-100 hover:bg-[#ffffff23] ml-0 animate-pulse hover:animate-none"
+									type="submit"
+									onClick={handleFilter}
+									value="On-site"
+								>
+									On-site
+								</button>
+								<button
+									className="w-full py-1 px-4 text-gray-100 hover:bg-[#ffffff23] ml-0 animate-pulse hover:animate-none"
+									type="submit"
+									onClick={handleFilter}
+									value="Hybrid"
+								>
+									Hybrid
+								</button>
+								<button
+									className="w-full py-1 px-4 text-gray-100 hover:bg-[#ffffff23] ml-0 animate-pulse hover:animate-none"
+									type="submit"
+									onClick={handleFilter}
+									value="Remote"
+								>
+									Remote
+								</button>
+							</div> */}
+
+							{/* <div className="w-fit p-1 md:pt-0 md:pl-2">
 								<select className="py-1 px-2 rounded text-gray-400 bg-[#ffffff17]">
 									<option hidden="hidden" value="defaultValue">
 										LOCATION
@@ -190,17 +227,53 @@ function Jobs() {
 									<option>Price Travel</option>
 									<option>Big Fish</option>
 								</select>
-							</div>
-							<div className="w-fit p-1 md:pt-0 md:pl-2">
-								<select className="py-1 px-2 rounded text-gray-400 bg-[#ffffff17]">
-									<option hidden="hidden" value="defaultValue">
-										WORK TYPE
-									</option>
-									<option onClick={handleFilterWorkTypeAll}>All</option>
-									<option onClick={handleFilterWorkType}>Full Time</option>
-									<option onClick={handleFilterWorkType}>Half Time</option>
-								</select>
-							</div>
+							</div> */}
+
+							{/* <button
+								// id="dropdownDefaultButton"
+								data-dropdown-toggle="dropdown2"
+								// data-dropdown-trigger="hover"
+								className="h-fit py-1 px-2 rounded text-gray-400 bg-[#ffffff17] font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center ml-2 my-1"
+								type="submit"
+							>
+								WORK TYPE
+								<svg
+									className="w-4 h-4 ml-2"
+									aria-hidden="true"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										d="M19 9l-7 7-7-7"
+									></path>
+								</svg>
+							</button> */}
+							{/* <div
+								id="dropdown2"
+								className="z-10 hidden bg-[#17222f] rounded-lg shadow w-44 dark:bg-gray-700"
+							>
+								<button
+									className="w-full py-1 px-4 text-gray-100 hover:bg-[#ffffff23] ml-0 animate-pulse hover:animate-none"
+									type="submit"
+									onClick={handleFilter}
+									value="Full Time"
+								>
+									Full Time
+								</button>
+								<button
+									className="w-full py-1 px-4 text-gray-100 hover:bg-[#ffffff23] ml-0 animate-pulse hover:animate-none"
+									type="submit"
+									onClick={handleFilter}
+									value="Half Time"
+								>
+									Half Time
+								</button>
+							</div> */}
 						</aside>
 					</section>
 				</header>

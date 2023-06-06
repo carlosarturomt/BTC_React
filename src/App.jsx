@@ -4,7 +4,6 @@ import {
 	Routes,
 	Route,
 	HashRouter,
-	NavLink,
 } from "react-router-dom";
 import { Home } from "./views/Home";
 import { Jobs } from "./views/Jobs";
@@ -20,6 +19,7 @@ import { Candidates } from "./views/Admin/Candidates";
 import { Error404 } from "./views/404";
 import { Template } from "./templates/Template";
 import { DetailCandidate } from "./views/Detail/DetailCandidate";
+import { AppD } from "./components/AppD";
 
 function App() {
 	return (
@@ -37,7 +37,9 @@ function App() {
 					<Route path="/apply/:id" element={<ApplyVacancy />} />
 					<Route path="/logged/candidates/:id" element={<DetailCandidate />} />
 					<Route path="/logged/edit/:id" element={<AdminUpdate />} />
+					<Route path="*" element={<Template><Error404 /></Template>} />
 					<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
+					<Route path="/appd" element={<AppD />} />
 				</Routes>
 			</HashRouter>
 			{/* <BrowserRouter>

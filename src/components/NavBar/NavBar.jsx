@@ -1,5 +1,5 @@
 import { useState } from "react";
-import btcLogo from "../../assets/icons/logo_btc-red.svg";
+import btcLogo from "../../assets/icons/btc_logo_white.svg";
 import { Logo } from "./Logo";
 import { NavOpen } from "./NavOpen";
 
@@ -7,7 +7,7 @@ function NavBar() {
 	const [isNavOpen, setIsNavOpen] = useState(false);
 	return (
 		<div className="flex items-center justify-between py-8 px-8 lg:px-40 w-full">
-			<Logo image={btcLogo} classLogo="text-gray-100" logo="btc" />
+			<Logo image={btcLogo} />
 			<nav className="flex">
 				<section
 					className="flex flex-col justify-center items-center space-y-1 bg-red-600 rounded-full p-5 w-[60px] h-[60px] button-plus"
@@ -24,7 +24,7 @@ function NavBar() {
 							className="flex items-center justify-between py-8 px-8 lg:px-40 mb-8"
 							onClick={() => setIsNavOpen(false)}
 						>
-							<Logo image={btcLogo} classLogo="text-gray-100" logo="btc" />
+							<Logo image={btcLogo} />
 							<div
 								className="flex flex-col justify-center items-center space-y-1 bg-red-600 rounded-full p-5 w-[60px] h-[60px] button-plus-active button-plus"
 								onClick={() => setIsNavOpen((prev) => !prev)}

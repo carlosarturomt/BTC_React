@@ -1,5 +1,5 @@
 import React from "react";
-import btcLogo from "../../assets/icons/logo_btc-9ca3af.svg";
+import btcLogo from "../../assets/icons/btc_logo_gray.svg";
 import { UlList } from "./UlList";
 import { Logo } from "../NavBar/Logo";
 
@@ -8,16 +8,16 @@ function FooterAdmin() {
 	// year.innerHTML = new Date().getFullYear();
 
 	return (
-		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40" >
+		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40">
 			<section className="flex flex-wrap items-center justify-between">
 				<Logo
-                    image={btcLogo}
-                    classLogo='text-gray-400'
-                    logo="btc"
-                />
+					image={btcLogo}
+					addClass="flex items-baseline title-font font-medium items-center md:mb-0 lg:order-none"
+				/>
 
 				<aside className="flex flex-wrap">
-					<UlList is
+					<UlList
+						is
 						classN="md:border-none"
 						section="Company"
 						liOne="About us"

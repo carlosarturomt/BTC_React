@@ -115,7 +115,7 @@ function UpdateDataVacancy() {
 					className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]"
 					onSubmit={alertSend}
 				>
-					<div className="my-4">
+					<div className="my-4 ">
 						<label htmlFor="" className="text-gray-300 text-sm">
 							Nombres
 						</label>
