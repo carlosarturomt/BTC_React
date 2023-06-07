@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getAuth } from "firebase/auth";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
 
 const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
 	const auth = getAuth();
 	const navigate = useNavigate();
 
@@ -56,6 +57,7 @@ const Signup = () => {
 								>
 									Email Address
 								</label>
+
 								<input
 									id="password"
 									name="password"
@@ -80,7 +82,12 @@ const Signup = () => {
 										Sign Up
 									</button>
 
-									<a className="ml-8 text-gray-400 hover:text-gray-600" href="/login">Log In</a>
+									<a
+										className="ml-8 text-gray-400 hover:text-gray-600"
+										href="/login"
+									>
+										Log In
+									</a>
 								</div>
 							</div>
 						</div>
