@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+	GoogleAuthProvider,
+	signInWithPopup,
+	signInWithEmailAndPassword,
+	getAuth,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
 import { NavLink } from "react-router-dom";
@@ -7,6 +12,9 @@ import { NavLink } from "react-router-dom";
 const LoginBF = () => {
 	const auth = getAuth();
 	const navigate = useNavigate();
+
+	const provider = new GoogleAuthProvider();
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -28,6 +36,43 @@ const LoginBF = () => {
 				const errorMessage = error.message;
 				console.log(errorCode, errorMessage);
 			});
+	};
+
+	const onSubmitGoogle = async (e) => {
+		e.preventDefault();
+
+		await signInWithPopup(auth, provider)
+			.then((result) => {
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				const credential = GoogleAuthProvider.credentialFromResult(result);
+				const token = credential.accessToken;
+				// The signed-in user info.
+				const user = result.user;
+				// IdP data available using getAdditionalUserInfo(result)
+				// ...
+				navigate("/logged");
+			})
+			.catch((error) => {
+				// Handle Errors here.
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				// The email of the user's account used.
+				const email = error.customData.email;
+				// The AuthCredential type that was used.
+				const credential = GoogleAuthProvider.credentialFromError(error);
+				// ...
+			});
+	};
+
+	const togglePassword = () => {
+		const pass = document.getElementById("password");
+		if (pass.type == "password") {
+			pass.type = "text";
+			document.getElementById("eye").innerHTML = "visibility_off";
+		} else {
+			pass.type = "password";
+			document.getElementById("eye").innerHTML = "visibility";
+		}
 	};
 
 	return (
@@ -62,7 +107,26 @@ const LoginBF = () => {
 								<label className="mb-2 block text-xs font-semibold leading-[0]">
 									Password
 								</label>
-								<input
+								<div className="flex items-center w-full rounded-md border-0 focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]">
+									<input
+										className="bg-transparent focus:bg-transparent focus:outline-none"
+										id="password"
+										name="password"
+										type="password"
+										placeholder="******"
+										value={password}
+										onChange={(e) => setPassword(e.target.value)}
+									/>
+									<a
+										onClick={togglePassword}
+										className="cursor-pointer flex items-center"
+									>
+										<span class="material-symbols-outlined" id="eye">
+											visibility
+										</span>
+									</a>
+								</div>
+								{/* <input
 									className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]"
 									id="password"
 									name="password"
@@ -70,7 +134,7 @@ const LoginBF = () => {
 									placeholder="******"
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
-								/>
+								/> */}
 							</div>
 
 							<div className="mb-3 flex flex-wrap content-center">
@@ -101,7 +165,11 @@ const LoginBF = () => {
 								>
 									Sign in
 								</button>
-								<button className="bx-shadow flex flex-wrap justify-center w-full hover:border-gray-500 px-2 py-1.5 rounded-md hover:bg-[#ffffff3b]">
+								<button
+									className="bx-shadow flex flex-wrap justify-center w-full hover:border-gray-500 px-2 py-1.5 rounded-md hover:bg-[#ffffff3b]"
+									type="submit"
+									onClick={onSubmitGoogle}
+								>
 									<img
 										className="w-6 mr-2"
 										src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"

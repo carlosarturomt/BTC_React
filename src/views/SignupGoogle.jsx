@@ -49,7 +49,7 @@ const SignupGoogle = () => {
 				const user = result.user;
 				// IdP data available using getAdditionalUserInfo(result)
 				// ...
-				navigate("/login");
+				navigate("/logged");
 			})
 			.catch((error) => {
 				// Handle Errors here.
