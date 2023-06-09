@@ -25,32 +25,50 @@ function NavOpenAdminTest(props) {
 			<aside>
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Behind The Scenes</h5>
-					<NavLink to="/about" className="text-2xl lg:my-1 lg:text-3xl">
+					<NavLink
+						to="/about"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
 						About Us
 					</NavLink>
-					<NavLink to="/news" className="text-2xl lg:my-1 lg:text-3xl">
+					<NavLink
+						to="/news"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
 						News
 					</NavLink>
-					<NavLink to="/jobs" className="text-2xl lg:my-1 lg:text-3xl">
+					<NavLink
+						to="/jobs"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
 						Jobs
 					</NavLink>
 				</ul>
 
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Offices</h5>
-					<NavLink to="/" className="text-2xl lg:my-1 lg:text-3xl">
+					<NavLink
+						to="/"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
 						BTC Americas
 					</NavLink>
-					<NavLink to="/price-travel" className="text-2xl lg:my-1 lg:text-3xl">
+					<NavLink
+						to="/price-travel"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
 						Price Travel
 					</NavLink>
-					<NavLink to="/big-fish" className="text-2xl lg:my-1 lg:text-3xl">
+					<NavLink
+						to="/big-fish"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
 						Big Fish
 					</NavLink>
 				</ul>
 
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
-					<h5 className="uppercase text-1xl border-b">Account</h5>
+					<h5 className="uppercase text-1xl border-b">Settings</h5>
 					{props.children}
 				</ul>
 

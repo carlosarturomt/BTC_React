@@ -42,64 +42,64 @@ function NavBarTest(props) {
 
 			<style>
 				{`
-        nav {
-            width: 99.4px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .hideMenuNav {
-            display: none;
-        }
-        .showMenuNav {
-            display: block;
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            background: #000c1a;
-            z-index: 15;
-            overflow-y: scroll;
-        }
-        .showMenuNav article a:hover {
-            -webkit-text-stroke: 2px #fefefe;
-            color: transparent;
-        }
-        .showMenuNav aside a:hover {
-            -webkit-text-stroke: 1px #fefefe;
-            color: transparent !important;
-        }
-        .button-plus-active {
-            background-color: #e90123;
-            animation-name: resplandorAnimation;
-            transform: rotate(45deg);
-            animation-duration:  1s;
-            animation-iteration-count: infinite;
-        }
+                    nav {
+                        width: 99.4px;
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+                    .hideMenuNav {
+                        display: none;
+                    }
+                    .showMenuNav {
+                        display: block;
+                        position: fixed;
+                        width: 100%;
+                        height: 100vh;
+                        top: 0;
+                        left: 0;
+                        background: #000c1a;
+                        z-index: 15;
+                        overflow-y: scroll;
+                    }
+                    .showMenuNav article a:hover {
+                        -webkit-text-stroke: 2px #fefefe;
+                        color: transparent;
+                    }
+                    .showMenuNav aside a:hover {
+                        -webkit-text-stroke: 1px #fefefe;
+                        color: transparent !important;
+                    }
+                    .button-plus-active {
+                        background-color: #e90123;
+                        animation-name: resplandorAnimation;
+                        transform: rotate(45deg);
+                        animation-duration:  1s;
+                        animation-iteration-count: infinite;
+                    }
 
-        .button-plus:hover {
-            background-color: #e90123;
-            animation-name: resplandorAnimation, rotation;
-            animation-duration:  1s, 0.5s;
-            animation-iteration-count: infinite, 1;
-        }
-        @keyframes rotation {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes resplandorAnimation {
-            0%,100%{
-                box-shadow: 0 0 20px red;
-            }
-            50%{
-                box-shadow: 0px 0px 0px red;
-            }
-        }
-        `}
+                    .button-plus:hover {
+                        background-color: #e90123;
+                        animation-name: resplandorAnimation, rotation;
+                        animation-duration:  1s, 0.5s;
+                        animation-iteration-count: infinite, 1;
+                    }
+                    @keyframes rotation {
+                        from {
+                            transform: rotate(0deg);
+                        }
+                        to {
+                            transform: rotate(360deg);
+                        }
+                    }
+                    @keyframes resplandorAnimation {
+                        0%,100%{
+                            box-shadow: 0 0 20px red;
+                        }
+                        50%{
+                            box-shadow: 0px 0px 0px red;
+                        }
+                    }
+                `}
 			</style>
 		</div>
 	);

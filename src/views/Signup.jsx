@@ -8,7 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
 
-const SignupGoogle = () => {
+const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -153,7 +153,8 @@ const SignupGoogle = () => {
 							className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none"
 							// className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none blur-img"
 							// src="https://i.pinimg.com/originals/18/f0/37/18f037f6761bbc6ac0682035deab8778.gif"
-							src="https://i.imgur.com/9l1A4OS.jpeg"
+							// src="https://i.imgur.com/9l1A4OS.jpeg"
+							src="https://dummyimage.com/496x661/4f4f4f/ffffff.jpg"
 						/>
 						{/* <img
 							className="fish"
@@ -211,4 +212,4 @@ const SignupGoogle = () => {
 	);
 };
 
-export default SignupGoogle;
+export default Signup;

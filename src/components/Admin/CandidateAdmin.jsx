@@ -38,8 +38,6 @@ function CandidateAdmin() {
 								<CardCandidate vacancyData={vacancyData} key={key}>
 									<Link to={`${key}`}>
 										<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:animate-pulse mb-1 w-[120px]">
-										{/* <button className="bg-[#74ff0029] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#8bdc4870] mb-1 w-[120px]"> */}
-											{/* <span className="material-symbols-outlined">edit</span> */}
 											See more
 										</button>
 									</Link>

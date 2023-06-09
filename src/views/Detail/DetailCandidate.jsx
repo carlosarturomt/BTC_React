@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { TemplateAdmin } from "../../templates/TemplateAdmin";
-import { onAuthStateChanged } from "firebase/auth";
-import { signOut } from "firebase/auth";
-import { getAuth } from "firebase/auth";
-import { BtnLogOut } from "../../components/Buttons/BtnLogOut";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { Template } from "../../templates/Template";
 import { Error404 } from "../../views/404";
+import { TemplateLogged } from "../../templates/TemplateLogged";
 
 function DetailCandidate() {
 	const [test, setTest] = useState(false);
-	const auth = getAuth();
-	const navigate = useNavigate();
-
 	const [vacancyData, setVacancyData] = useState({});
+
+	const auth = getAuth();
 	const { id } = useParams();
 	const database = getDatabase();
+
 	const vacancyRef = ref(database, `/candidate/${id}`);
 	const {
 		candidateBirthday,
@@ -48,23 +45,13 @@ function DetailCandidate() {
 		});
 	}, []);
 
-	const handleLogout = () => {
-		signOut(auth)
-			.then(() => {
-				// Sign-out successful.
-				navigate("/");
-				console.log("Signed out successfully");
-			})
-			.catch((error) => {
-				// An error happened.
-				console.log("error");
-			});
-	};
-
 	if (
 		useEffect(() => {
 			onAuthStateChanged(auth, (user) => {
-				if (user.email == "carlosarturomt@gmail.com") {
+				if (
+					user.email == "carlosarturomt@gmail.com" ||
+					user.email == "amiranda@btcamericas.com"
+				) {
 					console.log("Welcome to Deatil Candidates Panel");
 					// console.log("Welcome", user.email);
 					setTest(true);
@@ -79,8 +66,7 @@ function DetailCandidate() {
 	return (
 		<div>
 			{test ? (
-				<TemplateAdmin
-					logOut={<BtnLogOut />}
+				<TemplateLogged
 					content={
 						<main className="flex justify-center flex-col items-center mb-8">
 							<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">
@@ -142,13 +128,12 @@ function DetailCandidate() {
 												<span className="animate-bounce">😁</span>
 											</p>
 											<p>
-												Soy {candidateName}{" "}
-												{age <= 10 ? "" : `, tengo ${Math.trunc(age)} años`}, es
+												Soy {`${candidateName}, `}
+												{age <= 10 ? "" : ` tengo ${Math.trunc(age)} años`}, es
 												un placer postularme en la vacante de '{vacancyTitle}',
-												será un placer ser parte del proceso de selección.
+												espero puedan considerarme para ser parte del proceso de
+												selección.
 											</p>
-											{/* <p>{ candidateEmail == '' ? ''
-										: `Pueden contactarme a través de mi correo ${candidateEmail} `}</p> */}
 										</div>
 									</aside>
 
@@ -156,7 +141,6 @@ function DetailCandidate() {
 										<h3 className="font-bold text-lg text-gray-100">Details</h3>
 										<p className="flex items-center">
 											<span className="text-gray-100 flex items-center w-[fit-content]">
-												{/* <span className="material-symbols-outlined">cake</span> */}
 												Birthday:
 											</span>
 											<span className="text-slate-300 ml-1">
@@ -166,13 +150,9 @@ function DetailCandidate() {
 
 										<p className="flex items-center">
 											<span className="text-gray-100 flex items-center w-[fit-content]">
-												{/* <span className="material-symbols-outlined">
-											contact_phone
-										</span> */}
 												<span>Contact Phone:</span>
 											</span>
 											<span className="text-slate-300 ml-1">
-												{" "}
 												{candidateTel}
 											</span>
 										</p>
@@ -192,22 +172,15 @@ function DetailCandidate() {
 
 										<p className="flex items-center">
 											<span className="text-gray-100 flex items-center w-[fit-content]">
-												{/* <span className="material-symbols-outlined">
-										contact_emergency
-										</span> */}
 												<span>Degree:</span>
 											</span>
 											<span className="text-slate-300 ml-1">
-												{" "}
 												{candidateGrade}
 											</span>
 										</p>
 
 										<p className="flex items-center">
 											<span className="text-gray-100 flex items-center w-[fit-content]">
-												{/* <span className="material-symbols-outlined">
-										contact_emergency
-										</span> */}
 												<span>Nationality:</span>
 											</span>
 											<span className="text-slate-300 ml-1">

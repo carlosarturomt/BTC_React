@@ -21,10 +21,7 @@ function HomeAdmin() {
 			<article className="flex items-start justify-center flex-wrap w-full">
 				<aside className="w-full py-4 px-2 md:p-6 rounded-md bg-[#022e5f21] text-gray-100 my-8 md:w-[49%] mr-[1%]">
 					<h2 className="text-gray-100 text-2xl font-semibold">Candidates</h2>
-					{/* <img
-						src="https://merch38.com/wp-content/uploads/2021/07/Emloyee.png"
-						alt="Employees"
-					/> */}
+
 					<Link to={`candidates/`}>
 						<button className="bg-[#ffffff17] my-2 py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3232328d] animate-pulse hover:animate-none">
 							See more...
@@ -34,10 +31,6 @@ function HomeAdmin() {
 
 				<aside className="w-full py-4 px-2 md:p-6 rounded-md bg-[#022e5f21] text-gray-100 my-8 md:w-[49%] mr-[1%]">
 					<h2 className="text-gray-100 text-2xl font-semibold">Vacancies</h2>
-					{/* <img
-						src="https://cdni.iconscout.com/illustration/premium/thumb/employee-working-area-2357846-2016555.png"
-						alt="Employees"
-					/> */}
 					<Link to={`create`}>
 						<button className="bg-[#ffffff17] my-2 py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3232328d] animate-pulse hover:animate-none">
 							See more...

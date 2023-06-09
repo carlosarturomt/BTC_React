@@ -10,10 +10,10 @@ import { CreateVacancyPanel } from "./components/Admin/CreateVacancyPanel";
 import { ApplyVacancy } from "./views/User/ApplyVacancy";
 import { Candidates } from "./views/Admin/Candidates";
 import { Error404 } from "./views/404";
-import { Template } from "./templates/Template";
 import { DetailCandidate } from "./views/Detail/DetailCandidate";
-import LoginBF from "./views/LoginBF";
-import SignupGoogle from "./views/SignUpGoogle";
+import { TemplateLogged } from "./templates/TemplateLogged";
+import Login from "./views/Login";
+import Signup from "./views/Signup";
 
 function App() {
 	return (
@@ -21,24 +21,20 @@ function App() {
 			<HashRouter>
 				<Routes>
 					<Route path="/" element={<Home />} />
+
+					<Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<Signup />} />
+
 					<Route path="/jobs" element={<Jobs />} />
-					<Route path="/login" element={<LoginBF />} />
-					<Route path="/signup" element={<SignupGoogle />} />
+					<Route path="/jobs/:id" element={<DetailVacancy />} />
+					<Route path="/jobs/:id/apply" element={<ApplyVacancy />} />
+
 					<Route path="/logged" element={<Admin />} />
 					<Route path="/logged/create" element={<CreateVacancyPanel />} />
 					<Route path="/logged/candidates" element={<Candidates />} />
-					<Route path="/jobs/:id" element={<DetailVacancy />} />
-					<Route path="/apply/:id" element={<ApplyVacancy />} />
 					<Route path="/logged/candidates/:id" element={<DetailCandidate />} />
 					<Route path="/logged/edit/:id" element={<AdminUpdate />} />
-					<Route
-						path="*"
-						element={
-							<Template>
-								<Error404 />
-							</Template>
-						}
-					/>
+					<Route path="*" element={<TemplateLogged content={<Error404 />} />} />
 					<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
 				</Routes>
 			</HashRouter>

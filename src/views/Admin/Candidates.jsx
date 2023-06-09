@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { Template } from "../../templates/Template";
 import { CandidateAdmin } from "../../components/Admin/CandidateAdmin";
-import { BtnLogOut } from "../../components/Buttons/BtnLogOut";
 import { Error404 } from "../404";
+import { TemplateLogged } from "../../templates/TemplateLogged";
 
 function Candidates() {
 	const [test, setTest] = useState(false);
@@ -12,7 +11,10 @@ function Candidates() {
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
-			if (user.email == "carlosarturomt@gmail.com") {
+			if (
+				user.email == "carlosarturomt@gmail.com" ||
+				user.email == "amiranda@btcamericas.com"
+			) {
 				console.log(`Welcome '${user.email}' to Candidates Panel 👷`);
 				setTest(true);
 			} else {
@@ -25,7 +27,7 @@ function Candidates() {
 	return (
 		<>
 			{test ? (
-				<TemplateAdmin logOut={<BtnLogOut />} content={<CandidateAdmin />} />
+				<TemplateLogged content={<CandidateAdmin />} />
 			) : (
 				<Template>
 					<Error404 />

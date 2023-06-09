@@ -1,15 +1,15 @@
 import React from "react";
 import { FooterAdmin } from "../components/Footer/FooterAdmin";
-import { NavBarUser } from "../components/NavBar/NavBarUser";
+import { NavBarLogged } from "../components/NavBar/NavBarLogged";
 
-function TemplateUser({ logOut, content }) {
+function TemplateLogged({ content }) {
 	return (
 		<div className="bg-[rgb(0,12,26)]">
-			<NavBarUser>{logOut}</NavBarUser>
+			<NavBarLogged />
 			{content}
 			<FooterAdmin />
 		</div>
 	);
 }
 
-export { TemplateUser };
+export { TemplateLogged };

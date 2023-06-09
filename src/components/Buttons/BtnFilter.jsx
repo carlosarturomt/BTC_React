@@ -46,7 +46,7 @@ function BtnFilter({ items = [], dropdownTitle }) {
 	return (
 		<div className={dropdown_wrapper} onKeyUp={keyHandler}>
 			<button
-				className="h-fit py-1 px-2 rounded text-gray-400 bg-[#ffffff17] font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center ml-2 my-1"
+				className="h-fit py-1 px-2 rounded text-gray-400 bg-[#ffffff17] font-medium text-sm text-center inline-flex items-center ml-2 my-1"
 				aria-haspopup="true"
 				aria-controls={dropdownTitle}
 				onClick={clickHandler}

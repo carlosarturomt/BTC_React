@@ -153,7 +153,7 @@ function DetailVacancyAdmin() {
 								<span className="text-slate-500 text-sm font-light">
 									{dateVacancy == date
 										? "Hoy"
-										: "Hace " + diff_in_days + " días"}
+										: `Hace ${Math.trunc(diff_in_days)}  días`}
 								</span>
 							</h1>
 							<p className="font-bold text-gray-200">{salaryVacancy}</p>

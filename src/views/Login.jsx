@@ -5,11 +5,10 @@ import {
 	signInWithEmailAndPassword,
 	getAuth,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
-import { NavLink } from "react-router-dom";
 
-const LoginBF = () => {
+const Login = () => {
 	const auth = getAuth();
 	const navigate = useNavigate();
 
@@ -17,6 +16,9 @@ const LoginBF = () => {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const pathname = window.location;
+	const path = pathname.toString();
 
 	/**
 	 *
@@ -28,8 +30,18 @@ const LoginBF = () => {
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-				navigate("/logged");
-				console.log(user);
+				// console.log(user);
+				if (path.substring(path.length - 5) == "login") {
+					navigate("../");
+				}
+				if (
+					user.email == "carlosarturomt@gmail.com" ||
+					user.email == "amiranda@btcamericas.com"
+				) {
+					navigate("/logged");
+				} else {
+					navigate("./");
+				}
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -50,7 +62,17 @@ const LoginBF = () => {
 				const user = result.user;
 				// IdP data available using getAdditionalUserInfo(result)
 				// ...
-				navigate("/logged");
+				if (
+					user.email == "carlosarturomt@gmail.com" ||
+					user.email == "amiranda@btcamericas.com"
+				) {
+					navigate("/logged");
+				}
+				if (path.substring(path.length - n) == "login") {
+					navigate("../");
+				} else {
+					navigate("./");
+				}
 			})
 			.catch((error) => {
 				// Handle Errors here.
@@ -320,4 +342,4 @@ const LoginBF = () => {
 	);
 };
 
-export default LoginBF;
+export default Login;
