@@ -103,9 +103,9 @@ const SignupGoogle = () => {
 									<label className="mb-2 block text-xs font-semibold">
 										Password
 									</label>
-									<div className="flex items-center block w-full rounded-md border-0 focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]">
+									<div className="flex items-center w-full rounded-md border-0 focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]">
 										<input
-											className="bg-transparent focus:bg-transparent focus:outline-none"
+											className="w-full bg-transparent focus:bg-transparent focus:outline-none"
 											id="password"
 											name="password"
 											type="password"
@@ -117,7 +117,7 @@ const SignupGoogle = () => {
 											onClick={togglePassword}
 											className="cursor-pointer flex items-center"
 										>
-											<span class="material-symbols-outlined" id="eye">
+											<span className="material-symbols-outlined" id="eye">
 												visibility
 											</span>
 										</a>

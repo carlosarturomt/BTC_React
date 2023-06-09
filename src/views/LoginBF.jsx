@@ -109,7 +109,7 @@ const LoginBF = () => {
 								</label>
 								<div className="flex items-center w-full rounded-md border-0 focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]">
 									<input
-										className="bg-transparent focus:bg-transparent focus:outline-none"
+										className="w-full bg-transparent focus:bg-transparent focus:outline-none"
 										id="password"
 										name="password"
 										type="password"
@@ -121,20 +121,11 @@ const LoginBF = () => {
 										onClick={togglePassword}
 										className="cursor-pointer flex items-center"
 									>
-										<span class="material-symbols-outlined" id="eye">
+										<span className="material-symbols-outlined" id="eye">
 											visibility
 										</span>
 									</a>
 								</div>
-								{/* <input
-									className="block w-full rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff3b]"
-									id="password"
-									name="password"
-									type="password"
-									placeholder="******"
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-								/> */}
 							</div>
 
 							<div className="mb-3 flex flex-wrap content-center">

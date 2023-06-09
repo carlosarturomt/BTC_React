@@ -18,7 +18,6 @@ function NavBarUser(props) {
 					<span className="block h-1 w-4 animate-pulse rotate-90 bg-gray-100"></span>
 				</section>
 
-
 				<section className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
 					<div className="h-full">
 						<header

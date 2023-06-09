@@ -49,7 +49,26 @@ function NavOpen() {
 					</NavLink>
 				</ul>
 
-				<aside className="font-semibold px-8 text-gray-100">
+				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
+					<hgroup className="flex items-center w-full border-b">
+						{/* <span className="material-symbols-outlined">person</span> */}
+						<h5 className="uppercase text-1xl ">Account</h5>
+					</hgroup>
+					<NavLink
+						to="/login"
+						className="flex items-center text-2xl lg:my-1 lg:text-3xl "
+					>
+						Login
+					</NavLink>
+					<NavLink
+						to="/signup"
+						className="flex items-center text-2xl lg:my-1 lg:text-3xl "
+					>
+						Sign Up
+					</NavLink>
+				</ul>
+
+				<aside className="font-semibold px-8 text-gray-100 mb-8">
 					<h5 className="uppercase text-1xl border-b">Connect Us</h5>
 					<ul className="flex justify-start font-semibold text-gray-100 pr-6">
 						<li className="lg:my-1 lg:text-3xl py-2">

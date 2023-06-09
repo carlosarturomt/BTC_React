@@ -5,7 +5,7 @@ import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
-import BtnLogOut from "../../components/Buttons/BtnLogOut";
+import { BtnLogOut } from "../../components/Buttons/BtnLogOut";
 import { Template } from "../../templates/Template";
 import { Error404 } from "../../views/404";
 
@@ -80,7 +80,7 @@ function DetailCandidate() {
 		<div>
 			{test ? (
 				<TemplateAdmin
-					logOut={<BtnLogOut>{handleLogout}</BtnLogOut>}
+					logOut={<BtnLogOut />}
 					content={
 						<main className="flex justify-center flex-col items-center mb-8">
 							<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">

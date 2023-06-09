@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
 	dropdown_wrapper,
-	dropdown_activator,
 	dropdown_item_list,
 	active,
 	item_list,
 } from "./dropdown.module.css";
 
-function DropdownApp({ items = [], dropdownTitle }) {
+function BtnFilter({ items = [], dropdownTitle }) {
 	const activatorRef = useRef(null);
 	const dropdownListRef = useRef(null);
 	const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +16,6 @@ function DropdownApp({ items = [], dropdownTitle }) {
 	};
 
 	const keyHandler = (event) => {
-		// console.log(event);
 		if (event.key === "Escape" && isOpen) {
 			setIsOpen(false);
 		}
@@ -94,20 +92,12 @@ function DropdownApp({ items = [], dropdownTitle }) {
 							>
 								{item.anchor}
 							</button>
-							{/* <a href={item.slug}>{item.anchor}</a> */}
 						</li>
 					);
-					{
-						/* return (
-						<li className={item_list} key={index}>
-							<a href={item.slug}>{item.anchor}</a>
-						</li>
-					); */
-					}
 				})}
 			</ul>
 		</div>
 	);
 }
 
-export { DropdownApp };
+export { BtnFilter };

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Home } from "./views/Home";
 import { Jobs } from "./views/Jobs";
 import { DetailVacancy } from "./views/Detail/DetailVacancy";
@@ -12,13 +12,12 @@ import { Candidates } from "./views/Admin/Candidates";
 import { Error404 } from "./views/404";
 import { Template } from "./templates/Template";
 import { DetailCandidate } from "./views/Detail/DetailCandidate";
-import { AppD } from "./components/AppD";
 import LoginBF from "./views/LoginBF";
 import SignupGoogle from "./views/SignUpGoogle";
 
 function App() {
 	return (
-		<div>
+		<>
 			<HashRouter>
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -41,34 +40,9 @@ function App() {
 						}
 					/>
 					<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
-					<Route path="/appd" element={<AppD />} />
 				</Routes>
 			</HashRouter>
-			{/* <BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/jobs" element={<Jobs />} />
-					<Route path="/login" element={<LoginBF />} />
-					<Route path="/signup" element={<Signup />} />
-					<Route path="/logged" element={<Admin />} />
-					<Route path="/logged/create" element={<CreateVacancyPanel />} />
-					<Route path="/logged/candidates" element={<Candidates />} />
-					<Route path="/jobs/:id" element={<DetailVacancy />} />
-					<Route path="/apply/:id" element={<ApplyVacancy />} />
-					<Route path="/logged/candidates/:id" element={<DetailCandidate />} />
-					<Route path="/logged/edit/:id" element={<AdminUpdate />} />
-					<Route path="/test" element={<PaginatedItems itemsPerPage={4} />} />
-					<Route
-						path="*"
-						element={
-							<Template>
-								<Error404 />
-							</Template>
-						}
-					/>
-				</Routes>
-			</BrowserRouter> */}
-		</div>
+		</>
 	);
 }
 

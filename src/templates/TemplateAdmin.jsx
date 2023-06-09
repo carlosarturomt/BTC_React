@@ -2,7 +2,7 @@ import React from "react";
 import { FooterAdmin } from "../components/Footer/FooterAdmin";
 import { NavBarAdmin } from "../components/NavBar/NavBarAdmin";
 
-function TemplateAdmin({logOut, content}) {
+function TemplateAdmin({ logOut, content }) {
 	return (
 		// <div className="bg-white dark:bg-slate-800">
 		<div className="bg-[rgb(0,12,26)]">

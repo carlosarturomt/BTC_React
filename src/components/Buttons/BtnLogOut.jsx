@@ -1,22 +1,35 @@
-/**
- *
- * @param {Function} props Return a Function to LogOut, this Function need to be in the Father
- * @returns Return a Component with the Function to Call
- */
-const BtnLogOut = (props) => {
-    return (
-        <div className="flex justify-start w-full max-w-4xl">
-            <button
-                onClick={props.children}
-                className="btn-animate flex items-center text-2xl lg:text-3xl text-gray-100"
-            >
-                <span className="material-symbols-outlined text-2xl lg:text-3xl">
-                    logout
-                </span>
-                <span className="text-border-btn text-2xl">Logout</span>
-            </button>
-        </div>
-    );
-};
+import React from "react";
+import { signOut, getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-export default BtnLogOut ;
+function BtnLogOut() {
+	const auth = getAuth();
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		signOut(auth)
+			.then(() => {
+				// Sign-out successful.
+				navigate("/");
+				console.log("Signed out successfully");
+				window.location.reload();
+			})
+			.catch((error) => {
+				// An error happened.
+				console.log("error");
+			});
+	};
+
+	return (
+		<div className="flex justify-start w-full max-w-4xl">
+			<button
+				onClick={handleLogout}
+				className="text-border-btn btn-animate flex items-center text-2xl lg:text-3xl text-gray-100"
+			>
+				Logout
+			</button>
+		</div>
+	);
+}
+
+export { BtnLogOut };

@@ -19,7 +19,7 @@ body {
 /* Candidates Styles */
 .text-border-btn:hover {
 	-webkit-text-stroke: 1px #fefefe;
-	color: transparent;
+	color: transparent !important;
 }
 
 .btn-animate {
@@ -33,7 +33,7 @@ body {
 .btn-animate::after {
 	border: 0 solid transparent;
 	transition: all 0.5s;
-	content: '';
+	content: "";
 	height: 0;
 	position: absolute;
 	width: 0px;
@@ -58,21 +58,37 @@ body {
 	animation: PULSE_LINE 1.25s infinite;
 }
 
-@-webkit-keyframes PULSE{
-	0%{color:#ced2d9;}
-	100%{color:#ffffff;}
+@-webkit-keyframes PULSE {
+	0% {
+		color: #ced2d9;
+	}
+	100% {
+		color: #ffffff;
+	}
 }
-@-ms-keyframes PULSE{
-	0%{color:#ced2d9;}
-	100%{color:#ffffff;}
+@-ms-keyframes PULSE {
+	0% {
+		color: #ced2d9;
+	}
+	100% {
+		color: #ffffff;
+	}
 }
-@keyframes PULSE{
-	0%{color:#ced2d9;}
-	100%{color:#ffffff;}
+@keyframes PULSE {
+	0% {
+		color: #ced2d9;
+	}
+	100% {
+		color: #ffffff;
+	}
 }
-@keyframes PULSE_LINE{
-	0%{border-bottom:1px solid #ced2d9;}
-	100%{border-bottom:1px solid #000000;}
+@keyframes PULSE_LINE {
+	0% {
+		border-bottom: 1px solid #ced2d9;
+	}
+	100% {
+		border-bottom: 1px solid #000000;
+	}
 }
 
 @media (max-width: 1080px) {
@@ -80,6 +96,5 @@ body {
 		width: 100%;
 	}
 }
-
 
 /*  */

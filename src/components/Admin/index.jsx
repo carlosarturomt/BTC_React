@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { TemplateAdmin } from "../../templates/TemplateAdmin";
 import { HomeAdmin } from "../../views/Admin/Home";
 import { JobsLogged } from "../../views/JobsLogged";
+import { BtnLogOut } from "../Buttons/BtnLogOut";
 
 function Admin() {
 	const [test, setTest] = useState(false);
@@ -34,7 +35,7 @@ function Admin() {
 					setTest(true);
 				} else {
 					setTest(false);
-					console.log('You need Log In')
+					console.log("You need Log In");
 				}
 			});
 		})
@@ -126,7 +127,7 @@ function Admin() {
 	return (
 		<div>
 			{test ? (
-				<TemplateAdmin logOut={buttonLogOut()} content={<HomeAdmin />} />
+				<TemplateAdmin logOut={<BtnLogOut />} content={<HomeAdmin />} />
 			) : (
 				<JobsLogged />
 			)}

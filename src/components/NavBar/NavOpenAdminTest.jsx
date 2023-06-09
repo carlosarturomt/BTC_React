@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavOpenAdmin(props) {
+function NavOpenAdminTest(props) {
 	return (
 		<div className="grid md:grid-cols-3 gap-2 lg:px-40">
 			<article className="col-span-2">
@@ -138,4 +138,4 @@ function NavOpenAdmin(props) {
 	);
 }
 
-export { NavOpenAdmin };
+export { NavOpenAdminTest };
