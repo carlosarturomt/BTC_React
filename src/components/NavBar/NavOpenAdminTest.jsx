@@ -115,7 +115,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("./src/assets/icons/SocialMedia/facebook.png");
+						background-image: url("assets/icons/SocialMedia/facebook.png");
 					}
 
 					.instagram {
@@ -126,7 +126,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("./src/assets/icons/SocialMedia/instagram.png");
+						background-image: url("assets/icons/SocialMedia/instagram.png");
 					}
 
 					.twitter {
@@ -137,7 +137,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("./src/assets/icons/SocialMedia/twitter.png");
+						background-image: url("assets/icons/SocialMedia/twitter.png");
 					}
 
 					.linkedin {
@@ -148,7 +148,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("./src/assets/icons/SocialMedia/linkedin.png");
+						background-image: url("assets/icons/SocialMedia/linkedin.png");
 					}
 				`}
 			</style>
