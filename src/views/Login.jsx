@@ -68,7 +68,7 @@ const Login = () => {
 				) {
 					navigate("/logged");
 				}
-				if (path.substring(path.length - n) == "login") {
+				if (path.substring(path.length - 5) == "login") {
 					navigate("../");
 				} else {
 					navigate("./");

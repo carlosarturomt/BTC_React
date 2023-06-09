@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// import imgsPath from "../../assets/icons/";
+
 function NavOpenAdminTest(props) {
 	return (
 		<div className="grid md:grid-cols-3 gap-2 lg:px-40">
@@ -115,9 +117,8 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/facebook.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/facebook.png");
 					}
-
 					.instagram {
 						cursor: pointer;
 						width: 32px;
@@ -126,7 +127,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/instagram.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/instagram.png");
 					}
 
 					.twitter {
@@ -137,7 +138,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/twitter.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/twitter.png");
 					}
 
 					.linkedin {
@@ -148,7 +149,7 @@ function NavOpenAdminTest(props) {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/linkedin.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/linkedin.png");
 					}
 				`}
 			</style>
