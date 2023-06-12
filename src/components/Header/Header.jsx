@@ -1,7 +1,6 @@
 import React from "react";
 
 function Header() {
-	// document.getElementById('js-animate').addEventListener()
 	return (
 		<section className="h-screen bg-gif">
 			<aside className="h-screen p-4 bg-fig-gr" id="js-animate">

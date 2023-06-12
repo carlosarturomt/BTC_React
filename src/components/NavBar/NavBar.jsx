@@ -65,10 +65,6 @@ function NavBar(props) {
                         -webkit-text-stroke: 2px #fefefe;
                         color: transparent;
                     }
-                    .showMenuNav aside a:hover {
-                        -webkit-text-stroke: 1px #fefefe;
-                        color: transparent !important;
-                    }
                     .button-plus-active {
                         background-color: #e90123;
                         animation-name: resplandorAnimation;

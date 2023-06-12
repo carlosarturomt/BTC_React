@@ -39,6 +39,11 @@ body {
 	width: 0px;
 }
 
+.text-border-style {
+	-webkit-text-stroke: 1px #fefefe;
+	color: transparent !important;
+}
+
 .btn-animate::after {
 	border-bottom: 1px solid #f3f4f6;
 	bottom: -4px;
@@ -55,7 +60,7 @@ body {
 
 .btn-animate::after {
 	animation: PULSE 1.25s infinite;
-	animation: PULSE_LINE 1.25s infinite;
+	/* animation: PULSE_LINE 1.25s; */
 }
 
 @-webkit-keyframes PULSE {
@@ -82,14 +87,14 @@ body {
 		color: #ffffff;
 	}
 }
-@keyframes PULSE_LINE {
+/* @keyframes PULSE_LINE {
 	0% {
 		border-bottom: 1px solid #ced2d9;
 	}
 	100% {
 		border-bottom: 1px solid #000000;
 	}
-}
+} */
 
 @media (max-width: 1080px) {
 	body {

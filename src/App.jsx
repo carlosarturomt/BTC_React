@@ -14,6 +14,7 @@ import { TemplateLogged } from "./templates/TemplateLogged";
 import { Login } from "./views/Login";
 import { Signup } from "./views/Signup";
 import { Logged } from "./views/Logged";
+import { About } from "./views/About";
 
 function App() {
 	return (
@@ -24,6 +25,8 @@ function App() {
 
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
+
+					<Route path="/about" element={<About />} />
 
 					<Route path="/careers" element={<Jobs />} />
 					<Route path="/jobs/:id" element={<DetailVacancy />} />

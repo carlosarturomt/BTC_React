@@ -29,8 +29,8 @@ function NavOpen(props) {
 			</article>
 
 			<aside>
-				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
-					<h5 className="uppercase text-1xl border-b">Careers</h5>
+				<ul className="flex flex-col justify-between px-8 text-gray-100 mb-8">
+					<h5 className="uppercase text-1xl border-b font-semibold">Careers</h5>
 					{props.children}
 					<NavLink
 						to="/careers"
@@ -40,8 +40,54 @@ function NavOpen(props) {
 					</NavLink>
 				</ul>
 
-				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
-					<h5 className="uppercase text-1xl border-b">Contact Us</h5>
+				<aside className="px-8 text-gray-100 mb-8">
+					<h5 className="uppercase text-1xl border-b font-semibold">
+						Social Media
+					</h5>
+					<ul className="text-gray-100 pr-6">
+						<li className="text-2xl lg:my-1 lg:text-3xl ">
+							<a
+								href="https://www.facebook.com/BTCamericas"
+								className="pr-10 btn-animate"
+							>
+								<span>Facebook</span>
+								{/* <span className="facebook hover:animate-pulse"></span> */}
+							</a>
+						</li>
+						<li className="text-2xl lg:my-1 lg:text-3xl ">
+							<a
+								href="https://www.instagram.com/btcamericas/"
+								className="pr-10 btn-animate"
+							>
+								<span>Instagram</span>
+								{/* <span className="instagram hover:animate-pulse"></span> */}
+							</a>
+						</li>
+						<li className="text-2xl lg:my-1 lg:text-3xl ">
+							<a
+								href="https://twitter.com/BTCamericas"
+								className="pr-10 btn-animate"
+							>
+								<span>Twitter</span>
+								{/* <span className="twitter hover:animate-pulse"></span> */}
+							</a>
+						</li>
+						<li className="text-2xl lg:my-1 lg:text-3xl ">
+							<a
+								href="https://www.linkedin.com/company/btcamericas"
+								className="pr-10 btn-animate"
+							>
+								<span>LinkedIn</span>
+								{/* <span className="linkedin hover:animate-pulse"></span> */}
+							</a>
+						</li>
+					</ul>
+				</aside>
+
+				<ul className="flex flex-col justify-between px-8 text-gray-100 mb-16">
+					<h5 className="uppercase text-1xl border-b font-semibold">
+						Contact Us
+					</h5>
 					<NavLink
 						to="/contact"
 						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
@@ -49,38 +95,6 @@ function NavOpen(props) {
 						Contact
 					</NavLink>
 				</ul>
-
-				<aside className="font-semibold px-8 text-gray-100 mb-16">
-					<h5 className="uppercase text-1xl border-b">Social Media</h5>
-					<ul className="flex justify-start font-semibold text-gray-100 pr-6">
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://www.facebook.com/BTCamericas" className="pr-10">
-								<span className="facebook hover:animate-pulse"></span>
-							</a>
-						</li>
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a
-								href="https://www.instagram.com/btcamericas/"
-								className="pr-10"
-							>
-								<span className="instagram hover:animate-pulse"></span>
-							</a>
-						</li>
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a href="https://twitter.com/BTCamericas" className="pr-10">
-								<span className="twitter hover:animate-pulse"></span>
-							</a>
-						</li>
-						<li className="lg:my-1 lg:text-3xl py-2">
-							<a
-								href="https://www.linkedin.com/company/btcamericas"
-								className="pr-10"
-							>
-								<span className="linkedin hover:animate-pulse"></span>
-							</a>
-						</li>
-					</ul>
-				</aside>
 			</aside>
 
 			<style>

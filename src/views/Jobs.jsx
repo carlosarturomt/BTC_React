@@ -6,7 +6,7 @@ import { JobsList } from "../components/Jobs/JobsList";
 function Jobs() {
 	return (
 		<>
-			<TemplateLogged logOut={<BtnLogOut />} content={<JobsList />} />
+			<TemplateLogged content={<JobsList />} />
 		</>
 	);
 }

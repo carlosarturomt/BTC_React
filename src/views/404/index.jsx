@@ -1,10 +1,10 @@
 function Error404() {
 	return (
 		<section className="flex flex-col items-center justify-center px-5 mx-auto my-28 py-1 space-y-8 text-center sm:max-w-md">
-			<svg
+			{/* <svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 512 512"
-				className="w-40 h-40 text-gray-300 animate-pulse "
+				className="w-40 h-40 text-gray-300 animate-pulse"
 			>
 				<path
 					fill="currentColor"
@@ -25,19 +25,19 @@ function Error404() {
 					fill="currentColor"
 					points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"
 				></polygon>
-			</svg>
-			{/* <h2 className="mb-8 font-extrabold text-9xl text-gray-300 ">
-            <span className="sr-only">Error</span>404
-        </h2> */}
+			</svg> */}
+			<h2 className="mb-8 font-extrabold text-9xl text-gray-300 animate-pulse">
+				<span className="sr-only">Error</span>404
+			</h2>
 			<p className="text-3xl text-gray-300 animate-pulse">
 				Looks like this page are currently offline for you
 			</p>
 			<a
 				rel="noopener noreferrer"
 				href="/"
-				className="px-8 py-3 font-semibold rounded text-gray-400 hover:border hover:rounded-xl hover:text-gray-100 "
+				className="px-8 py-3 font-semibold rounded text-gray-400 border rounded-xl hover:text-gray-100 "
 			>
-				Back to homepage
+				Back to Homepage
 			</a>
 		</section>
 	);
