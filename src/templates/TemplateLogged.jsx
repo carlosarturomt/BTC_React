@@ -1,5 +1,5 @@
 import React from "react";
-import { FooterAdmin } from "../components/Footer/FooterAdmin";
+import { Footer } from "../components/Footer/Footer";
 import { NavBarLogged } from "../components/NavBar/NavBarLogged";
 
 function TemplateLogged({ content }) {
@@ -7,7 +7,7 @@ function TemplateLogged({ content }) {
 		<div className="bg-[rgb(0,12,26)]">
 			<NavBarLogged />
 			{content}
-			<FooterAdmin />
+			<Footer />
 		</div>
 	);
 }

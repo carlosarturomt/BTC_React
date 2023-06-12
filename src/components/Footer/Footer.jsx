@@ -8,12 +8,16 @@ function Footer() {
 	// year.innerHTML = new Date().getFullYear();
 
 	return (
-		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40" >
+		<footer className="border-t border-gray-400 py-8 px-8 lg:px-40">
 			<section className="flex flex-wrap items-center justify-between">
-                <Logo image={btcLogo} addClass="flex items-baseline title-font font-medium items-center md:mb-0 lg:order-none" />
+				<Logo
+					image={btcLogo}
+					addClass="flex items-baseline title-font font-medium items-center md:mb-0 lg:order-none"
+				/>
 
 				<aside className="flex flex-wrap">
-					<UlList is
+					<UlList
+						is
 						classN="md:border-none"
 						section="Company"
 						liOne="About us"
@@ -33,14 +37,12 @@ function Footer() {
 						liOne="About us"
 						liTwo="Legal"
 						liThree="Career"
-                        liFourHref="/login"
-						liFour="Log In"
 					/>
 				</aside>
 			</section>
 			<section className="flex items-center flex-start text-gray-50">
 				<p>
-					© Business Travel Consulting <span id="current-year">2023</span> - All
+					© Business Travel Consulting <span id="current-year"></span> - All
 					rights reserved · Privacy Policy
 				</p>
 			</section>

@@ -8,7 +8,7 @@ import {
 import { useNavigate, NavLink } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
 
-const Login = () => {
+function Login() {
 	const auth = getAuth();
 	const navigate = useNavigate();
 
@@ -30,17 +30,18 @@ const Login = () => {
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-				// console.log(user);
-				if (path.substring(path.length - 5) == "login") {
+				// ...
+				if (path.endsWith("login")) {
 					navigate("../");
-				}
-				if (
-					user.email == "carlosarturomt@gmail.com" ||
-					user.email == "amiranda@btcamericas.com"
-				) {
-					navigate("/logged");
 				} else {
 					navigate("./");
+				}
+				if (
+					(user.email == "carlosarturomt@gmail.com" &&
+						path.endsWith("login")) ||
+					(user.email == "amiranda@btcamericas.com" && path.endsWith("login"))
+				) {
+					navigate("/logged");
 				}
 			})
 			.catch((error) => {
@@ -62,16 +63,17 @@ const Login = () => {
 				const user = result.user;
 				// IdP data available using getAdditionalUserInfo(result)
 				// ...
-				if (
-					user.email == "carlosarturomt@gmail.com" ||
-					user.email == "amiranda@btcamericas.com"
-				) {
-					navigate("/logged");
-				}
-				if (path.substring(path.length - 5) == "login") {
+				if (path.endsWith("login")) {
 					navigate("../");
 				} else {
 					navigate("./");
+				}
+				if (
+					(user.email == "carlosarturomt@gmail.com" &&
+						path.endsWith("login")) ||
+					(user.email == "amiranda@btcamericas.com" && path.endsWith("login"))
+				) {
+					navigate("/logged");
 				}
 			})
 			.catch((error) => {
@@ -207,17 +209,29 @@ const Login = () => {
 					</div>
 				</aside>
 
-				<img
+				{/* <img
 					className="fish"
 					src="https://img1.picmix.com/output/stamp/normal/0/2/5/9/1479520_aca7c.gif"
-				/>
+				/> */}
 
-				<div className="bg-gif"></div>
-				<div className="bg-fish"></div>
+				{/* <div className="bg-gif"></div>
+				<div className="bg-fish"></div> */}
+
+				<div className="bg-solid"></div>
 			</section>
 
 			<style>
 				{`
+				.bg-solid {
+						z-index: -2;
+						top: 0;
+						left:0;
+						position: absolute;
+						width: 100%;
+						height: 100vh;
+						background-color: #000c1a;
+					}
+
 					.bx-shadow {
 						box-shadow: 0 0 5px #fff;
 					}
@@ -340,6 +354,6 @@ const Login = () => {
 			</style>
 		</TemplateNoNav>
 	);
-};
+}
 
-export default Login;
+export { Login };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { Apply } from "../User/Apply";
-import LoginBF from "../Login";
+import { Login } from "../Login";
 import { TemplateNoNav } from "../../templates/TemplateNoNav";
 import { TemplateLogged } from "../../templates/TemplateLogged";
 
@@ -29,7 +29,7 @@ function ApplyVacancy() {
 				<TemplateLogged content={<Apply />} />
 			) : (
 				<TemplateNoNav>
-					<LoginBF />
+					<Login />
 				</TemplateNoNav>
 			)}
 		</div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { NavBarTest } from "./NavBarTest";
+import { NavBar } from "./NavBar";
 import { BtnLogOut } from "../Buttons/BtnLogOut";
 import { BtnLogIn } from "../Buttons/BtnLogIn";
 import { NavLink } from "react-router-dom";
@@ -22,7 +22,7 @@ function NavBarLogged() {
 	return (
 		<>
 			{test ? (
-				<NavBarTest>
+				<NavBar>
 					{
 						<>
 							<NavLink
@@ -34,9 +34,9 @@ function NavBarLogged() {
 							<BtnLogOut />
 						</>
 					}
-				</NavBarTest>
+				</NavBar>
 			) : (
-				<NavBarTest>{<BtnLogIn />}</NavBarTest>
+				<NavBar>{<BtnLogIn />}</NavBar>
 			)}
 		</>
 	);

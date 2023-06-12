@@ -4,9 +4,7 @@ import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { useFirebaseApp } from "reactfire";
-import { Template } from "../templates/Template";
 import { CardJob } from "../components/Card/CardJob";
-
 
 // Example items, to simulate fetching from another resources.
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
@@ -68,4 +66,4 @@ function PaginatedItems({ itemsPerPage }) {
 // 	document.getElementById("container")
 // );
 
-export {PaginatedItems}
+export { PaginatedItems };

@@ -1,11 +1,11 @@
 import React from "react";
 
 function Header() {
-    // document.getElementById('js-animate').addEventListener()
-    return (
-        <section className="h-screen bg-gif">
-            <aside className="h-screen p-4 bg-fig-gr" id="js-animate">
-                {/* <h2 className="mt-[10%] text-6xl text-center text-gray-100 slide-l">
+	// document.getElementById('js-animate').addEventListener()
+	return (
+		<section className="h-screen bg-gif">
+			<aside className="h-screen p-4 bg-fig-gr" id="js-animate">
+				{/* <h2 className="mt-[10%] text-6xl text-center text-gray-100 slide-l">
                     <span className="text-border font-bold">We Gather Emotions</span>
                     <span> . </span>
                     <span className="font-bold">We Gather Experiences</span>
@@ -15,17 +15,15 @@ function Header() {
                     <span> . </span>
                     <span className="font-bold">We Gather Adventures</span>
                 </h2> */}
-            </aside>
+			</aside>
 
-            <style>
+			<style>
 				{`
 					.text-border {
 						-webkit-text-stroke: 1px #fefefe;
 						color: transparent;
 					}
 					.bg-gif {
-						width: 100%
-						height: 50vh;
 						margin-top: -125px;
 
 						background-size: cover;
@@ -35,7 +33,6 @@ function Header() {
 					}
 
 					.bg-fig-gr {
-						width: 100%
 						margin-top: -125px;
 						background-size: cover;
 						background-position: center;
@@ -73,8 +70,8 @@ function Header() {
 					}
 					`}
 			</style>
-        </section>
-    )
+		</section>
+	);
 }
 
-export {Header}
+export { Header };

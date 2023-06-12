@@ -24,7 +24,7 @@ function BtnLogOut() {
 		<div className="flex justify-start w-full max-w-4xl">
 			<button
 				onClick={handleLogout}
-				className="text-border-btn btn-animate flex items-center text-2xl lg:text-3xl text-gray-100"
+				className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
 			>
 				Logout
 			</button>

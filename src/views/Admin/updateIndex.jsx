@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { Update } from "../../views/Admin/Update";
-import { Template } from "../../templates/Template";
 import { Error404 } from "../404";
 import { TemplateLogged } from "../../templates/TemplateLogged";
 
@@ -32,9 +31,7 @@ function AdminUpdate() {
 			{test ? (
 				<TemplateLogged content={<Update />} />
 			) : (
-				<Template>
-					<Error404 />
-				</Template>
+				<TemplateLogged content={<Error404 />} />
 			)}
 		</div>
 	);

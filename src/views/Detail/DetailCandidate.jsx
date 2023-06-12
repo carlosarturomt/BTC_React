@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { Template } from "../../templates/Template";
 import { Error404 } from "../../views/404";
 import { TemplateLogged } from "../../templates/TemplateLogged";
 
@@ -206,9 +205,7 @@ function DetailCandidate() {
 					}
 				/>
 			) : (
-				<Template>
-					<Error404 />
-				</Template>
+				<TemplateLogged content={<Error404 />} />
 			)}
 		</div>
 	);

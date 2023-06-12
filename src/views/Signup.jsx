@@ -8,7 +8,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { TemplateNoNav } from "../templates/TemplateNoNav";
 
-const Signup = () => {
+function Signup() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -210,6 +210,6 @@ const Signup = () => {
 			</style>
 		</TemplateNoNav>
 	);
-};
+}
 
-export default Signup;
+export { Signup };

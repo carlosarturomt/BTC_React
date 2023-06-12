@@ -1,75 +1,57 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavOpen() {
+function NavOpen(props) {
 	return (
-		<div className="grid md:grid-cols-3 gap-2 lg:px-40">
+		<div className="grid lg:grid-cols-3 gap-2 lg:px-40">
 			<article className="col-span-2">
-				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 ">
+				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100">
 					<h5 className="uppercase text-1xl border-b">Navigation</h5>
-					<NavLink to="/services" className="my-1 text-4xl lg:my-5 lg:text-8xl">
+					<NavLink
+						to="/about"
+						className="my-1 text-4xl lg:my-5 md:text-7xl lg:text-9xl"
+					>
+						About Us
+					</NavLink>
+					<NavLink
+						to="/our-team"
+						className="my-1 text-4xl lg:my-5 md:text-7xl lg:text-9xl"
+					>
+						Our Team
+					</NavLink>
+					<NavLink
+						to="/services"
+						className="my-1 text-4xl lg:my-5 md:text-7xl lg:text-9xl"
+					>
 						Services
-					</NavLink>
-					<NavLink to="/work" className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						Thoughts
-					</NavLink>
-					<NavLink to="/thoughts" className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						Thoughts
-					</NavLink>
-					<NavLink to="/connect" className="my-1 text-4xl lg:my-5 lg:text-8xl">
-						Connect Us
 					</NavLink>
 				</ul>
 			</article>
 
 			<aside>
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
-					<h5 className="uppercase text-1xl border-b">Behind The Scenes</h5>
-					<NavLink to="/about" className="text-2xl lg:my-1 lg:text-3xl">
-						About Us
-					</NavLink>
-					<NavLink to="/news" className="text-2xl lg:my-1 lg:text-3xl">
-						News
-					</NavLink>
-					<NavLink to="/jobs" className="text-2xl lg:my-1 lg:text-3xl">
-						Jobs
+					<h5 className="uppercase text-1xl border-b">Careers</h5>
+					{props.children}
+					<NavLink
+						to="/careers"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
+						Apply
 					</NavLink>
 				</ul>
 
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
-					<h5 className="uppercase text-1xl border-b">Offices</h5>
-					<NavLink to="/" className="text-2xl lg:my-1 lg:text-3xl">
-						BTC Americas
-					</NavLink>
-					<NavLink to="/price-travel" className="text-2xl lg:my-1 lg:text-3xl">
-						Price Travel
-					</NavLink>
-					<NavLink to="/big-fish" className="text-2xl lg:my-1 lg:text-3xl">
-						Big Fish
+					<h5 className="uppercase text-1xl border-b">Contact Us</h5>
+					<NavLink
+						to="/contact"
+						className="text-2xl lg:my-1 lg:text-3xl btn-animate w-fit"
+					>
+						Contact
 					</NavLink>
 				</ul>
 
-				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100 mb-8">
-					<hgroup className="flex items-center w-full border-b">
-						{/* <span className="material-symbols-outlined">person</span> */}
-						<h5 className="uppercase text-1xl ">Account</h5>
-					</hgroup>
-					<NavLink
-						to="/login"
-						className="flex items-center text-2xl lg:my-1 lg:text-3xl "
-					>
-						Login
-					</NavLink>
-					<NavLink
-						to="/signup"
-						className="flex items-center text-2xl lg:my-1 lg:text-3xl "
-					>
-						Sign Up
-					</NavLink>
-				</ul>
-
-				<aside className="font-semibold px-8 text-gray-100 mb-8">
-					<h5 className="uppercase text-1xl border-b">Connect Us</h5>
+				<aside className="font-semibold px-8 text-gray-100 mb-16">
+					<h5 className="uppercase text-1xl border-b">Social Media</h5>
 					<ul className="flex justify-start font-semibold text-gray-100 pr-6">
 						<li className="lg:my-1 lg:text-3xl py-2">
 							<a href="https://www.facebook.com/BTCamericas" className="pr-10">
@@ -111,9 +93,8 @@ function NavOpen() {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/facebook.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/facebook.png");
 					}
-
 					.instagram {
 						cursor: pointer;
 						width: 32px;
@@ -122,7 +103,7 @@ function NavOpen() {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/instagram.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/instagram.png");
 					}
 
 					.twitter {
@@ -133,7 +114,7 @@ function NavOpen() {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/twitter.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/twitter.png");
 					}
 
 					.linkedin {
@@ -144,7 +125,7 @@ function NavOpen() {
 						background-size: cover;
 						background-position: center;
 						background-repeat: no-repeat;
-						background-image: url("assets/icons/SocialMedia/linkedin.png");
+						background-image: url("https://test.detexcoco.com/SocialMedia/linkedin.png");
 					}
 				`}
 			</style>

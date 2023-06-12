@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { Template } from "../../templates/Template";
 import { CandidateAdmin } from "../../components/Admin/CandidateAdmin";
 import { Error404 } from "../404";
 import { TemplateLogged } from "../../templates/TemplateLogged";
@@ -29,9 +28,7 @@ function Candidates() {
 			{test ? (
 				<TemplateLogged content={<CandidateAdmin />} />
 			) : (
-				<Template>
-					<Error404 />
-				</Template>
+				<TemplateLogged content={<Error404 />} />
 			)}
 		</>
 	);
