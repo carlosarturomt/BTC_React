@@ -1,17 +1,17 @@
-import React, { Suspense } from "react";
-import ReactDOM from "react-dom/client";
+import React from "react";
+import { render } from "react-dom";
+import firebaseConfig from "./config/firebase-config";
+import { FirebaseAppProvider } from "reactfire";
 import App from "./App";
 import "./styles/index.css";
 import "./styles/App.css";
-import firebaseConfig from "./config/firebase-config";
-import { FirebaseAppProvider } from "reactfire";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const container = document.getElementById("root");
+render(
 	<React.StrictMode>
 		<FirebaseAppProvider firebaseConfig={firebaseConfig}>
-			{/* <Suspense fallback={console.log('Suspense...')}> */}
 			<App />
-			{/* </Suspense> */}
 		</FirebaseAppProvider>
-	</React.StrictMode>
+	</React.StrictMode>,
+	container
 );

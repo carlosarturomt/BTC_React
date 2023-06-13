@@ -3,25 +3,25 @@ import { NavLink } from "react-router-dom";
 
 function NavOpen(props) {
 	return (
-		<div className="grid lg:grid-cols-3 gap-2 lg:px-40">
+		<div className="grid md:grid-cols-3 gap-2 lg:px-40">
 			<article className="col-span-2">
 				<ul className="flex flex-col justify-between font-semibold px-8 text-gray-100">
 					<h5 className="uppercase text-1xl border-b">Navigation</h5>
 					<NavLink
 						to="/about"
-						className="my-1 text-4xl lg:my-5 md:text-7xl lg:text-9xl"
+						className="my-1 text-4xl lg:my-5 md:text-7xl xl:text-9xl"
 					>
 						About Us
 					</NavLink>
 					<NavLink
 						to="/our-team"
-						className="my-1 text-4xl lg:my-5 md:text-7xl lg:text-9xl"
+						className="my-1 text-4xl lg:my-5 md:text-7xl xl:text-9xl"
 					>
 						Our Team
 					</NavLink>
 					<NavLink
 						to="/services"
-						className="my-1 text-4xl lg:my-5 md:text-7xl lg:text-9xl"
+						className="my-1 text-4xl lg:my-5 md:text-7xl xl:text-9xl"
 					>
 						Services
 					</NavLink>
