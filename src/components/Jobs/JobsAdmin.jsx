@@ -18,14 +18,14 @@ function JobsAdmin() {
 	const [itemOffset, setItemOffset] = useState(0);
 	const endOffset = itemOffset + 20;
 	const currentItems = Object.keys(vacancyList).slice(itemOffset, endOffset);
+	const careersList = [...currentItems].reverse();
+
 
 	return (
 		<section>
 			<article className="flex justify-center flex-col items-center pb-20">
 				<div className="w-full">
-					{currentItems
-						.sort((a, b) => (a.name > b.name ? -1 : 1))
-						.map((key) => {
+					{careersList.map((key) => {
 							const vacancyData = vacancyList[key];
 							const removePost = () => {
 								remove(ref(database, `/vacancy/${key}`), vacancyList);
@@ -34,7 +34,7 @@ function JobsAdmin() {
 							const alertRemove = () => {
 								let text = "Are you sure of DELETE this Vacancy?";
 								if (confirm(text) == true) {
-									removePost()
+									removePost();
 								}
 							};
 							return (

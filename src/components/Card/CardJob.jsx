@@ -9,7 +9,7 @@ function CardJob(props) {
 	} = vacancyData;
 
 	return (
-		<aside className="bg-[#022e5f21] flex flex-col sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md my-2">
+		<aside className="bg-[#022e5f21] flex flex-col sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md my-4">
 			<div>
 				<span className="text-slate-400 text-sm">{areaVacancy}</span>
 				<h3 className="font-bold mt-px text-gray-100">{vacancyTitle}</h3>

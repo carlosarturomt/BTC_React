@@ -29,8 +29,8 @@ function App() {
 					<Route path="/about" element={<About />} />
 
 					<Route path="/careers" element={<Jobs />} />
-					<Route path="/jobs/:id" element={<DetailVacancy />} />
-					<Route path="/jobs/:id/apply" element={<ApplyVacancy />} />
+					<Route path="/careers/:id" element={<DetailVacancy />} />
+					<Route path="/careers/:id/apply" element={<ApplyVacancy />} />
 
 					<Route path="/logged" element={<Logged />} />
 					<Route path="/logged/create" element={<CreateVacancyPanel />} />

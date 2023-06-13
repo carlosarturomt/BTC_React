@@ -4,7 +4,7 @@ import { FooterSimple } from "../components/Footer/FooterSimple";
 
 function TemplateLogged({ content }) {
 	return (
-		<div className="bg-[rgb(0,12,26)]">
+		<div className="relative min-h-[100vh] bg-[rgb(0,12,26)]">
 			<NavBarLogged />
 			{content}
 			<FooterSimple />
