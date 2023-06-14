@@ -1,3 +1,4 @@
+import React from "react";
 function CardCandidate(props) {
 	const { vacancyData } = props;
 	const { candidateEmail, candidateName, candidateTel, url, vacancyTitle } =

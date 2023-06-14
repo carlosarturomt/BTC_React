@@ -1,3 +1,4 @@
+import React from "react";
 import { CreateVacancy } from "../../components/Admin/CreateVacancy";
 import { JobsAdmin } from "../../components/Jobs/JobsAdmin";
 

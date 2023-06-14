@@ -1,3 +1,5 @@
+import React from "react";
+
 function Error404() {
 	return (
 		<section className="flex flex-col items-center justify-center px-5 mx-auto my-28 py-1 space-y-8 text-center sm:max-w-md">

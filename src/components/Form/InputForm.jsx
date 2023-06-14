@@ -1,3 +1,5 @@
+import React from "react";
+
 function InputForm({ label, name, on, val }) {
 	return (
 		<div className="my-4">

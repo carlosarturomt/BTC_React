@@ -1,3 +1,4 @@
+import React from "react";
 import { UpdateDataVacancy } from "../../components/User/UpdateDataVacancy";
 
 function Apply() {
