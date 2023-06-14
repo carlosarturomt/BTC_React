@@ -42,8 +42,8 @@ function DetailVacancy() {
 	return (
 		<TemplateLogged
 			content={
-				<main className="flex justify-center flex-col items-center mb-8  ">
-					<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">
+				<main className="flex justify-center flex-col items-center">
+					<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md mb-32">
 						<header className="pb-4 w-full border-b-2 border-[#ffffff21]">
 							<h1 className="font-bold text-2xl flex justify-between text-gray-100">
 								{vacancyTitle}
