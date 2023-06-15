@@ -1,0 +1,56 @@
+[
+	{
+		"area": "Dirección BTC - Dirección",
+		"name": "Alejandro Ramírez Tabche",
+		"position": "CEO (Chief Executive Officer)",
+		"children": [
+			{
+				"area": "Tecnologías de Información - Desarrollo",
+				"name": "Gaurav Chhabra",
+				"position": "IT Manager",
+				"children": [
+					{
+						"area": "BTC Technology - Desarrollo de Software",
+						"name": "Roberto Velázquez Razo",
+						"position": "Software engineer"
+					}
+				]
+			},
+			{
+				"area": "Fullfilment",
+				"name": "Erika Joselin Aguilar Carrillo",
+				"position": "Fulfillment Director",
+
+				"children": [
+					{
+						"area": "Meeting Studio",
+						"name": "Darinka Juarez Ochoa",
+						"position": "Production Account Supervisor",
+						"children": [
+							{
+								"area": "Meeting Studio",
+								"name": "Julio César Cabrera Vargas",
+								"position": "Renderer"
+							},
+							{
+								"area": "Production",
+								"name": "Silvana Rodríguez Juárez",
+								"position": "Production Support"
+							}
+						]
+					}
+				]
+			},
+			{
+				"area": "Soporte Y Normatividad",
+				"name": "Ivonne Toquero Camacho",
+				"position": "Director of Conference Operations and Regulation"
+			},
+			{
+				"area": "Human resources manager",
+				"name": "Sandra Monica Becerril Becerra",
+				"position": "Recursos Humanos - Administración de RH"
+			}
+		]
+	}
+]
