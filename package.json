@@ -10,6 +10,7 @@
 	},
 	"homepage": "https://test.detexcoco.com/",
 	"dependencies": {
+		"@glidejs/glide": "^3.6.0",
 		"axios": "^1.4.0",
 		"chartjs-plugin-zoom": "^2.0.1",
 		"firebase": "^9.22.2",

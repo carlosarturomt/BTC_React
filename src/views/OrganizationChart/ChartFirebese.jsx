@@ -67,7 +67,7 @@ const ChartFirebase = () => {
 		}
 	};
 
-	console.log(chartList);
+	// console.log(chartList);
 
 	return (
 		<TemplateLogged

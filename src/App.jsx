@@ -17,6 +17,7 @@ import { Logged } from "./views/Logged";
 import { About } from "./views/About";
 import Chart from "./views/OrganizationChart/Chart";
 import ChartFirebase from "./views/OrganizationChart/ChartFirebese";
+import { Services } from "./views/Services";
 
 function App() {
 	return (
@@ -36,6 +37,7 @@ function App() {
 
 					<Route path="/our-team" element={<ChartFirebase />} />
 					<Route path="/ourteam" element={<Chart />} />
+					<Route path="/services" element={<Services />} />
 
 					<Route path="/logged" element={<Logged />} />
 					<Route path="/logged/create" element={<CreateVacancyPanel />} />

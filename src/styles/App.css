@@ -60,7 +60,6 @@ body {
 
 .btn-animate::after {
 	animation: PULSE 1.25s infinite;
-	/* animation: PULSE_LINE 1.25s; */
 }
 
 @-webkit-keyframes PULSE {
@@ -87,14 +86,6 @@ body {
 		color: #ffffff;
 	}
 }
-/* @keyframes PULSE_LINE {
-	0% {
-		border-bottom: 1px solid #ced2d9;
-	}
-	100% {
-		border-bottom: 1px solid #000000;
-	}
-} */
 
 @media (max-width: 1080px) {
 	body {
