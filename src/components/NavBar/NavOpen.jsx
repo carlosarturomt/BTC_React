@@ -51,7 +51,6 @@ function NavOpen(props) {
 								className="pr-10 btn-animate"
 							>
 								<span>Facebook</span>
-								{/* <span className="facebook hover:animate-pulse"></span> */}
 							</a>
 						</li>
 						<li className="text-2xl lg:my-1 lg:text-3xl ">
@@ -60,7 +59,6 @@ function NavOpen(props) {
 								className="pr-10 btn-animate"
 							>
 								<span>Instagram</span>
-								{/* <span className="instagram hover:animate-pulse"></span> */}
 							</a>
 						</li>
 						<li className="text-2xl lg:my-1 lg:text-3xl ">
@@ -69,7 +67,6 @@ function NavOpen(props) {
 								className="pr-10 btn-animate"
 							>
 								<span>Twitter</span>
-								{/* <span className="twitter hover:animate-pulse"></span> */}
 							</a>
 						</li>
 						<li className="text-2xl lg:my-1 lg:text-3xl ">
@@ -78,7 +75,6 @@ function NavOpen(props) {
 								className="pr-10 btn-animate"
 							>
 								<span>LinkedIn</span>
-								{/* <span className="linkedin hover:animate-pulse"></span> */}
 							</a>
 						</li>
 					</ul>
@@ -96,53 +92,6 @@ function NavOpen(props) {
 					</NavLink>
 				</ul>
 			</aside>
-
-			<style>
-				{`
-					.facebook {
-						cursor: pointer;
-						width: 32px;
-						height: 32px;
-						position: absolute;
-						background-size: cover;
-						background-position: center;
-						background-repeat: no-repeat;
-						background-image: url("https://test.detexcoco.com/SocialMedia/facebook.png");
-					}
-					.instagram {
-						cursor: pointer;
-						width: 32px;
-						height: 32px;
-						position: absolute;
-						background-size: cover;
-						background-position: center;
-						background-repeat: no-repeat;
-						background-image: url("https://test.detexcoco.com/SocialMedia/instagram.png");
-					}
-
-					.twitter {
-						cursor: pointer;
-						width: 32px;
-						height: 32px;
-						position: absolute;
-						background-size: cover;
-						background-position: center;
-						background-repeat: no-repeat;
-						background-image: url("https://test.detexcoco.com/SocialMedia/twitter.png");
-					}
-
-					.linkedin {
-						cursor: pointer;
-						width: 32px;
-						height: 32px;
-						position: absolute;
-						background-size: cover;
-						background-position: center;
-						background-repeat: no-repeat;
-						background-image: url("https://test.detexcoco.com/SocialMedia/linkedin.png");
-					}
-				`}
-			</style>
 		</div>
 	);
 }

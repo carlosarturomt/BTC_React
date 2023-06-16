@@ -37,6 +37,7 @@ function App() {
 
 					<Route path="/our-team" element={<ChartFirebase />} />
 					<Route path="/ourteam" element={<Chart />} />
+
 					<Route path="/services" element={<Services />} />
 
 					<Route path="/logged" element={<Logged />} />

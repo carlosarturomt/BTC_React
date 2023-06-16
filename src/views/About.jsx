@@ -7,7 +7,7 @@ function About() {
 			<TemplateLogged
 				content={
 					<div className="text-gray-200 py-4 md:px-28 lg:px-56">
-						<h1 className="py-4 text-6xl font-semibold text-border-style text-center px-2 md:text-8xl ">
+						<h1 className="py-4 text-6xl font-semibold text-border-style text-center px-2 md:text-8xl">
 							About Us
 						</h1>
 						<p className="pb-4 px-6 text-justify md:pb-8">

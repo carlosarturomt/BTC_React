@@ -35,7 +35,14 @@
 							{
 								"area": "Production",
 								"name": "Silvana Rodríguez Juárez",
-								"position": "Production Support"
+								"position": "Production Support",
+								"children": [
+									{
+										"area": "BTC Technology - Desarrollo de Software",
+										"name": "Roberto Velázquez Razo",
+										"position": "Software engineer"
+									}
+								]
 							}
 						]
 					}
@@ -49,7 +56,38 @@
 			{
 				"area": "Human resources manager",
 				"name": "Sandra Monica Becerril Becerra",
-				"position": "Recursos Humanos - Administración de RH"
+				"position": "Recursos Humanos - Administración de RH",
+				"children": [
+					{
+						"area": "BTC Technology - Desarrollo de Software",
+						"name": "Roberto Velázquez Razo",
+						"position": "Software engineer"
+					}
+				]
+			},
+			{
+				"area": "Soporte Y Normatividad",
+				"name": "Ivonne Toquero Camacho",
+				"position": "Director of Conference Operations and Regulation"
+			},
+			{
+				"area": "Human resources manager",
+				"name": "Sandra Monica Becerril Becerra",
+				"position": "Recursos Humanos - Administración de RH",
+				"children": [
+					{
+						"area": "BTC Technology - Desarrollo de Software",
+						"name": "Roberto Velázquez Razo",
+						"position": "Software engineer",
+						"children": [
+							{
+								"area": "BTC Technology - Desarrollo de Software",
+								"name": "Roberto Velázquez Razo",
+								"position": "Software engineer"
+							}
+						]
+					}
+				]
 			}
 		]
 	}
