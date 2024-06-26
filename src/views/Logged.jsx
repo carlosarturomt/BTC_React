@@ -28,9 +28,13 @@ function Logged() {
 	return (
 		<>
 			{test ? (
-				<TemplateLogged content={<HomeAdmin />} />
+				<TemplateLogged>
+					<HomeAdmin />
+				</TemplateLogged>
 			) : (
-				<TemplateLogged content={<Header />} />
+				<TemplateLogged>
+					<Header />
+				</TemplateLogged>
 			)}
 		</>
 	);

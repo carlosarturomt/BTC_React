@@ -76,9 +76,9 @@ function Signup() {
 
 	return (
 		<TemplateNoNav>
-			<section className="flex w-full content-center justify-center py-20 md:py-5">
+			<section className="flex items-center w-full min-h-screen content-center justify-center py-20 md:py-5">
 				<article className="w-full flex flex-wrap-reverse justify-center items-center px-4 md:max-w-5xl md:flex-wrap">
-					<aside className="w-full flex content-center py-8 px-2 my-4 items-center justify-center rounded-md md:w-1/2 bg-[#000c1aae] md:h-full md:rounded-r-none">
+					<aside className="w-full flex content-center py-8 px-2 my-4 items-center justify-center rounded-md md:w-1/2 bg-[#000c1aae] md:rounded-r-none min-h-[661px]">
 						<div className="max-w-72">
 							<h1 className="text-xl font-semibold text-gray-100">Sign Up</h1>
 							<small className="text-gray-200">Create a BTC Account</small>
@@ -148,7 +148,7 @@ function Signup() {
 						</div>
 					</aside>
 
-					<aside className="w-full flex flex-wrap content-center justify-center rounded-md md:w-1/2 md:rounded-l-none relative">
+					<aside className="w-full flex content-center justify-center rounded-md md:w-1/2 md:rounded-l-none relative min-h-[661px]">
 						<img
 							className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none"
 							// className=" h-full bg-center bg-no-repeat bg-cover rounded-md md:rounded-l-none blur-img"

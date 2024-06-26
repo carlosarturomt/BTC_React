@@ -5,7 +5,6 @@ import {
 	active,
 	item_list,
 } from "./dropdown.module.css";
-
 function BtnFilter({ items = [], dropdownTitle }) {
 	const activatorRef = useRef(null);
 	const dropdownListRef = useRef(null);

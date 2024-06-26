@@ -28,9 +28,13 @@ function CreateVacancyPanel() {
 	return (
 		<div>
 			{test ? (
-				<TemplateLogged content={<Create />} />
+				<TemplateLogged>
+					<Create />
+				</TemplateLogged>
 			) : (
-				<TemplateLogged content={<Error404 />} />
+				<TemplateLogged>
+					<Error404 />
+				</TemplateLogged>
 			)}
 		</div>
 	);

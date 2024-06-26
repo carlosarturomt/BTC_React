@@ -22,6 +22,11 @@ body {
 	color: transparent !important;
 }
 
+.text-border-style {
+	-webkit-text-stroke: 1px #fefefe;
+	color: transparent !important;
+}
+
 .btn-animate {
 	border: none;
 	color: #ffffff;
@@ -37,11 +42,6 @@ body {
 	height: 0;
 	position: absolute;
 	width: 0px;
-}
-
-.text-border-style {
-	-webkit-text-stroke: 1px #fefefe;
-	color: transparent !important;
 }
 
 .btn-animate::after {
@@ -66,22 +66,27 @@ body {
 	0% {
 		color: #ced2d9;
 	}
+
 	100% {
 		color: #ffffff;
 	}
 }
+
 @-ms-keyframes PULSE {
 	0% {
 		color: #ced2d9;
 	}
+
 	100% {
 		color: #ffffff;
 	}
 }
+
 @keyframes PULSE {
 	0% {
 		color: #ced2d9;
 	}
+
 	100% {
 		color: #ffffff;
 	}

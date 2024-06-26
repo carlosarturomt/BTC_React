@@ -70,40 +70,38 @@ const ChartFirebase = () => {
 	// console.log(chartList);
 
 	return (
-		<TemplateLogged
-			content={
-				<div className="relative">
-					<div id="container" className="org-tree zoom snap-mandatory snap-x ">
-						<div id="scrollLeft" className="child ">
-							<CardChart chartData={chartList} />
-						</div>
-					</div>
-
-					<div className="pb-32 buttons-float ">
-						<button
-							onClick={counterBtn}
-							className={
-								isMobile
-									? "text-red-500 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
-									: "text-blue-800 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
-							}
-						>
-							+
-						</button>
-						<button
-							onClick={counterBtn2}
-							className={
-								isMobile
-									? "text-red-500 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
-									: "text-blue-800 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
-							}
-						>
-							-
-						</button>
+		<TemplateLogged>
+			<div className="relative">
+				<div id="container" className="org-tree zoom snap-mandatory snap-x ">
+					<div id="scrollLeft" className="child ">
+						<CardChart chartData={chartList} />
 					</div>
 				</div>
-			}
-		/>
+
+				<div className="pb-32 buttons-float ">
+					<button
+						onClick={counterBtn}
+						className={
+							isMobile
+								? "text-red-500 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
+								: "text-blue-800 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
+						}
+					>
+						+
+					</button>
+					<button
+						onClick={counterBtn2}
+						className={
+							isMobile
+								? "text-red-500 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
+								: "text-blue-800 bold text-4xl bg-gray-100 w-2 h-2 flex items-center justify-center rounded-full p-4 m-2"
+						}
+					>
+						-
+					</button>
+				</div>
+			</div>
+		</TemplateLogged>
 	);
 };
 

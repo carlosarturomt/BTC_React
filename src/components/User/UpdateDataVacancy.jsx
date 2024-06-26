@@ -17,12 +17,12 @@ import {
 function UpdateDataVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 	const [candidateData, setCandidateData] = useState({});
+	const [file, setFile] = useState({});
 	const { id } = useParams();
+	const storage = getStorage();
 	const database = getDatabase();
 	const vacancyRef = refDatabase(database, `/vacancy/${id}`);
 	const candidateRef = refDatabase(database, "/candidate");
-	const [file, setFile] = useState({});
-	const storage = getStorage();
 	const storageRef = refStorage(storage, `candidates/${file.name}`);
 
 	const {
@@ -41,9 +41,8 @@ function UpdateDataVacancy() {
 	} = vacancyData;
 
 	const current = new Date();
-	const date = `${current.getFullYear()}-${
-		current.getMonth() + 1
-	}-${current.getDate()}`;
+	const date = `${current.getFullYear()}-${current.getMonth() + 1
+		}-${current.getDate()}`;
 	const date_1 = new Date(date);
 	const date_2 = new Date(dateVacancy);
 	const day_as_milliseconds = 86400000;
@@ -234,7 +233,7 @@ function UpdateDataVacancy() {
 					<button
 						className="bg-[#2f7ce07f] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#3d79f0b4] ml-0 animate-pulse hover:animate-none flex items-center mb-8"
 						type="submit"
-						// onClick={alertSend}
+					// onClick={alertSend}
 					>
 						Send
 						<span className="material-symbols-outlined">

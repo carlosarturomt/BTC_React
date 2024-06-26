@@ -5,7 +5,9 @@ import { Header } from "../components/Header/Header";
 function Home() {
 	return (
 		<>
-			<TemplateLogged content={<Header />} />
+			<TemplateLogged>
+				<Header />
+			</TemplateLogged>
 		</>
 	);
 }

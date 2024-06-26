@@ -26,9 +26,13 @@ function Candidates() {
 	return (
 		<>
 			{test ? (
-				<TemplateLogged content={<CandidateAdmin />} />
+				<TemplateLogged>
+					<CandidateAdmin />
+				</TemplateLogged>
 			) : (
-				<TemplateLogged content={<Error404 />} />
+				<TemplateLogged>
+					<Error404 />
+				</TemplateLogged>
 			)}
 		</>
 	);

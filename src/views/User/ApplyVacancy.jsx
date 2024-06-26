@@ -26,7 +26,9 @@ function ApplyVacancy() {
 	return (
 		<div>
 			{test ? (
-				<TemplateLogged content={<Apply />} />
+				<TemplateLogged>
+					<Apply />
+				</TemplateLogged>
 			) : (
 				<TemplateNoNav>
 					<Login />

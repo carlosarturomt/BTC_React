@@ -5,7 +5,9 @@ import { JobsList } from "../components/Jobs/JobsList";
 function Jobs() {
 	return (
 		<>
-			<TemplateLogged content={<JobsList />} />
+			<TemplateLogged>
+				<JobsList />
+			</TemplateLogged>
 		</>
 	);
 }

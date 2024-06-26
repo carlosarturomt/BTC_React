@@ -29,9 +29,13 @@ function AdminUpdate() {
 	return (
 		<div>
 			{test ? (
-				<TemplateLogged content={<Update />} />
+				<TemplateLogged>
+					<Update />
+				</TemplateLogged>
 			) : (
-				<TemplateLogged content={<Error404 />} />
+				<TemplateLogged>
+					<Error404 />
+				</TemplateLogged>
 			)}
 		</div>
 	);
