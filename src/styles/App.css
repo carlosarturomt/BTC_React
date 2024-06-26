@@ -2,7 +2,6 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	/* font-size: 62.5%; */
 	font-family: "Montserrat", sans-serif;
 }
 
@@ -15,6 +14,82 @@ body {
 	overflow: auto;
 	max-height: 100%;
 	width: calc(100% + 17px);
+}
+
+/* Candidates Styles */
+.text-border-btn:hover {
+	-webkit-text-stroke: 1px #fefefe;
+	color: transparent !important;
+}
+
+.text-border-style {
+	-webkit-text-stroke: 1px #fefefe;
+	color: transparent !important;
+}
+
+.btn-animate {
+	border: none;
+	color: #ffffff;
+	outline: none;
+	padding: 0 9px 0 1px;
+	position: relative;
+}
+
+.btn-animate::after {
+	border: 0 solid transparent;
+	transition: all 0.5s;
+	content: "";
+	height: 0;
+	position: absolute;
+	width: 0px;
+}
+
+.btn-animate::after {
+	border-bottom: 1px solid #f3f4f6;
+	bottom: -4px;
+	left: 0;
+}
+
+.btn-animate:hover::after {
+	width: 100%;
+}
+
+.btn-animate:hover {
+	animation: PULSE 1.25s infinite;
+}
+
+.btn-animate::after {
+	animation: PULSE 1.25s infinite;
+}
+
+@-webkit-keyframes PULSE {
+	0% {
+		color: #ced2d9;
+	}
+
+	100% {
+		color: #ffffff;
+	}
+}
+
+@-ms-keyframes PULSE {
+	0% {
+		color: #ced2d9;
+	}
+
+	100% {
+		color: #ffffff;
+	}
+}
+
+@keyframes PULSE {
+	0% {
+		color: #ced2d9;
+	}
+
+	100% {
+		color: #ffffff;
+	}
 }
 
 @media (max-width: 1080px) {

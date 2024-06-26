@@ -1,3 +1,5 @@
+import React from "react";
+
 function CardJob(props) {
 	const { vacancyData } = props;
 	const {
@@ -9,15 +11,12 @@ function CardJob(props) {
 	} = vacancyData;
 
 	return (
-		<aside className="bg-[#022e5f21] flex flex-col sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md my-2">
+		<aside className="bg-[#022e5f21] flex flex-col sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md my-4">
 			<div>
 				<span className="text-slate-400 text-sm">{areaVacancy}</span>
 				<h3 className="font-bold mt-px text-gray-100">{vacancyTitle}</h3>
-				{/* <p className="text-gray-200">
-					{content.length > 50 ? `${content.slice(0, 30)}...` : content}
-				</p> */}
 				<div className="flex items-center gap-3 mt-2">
-					<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm">
+					<span className="bg-[#ffffff17] text-gray-400 rounded-full px-3 py-1 text-sm min-w-fit">
 						{typeVacancy}
 					</span>
 					<span className="text-slate-400 text-sm flex gap-1 items-center">

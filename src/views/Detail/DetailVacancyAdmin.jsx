@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { getDatabase, ref, onValue, update, remove } from "firebase/database";
-import {
-	InputForm,
-	LabelForm,
-} from "../../components/Form/InputForm";
+import { getDatabase, ref, onValue, update } from "firebase/database";
+import { InputForm, LabelForm } from "../../components/Form/InputForm";
 
-function DetailVacancyAdmin({ deleteBtn }) {
+function DetailVacancyAdmin() {
 	const [vacancyData, setVacancyData] = useState({});
 	const { id } = useParams();
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, `/vacancy/${id}`);
-
-	useEffect(() => {
-		onValue(vacancyRef, (snapshot) => {
-			setVacancyData(snapshot.val());
-		});
-	}, []);
 
 	const {
 		dateVacancy,
@@ -34,12 +23,6 @@ function DetailVacancyAdmin({ deleteBtn }) {
 		requiredVacancy,
 	} = vacancyData;
 
-	const changeDate = (event) => {
-		const property = event.target.name;
-		const value = new Date(event.target.value);
-		setVacancyData({ ...vacancyData, [property]: value });
-	};
-
 	const current = new Date();
 	const date = `${current.getFullYear()}-${
 		current.getMonth() + 1
@@ -47,24 +30,42 @@ function DetailVacancyAdmin({ deleteBtn }) {
 	const date_1 = new Date(date);
 	const date_2 = new Date(dateVacancy);
 	const day_as_milliseconds = 86400000;
-	const diff_in_millisenconds = date_1 - date_2;
-	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+	const diff_in_milliseconds = date_1 - date_2;
+	const diff_in_days = diff_in_milliseconds / day_as_milliseconds;
 
-	//F O R M
+	useEffect(() => {
+		onValue(vacancyRef, (snapshot) => {
+			setVacancyData(snapshot.val());
+		});
+	}, []);
+
+	/**
+	 *
+	 * @param {Object} event Re write the data of the Date in the Vacancy with UseState()
+	 */
+	const changeDate = (event) => {
+		const property = event.target.name;
+		const value = new Date(event.target.value);
+		setVacancyData({ ...vacancyData, [property]: value });
+	};
+
+	/**
+	 *
+	 * @param {Object} event Re write All data of the Vacancy with UseState()
+	 */
 	const changeHandler = (event) => {
 		const property = event.target.name;
 		const value = event.target.value;
 		setVacancyData({ ...vacancyData, [property]: value });
 	};
 
+	/**
+	 *
+	 * @returns Update the Data in the Reference og FireBase
+	 */
 	const updateDataRef = () => {
-		// UPDATE DATA
+		alert("Actualizado");
 		return update(vacancyRef, vacancyData);
-	};
-
-	const deleteDataRef = () => {
-		// DELETE DATA
-		return remove(vacancyRef, vacancyData);
 	};
 
 	return (
@@ -80,36 +81,66 @@ function DetailVacancyAdmin({ deleteBtn }) {
 							className="rounded-md border-0 focus:outline-none focus:ring-1 focus:ring-gray-100 py-1 px-1.5 text-gray-100 bg-[#ffffff17]"
 						/>
 					</div>
-					<InputForm label="Vacante" name="vacancyTitle" on={changeHandler} />
-					<InputForm label="Área" name="areaVacancy" on={changeHandler} />
+					<InputForm
+						label="Vacante"
+						name="vacancyTitle"
+						val={vacancyTitle}
+						on={changeHandler}
+					/>
+					<InputForm
+						label="Área"
+						name="areaVacancy"
+						val={areaVacancy}
+						on={changeHandler}
+					/>
 					<InputForm
 						label="Categoría"
 						name="categoryVacancy"
+						val={categoryVacancy}
 						on={changeHandler}
 					/>
 					<InputForm
 						label="Subcategoría"
 						name="subcategoryVacancy"
+						val={subcategoryVacancy}
 						on={changeHandler}
 					/>
-					<InputForm label="Salario" name="salaryVacancy" on={changeHandler} />
+					<InputForm
+						label="Salario"
+						name="salaryVacancy"
+						val={salaryVacancy}
+						on={changeHandler}
+					/>
 					<InputForm
 						label="Jornada Laboral"
 						name="typeVacancy"
+						val={typeVacancy}
 						on={changeHandler}
 					/>
-					<InputForm label="Modalidad" name="typeLocation" on={changeHandler} />
+					<InputForm
+						label="Modalidad"
+						name="typeLocation"
+						val={typeLocation}
+						on={changeHandler}
+					/>
 					<InputForm
 						label="Ubicación"
 						name="locationPlace"
+						val={locationPlace}
 						on={changeHandler}
 					/>
 					<InputForm
 						label="Educación mínima requerida"
 						name="requiredVacancy"
+						val={requiredVacancy}
 						on={changeHandler}
 					/>
-					<LabelForm label="Descripción" name="content" on={changeHandler} />
+					<LabelForm
+						label="Descripción"
+						name="content"
+						val={content}
+						on={changeHandler}
+					/>
 				</form>
 			</section>
 
@@ -122,7 +153,7 @@ function DetailVacancyAdmin({ deleteBtn }) {
 								<span className="text-slate-500 text-sm font-light">
 									{dateVacancy == date
 										? "Hoy"
-										: "Hace " + diff_in_days + " días"}
+										: `Hace ${Math.trunc(diff_in_days)}  días`}
 								</span>
 							</h1>
 							<p className="font-bold text-gray-200">{salaryVacancy}</p>
@@ -186,17 +217,8 @@ function DetailVacancyAdmin({ deleteBtn }) {
 							</aside>
 						</article>
 
-						{/* <Link to={`/admin/`}>
-							<button
-								className="bg-[#dc484870] py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-[#dc48488d] ml-0 animate-pulse hover:animate-none"
-								type="button"
-								onClick={deleteDataRef}
-							>
-								Delete
-							</button>
-						</Link> */}
 						<button
-							className="bg-[#8bdc4870] py-1 px-4 rounded-md font-semibold ml-4 text-gray-100 hover:bg-[#8bdc488d] ml-0 animate-pulse hover:animate-none"
+							className="bg-[#8bdc4870] py-1 px-4 rounded-md font-semibold text-gray-100 hover:bg-[#8bdc488d] ml-0 animate-pulse hover:animate-none"
 							type="button"
 							onClick={updateDataRef}
 						>

@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { Template } from "../../templates/Template";
+import { TemplateLogged } from "../../templates/TemplateLogged";
 
 function DetailVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
 	const { id } = useParams();
-
 	const database = getDatabase();
 	const vacancyRef = ref(database, `/vacancy/${id}`);
-
-	useEffect(() => {
-		onValue(vacancyRef, (snapshot) => {
-			// console.log(snapshot.val());
-			setVacancyData(snapshot.val());
-		});
-	}, []);
 
 	const {
 		dateVacancy,
@@ -32,21 +24,32 @@ function DetailVacancy() {
 	} = vacancyData;
 
 	const current = new Date();
-	const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
-	const date_1 = new Date(date)
-	const date_2 = new Date(dateVacancy)
+	const date = `${current.getFullYear()}-${current.getMonth() + 1
+		}-${current.getDate()}`;
+	const date_1 = new Date(date);
+	const date_2 = new Date(dateVacancy);
 	const day_as_milliseconds = 86400000;
 	const diff_in_millisenconds = date_1 - date_2;
 	const diff_in_days = diff_in_millisenconds / day_as_milliseconds;
 
+	useEffect(() => {
+		onValue(vacancyRef, (snapshot) => {
+			setVacancyData(snapshot.val());
+		});
+	}, []);
+
 	return (
-		<Template>
-			<main className="flex justify-center flex-col items-center mb-8">
-				<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md">
+		<TemplateLogged>
+			<main className="flex justify-center flex-col items-center">
+				<section className="bg-[#022e5f21] w-full max-w-4xl sm:flex-row gap-3 sm:items-center justify-between px-5 py-4 rounded-md mb-32">
 					<header className="pb-4 w-full border-b-2 border-[#ffffff21]">
 						<h1 className="font-bold text-2xl flex justify-between text-gray-100">
 							{vacancyTitle}
-							<span className="text-slate-500 text-sm font-light">{ dateVacancy == date ? 'Hoy' : 'Hace ' + diff_in_days + ' días' }</span>
+							<span className="text-slate-500 text-sm font-light">
+								{dateVacancy == date
+									? "Hoy"
+									: `Hace  ${Math.trunc(diff_in_days)}  días`}
+							</span>
 						</h1>
 						<p className="font-bold text-gray-200">{salaryVacancy}</p>
 
@@ -109,12 +112,14 @@ function DetailVacancy() {
 						</aside>
 					</article>
 
-					<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
-						Apply Now
-					</button>
+					<Link to={`apply`}>
+						<button className="bg-[#ffffff17] text-white font-medium px-4 py-2 rounded-md flex gap-1 items-center hover:bg-[#ffffff30] animate-pulse">
+							Apply Now
+						</button>
+					</Link>
 				</section>
 			</main>
-		</Template>
+		</TemplateLogged>
 	);
 }
 

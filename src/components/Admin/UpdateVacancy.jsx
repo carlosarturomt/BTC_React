@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import {
-	getDatabase,
-	ref,
-	push,
-	update,
-} from "firebase/database";
+import { getDatabase, ref, update } from "firebase/database";
 import { InputDate, InputForm, LabelForm } from "../Form/InputForm";
 
 function UpdateVacancy() {
 	const [vacancyData, setVacancyData] = useState({});
+
+	const {
+		vacancyTitle,
+	} = vacancyData;
 
 	const changeHandler = (event) => {
 		const property = event.target.name;
@@ -20,7 +19,6 @@ function UpdateVacancy() {
 
 	// Get a key for a new Post.
 	const vacancyRefKey = ref(database, `/vacancy/`);
-	// const vacancyRefKey = ref(database, "/vacancy/-NWPLtVu1NYL4MQhPQ3v");
 
 	const updateDataRef = () => {
 		// UPDATE DATA
@@ -38,13 +36,12 @@ function UpdateVacancy() {
 	};
 
 	return (
-		// <section className="flex justify-center flex-col items-center py-2 px-2 w-3/5 bg-[#000c1aae]">
 		<section className="flex justify-center flex-col items-center ml-auto mr-auto w-[95%] md:w-2/4 lg:w-3/5 ">
 			<form className="w-full px-2 md:mr-4 md:p-6 rounded-md bg-[#022e5f21]">
 				<div className="flex justify-end">
 					<InputDate on={changeDate} />
 				</div>
-				<InputForm label="Vacante" name="vacancyTitle" on={changeHandler} />
+				<InputForm label="Vacante" name="vacancyTitle" on={changeHandler} val={vacancyTitle}/>
 				<InputForm label="Área" name="areaVacancy" on={changeHandler} />
 				<InputForm
 					label="Categoría"

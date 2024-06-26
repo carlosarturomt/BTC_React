@@ -1,5 +1,6 @@
+import React from "react";
 import { CreateVacancy } from "../../components/Admin/CreateVacancy";
-import { JobsAdmin } from "../../components/Admin/JobsAdmin";
+import { JobsAdmin } from "../../components/Jobs/JobsAdmin";
 
 function Create() {
 	return (
